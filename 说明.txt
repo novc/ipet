@@ -1,0 +1,4 @@
+数据库mysql，字符集编码utf8，直接将本文件夹下的sql脚本导入到mysql中即可。
+
+可以用navicat for mysql工具导入。
+ 

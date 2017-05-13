@@ -1,0 +1,67 @@
+/* ·ÖÒ³Æ÷ */
+.page {
+    overflow: hidden;
+    line-height: 25px;
+    margin-top:20px;
+}
+
+.page ul {
+    float: left;
+    margin-left: 400px
+}
+
+.page ul li {
+    float: left;
+    margin:0px 5px;
+}
+
+.page ul li a,.page div input{
+	padding: 3px 10px;
+	border:1px solid #65ADE6;
+	border-radius:2px;
+	background:#F7FcFc;
+}
+ .page ul li:hover a, .page div input:hover{
+	background:#65ADE6;
+	color:#fff!important;
+	cursor:pointer;
+}
+
+ .page div {
+    float: right;
+    margin-right: 40px;
+}
+
+table {
+    border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	font-size:12px;
+}
+
+thead td {
+    font-weight: 700;
+    background-color: #E6E6E6;
+    line-height:20px;
+}
+
+table td{
+	border-right: 1px solid #ccc;
+    text-align: center;
+    padding:0px 23px;
+}
+tbody tr td {
+    line-height: 28px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+}
+
+tbody tr:hover td {
+    background: #E8F2FE;
+}
+
+tbody tr td a{
+	color:#3399FF;
+}
+
+
+

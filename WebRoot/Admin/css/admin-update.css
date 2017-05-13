@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+table{
+	margin:0px 10px;
+}
+.btn-box{
+	margin-top:15px;
+	text-align:center;
+}
+td {
+	text-align:left;
+	font-size:14px;
+	line-height:25px;
+}
+tr td:first-child{
+	text-align:right;
+	padding:0px 10px;
+}
