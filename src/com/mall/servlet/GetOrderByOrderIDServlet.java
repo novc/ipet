@@ -20,19 +20,27 @@ public class GetOrderByOrderIDServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String orderId_str = request.getParameter("orderId");
+		response.setCharacterEncoding("utf-8");
 		
-		if(orderId_str != "") {
+		String orderId_str = request.getParameter("orderId");
+		String flag_str = request.getParameter("flag");
+		
+		
+		if(orderId_str != " ") {
 			int orderId = Integer.parseInt(orderId_str);
+			int status = 2;
+			if(flag_str!=" "){
+				status = Integer.parseInt(flag_str);
+			}
 			Model model = new Model();
-			Order order = model.searchOrderByOrderId(orderId);
+			Order order = model.searchOrderByOrderId(orderId,status);
 			response.setHeader("pragma", "no-cache");
 			response.setHeader("cache-control", "no-cache");
-			response.setCharacterEncoding("utf-8");
 			String jsonStr = JSON.toJSONString(order);
 			PrintWriter out = response.getWriter();
 			out.println(jsonStr);
-			
+		}else{
+			return;
 		}
 	}
 

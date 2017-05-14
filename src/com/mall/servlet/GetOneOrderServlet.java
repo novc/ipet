@@ -15,7 +15,6 @@ public class GetOneOrderServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("gb2312");
 		String orderId_str = request.getParameter("orderId");
 		if(orderId_str != "") {
 			response.setHeader("pragma", "no-cache");
@@ -25,14 +24,8 @@ public class GetOneOrderServlet extends HttpServlet {
 			orderId = Integer.parseInt(orderId_str);
 			Model model = new Model();
 			Order order = model.getOneOrder(orderId);
-			
-			String jsonStr = JSON.toJSONString(order);
-			PrintWriter out = response.getWriter();
-			out.println(jsonStr);
-			
-//			request.setAttribute("order", order);
-//			request.getRequestDispatcher("Admin/pages/manageDetailOrder.jsp").forward(request, response);
-//			
+			request.setAttribute("order", order);
+			request.getRequestDispatcher("Admin/pages/manageDetailOrder.jsp").forward(request, response);
 		}
 	}
 

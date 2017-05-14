@@ -46,8 +46,8 @@ public class WordsFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		//乱码处理
-		request.setCharacterEncoding("gb2312");
-		response.setContentType("text/html;charset=gb2312");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html;charset=utf-8");
 		HttpServletRequest HttpReq = (HttpServletRequest) request;
 		HttpReqWrapper hrw = new HttpReqWrapper(HttpReq);
 		hrw.setMap(map);

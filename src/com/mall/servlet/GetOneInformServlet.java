@@ -19,6 +19,10 @@ public class GetOneInformServlet extends HttpServlet {
 			int id = Integer.parseInt(id_str);
 			Model model = new Model();
 			Inform inform = model.getOneInform(id);
+			PrintWriter out = response.getWriter();
+			out.println(inform);
+			
+			
 			request.setAttribute("inform", inform);
 			request.getRequestDispatcher("").forward(request, response);
 		}

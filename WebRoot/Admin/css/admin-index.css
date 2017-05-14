@@ -3,13 +3,12 @@
 	background:#fff;
 	border:1px solid #65ADE6;
 	line-height:25px;
+	margin:0px 2px;
 	padding:0px 13px;
 	font-size:12px;
 	cursor:pointer;
 	color:#333;
-	
 	border-radius:2px;
-	
 }
 .btn-default a{
 	color:#333;
@@ -20,11 +19,12 @@
 }
 
 .search-input{
-	line-height:22px;
+	line-height:25px;
 	padding:0px 8px;
 	font-size:12px;
 	width:120px;
 	border:1px solid #ddd;
+	border-radius:1px;
 }
 /*头部*/
 .header h1,
@@ -105,21 +105,16 @@
     color: #F16522
 }
 /*表格区域*/
+
 .tablewrapper{
-	min-width:1150px;
-}
-.tablewrapper {
-	/* background:linear-gradient(#C1E0F7 0px,#F7FcFc 30px); */
-    padding-bottom:10px;
-    color:#0E2D5F;
+	min-width:1200px;
 }
 .tablecontent{
 	display:inline-block;
-	/* border:1px solid #95B8E7; */
-	margin: 0px 3px;
-	
+	margin: 3px 3px;
 }
 .title{
+	
 	background:#E6F0FF;
 	border-bottom:1px solid #95B8E7;
 	color:#0E2D5F;
@@ -130,7 +125,7 @@
 	padding-left:8px;
 }
 
-.searchwrapper{
+.option-area{
 	margin:10px 0px;
 }
 

@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'addInform.jsp' starting page</title>
+    <title>发布公告</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -26,8 +26,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   	<div class="tablewrapper">
+  	<div class="title">公告信息</div>
     <div class="tablecontent">
-        <div class="title">公告信息</div>
+        
         <form action="addInformServlet" method="get">
             <table id="t2">
                 <tr>
@@ -44,7 +45,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </tr>
                 <tr>
                     <td>
-                        <input type="submit" value="添加">
+                        <input class="btn-default" type="submit" value="添加">
                     </td>
                     <td>${message }</td>
                 </tr>

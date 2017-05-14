@@ -18,33 +18,38 @@ public class UpdateOrderInfoServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setCharacterEncoding("utf-8");	
-		HttpSession session = request.getSession();
 		String str_OrderId = request.getParameter("orderId");
 		String str_RecvName = request.getParameter("recvName");
 		String str_Address = request.getParameter("address");
 		String str_Postcode = request.getParameter("postcode");
-		
+		String str_Servlet = request.getParameter("updateOrderServlet");
 		int orderId = Integer.parseInt(str_OrderId);
 		 
 		Order order = new Order();
-//		User user = new User();
 		order.setOrderId(orderId);
 		order.setRecvName(str_RecvName);
 		order.setAddress(str_Address);
 		order.setPostcode(str_Postcode);
 		Model model= new Model();
-	    if(model.UpdateOrderInfo(order)){//修改成功
-	    	session.setAttribute("order", order);
-	    	session.setAttribute("updateMessage","订单信息修改成功");
-	    	RequestDispatcher dispatcher =  request.getRequestDispatcher("getOrderPagerServlet");
-	    	dispatcher.forward(request, response);
-	    }else{//修改失败
-	    	session.setAttribute("updateMessage","订单信息修改失败");
-	    	request.getRequestDispatcher("Admin/pages/manageOrder.jsp");
-	    	
-	    }
+		/*指定跳转的servlet 回到发起请求的jsp相对应的servlet*/ 
+		if(str_Servlet==" "){
+			if(model.UpdateOrderInfo(order)){//修改成功
+		    	RequestDispatcher dispatcher =  request.getRequestDispatcher("getOrderPagerServlet");
+		    	dispatcher.forward(request, response);
+		    }else{//修改失败
+		    	RequestDispatcher dispatcher =  request.getRequestDispatcher("getOrderPagerServlet");
+		    	dispatcher.forward(request, response);
+		    }
+		}else{
+			if(model.UpdateOrderInfo(order)){//修改成功
+		    	RequestDispatcher dispatcher =  request.getRequestDispatcher(str_Servlet);
+		    	dispatcher.forward(request, response);
+		    }else{//修改失败
+		    	RequestDispatcher dispatcher =  request.getRequestDispatcher(str_Servlet);
+		    	dispatcher.forward(request, response);
+		    }
+		}
+	    
 		
 	}
 

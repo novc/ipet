@@ -246,6 +246,7 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 			ps.setInt(2, pageSize);
 			rs = ps.executeQuery();
 			while(rs.next()) {
+				String flagName = (rs.getInt("flag")==1)? "已发货" : "未发货";
 				Order order = new Order();
 				User user = new User();
 				order.setOrderId(rs.getInt("orderId"));
@@ -256,7 +257,7 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 				user.setEmail(rs.getString("email"));
 				order.setUser(user);
 				order.setOrderDate(rs.getString("orderDate"));
-				order.setFlag(rs.getInt("flag"));
+				order.setFlagName(flagName);
 				orderMap.put(order.getOrderId(), order);
 			}
 		} catch (Exception e) {
@@ -517,25 +518,34 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 	 * @param keywords 用户输入的关键字 
 	 */
 	@Override
-	public Order searchOrderByOrderId(int orderId) {
+	public Order searchOrderByOrderId(int orderId,int flag) {
 		Order order = new Order();
 		DbUtil db = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		
 		try {
 			db = new DbUtil();
-			String sql = "select * from tb_order where orderId = ?";
+			String sql = "";
+			if(flag== 0){
+				sql = "select * from tb_order where orderId = ? and flag = 0";
+			}else if(flag == 1){
+				sql = "select * from tb_order where orderId = ? and flag = 1";
+			}else{
+				sql = "select * from tb_order where orderId = ?";
+			}
 			ps = db.getCon().prepareStatement(sql);
 			ps.setInt(1, orderId);
 			rs = ps.executeQuery();
 			while(rs.next()) {
+				String flagName = (rs.getInt("flag")==1)?"已发货":"未发货";
 				order.setOrderId(rs.getInt("orderId"));
 				order.setName(rs.getString("name"));
 				order.setRecvName(rs.getString("recvName"));
 				order.setAddress(rs.getString("address"));
 				order.setPostcode(rs.getString("postcode"));
 				order.setOrderDate(rs.getString("orderDate"));
-				order.setFlag(rs.getInt("flag"));
+				order.setFlagName(flagName);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

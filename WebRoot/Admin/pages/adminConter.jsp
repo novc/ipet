@@ -37,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <li><a href="adminLogout">注销</a></li>
         </ul>
     </div>
-    <div class="left" data-options="region:'west',title:'菜单栏',split:'true'">
+    <div class="left" data-options="region:'west',title:'菜单栏'">
         <div class="easyui-accordion">
             <div title="用户管理">
                 <ul>
@@ -49,7 +49,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    <li><a href="getOrderPagerServlet" target="contentIframe">所有订单</a></li>
 				    <li><a href="getOrderNotSendPagerServlet" target="contentIframe">未发货订单</a></li>
 				    <li><a href="getOrderSendPagerServlet" target="contentIframe">已发货订单</a></li>
-				    <li><a href="getOrderFreezePagerServlet" target="contentIframe">冻结订单</a></li>
 				</ul>
             </div>
             <div title="公告管理">

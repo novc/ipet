@@ -21,7 +21,7 @@ public interface AdminOrderDao {
 	public OrderNotSendPager getOrderNotSendPager(int index,int pageSize);
 	public OrderFreezePager getOrderFreezePager(int index,int pageSize);
 	public boolean freezeOrder(int[] orderids);
-	public Order searchOrderByOrderId(int id);
+	public Order searchOrderByOrderId(int id,int flag);
 	public boolean UpdateOrderInfo(Order order);
 	
 }

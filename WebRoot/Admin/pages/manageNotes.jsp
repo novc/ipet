@@ -57,33 +57,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
 <body>
 	<div class="tablewrapper">
+		<div class="title">留言管理</div>
 		<div class="tablecontent">
-	        <div class="title">留言管理</div>
+		<div class="option-area"><input class="btn-default" type="button" value="删除" onclick="removeNote(${notePager.pageOffset},${notePager.pageSize})"></div>
 	        <table cellspacing="0">
 	            <thead>
 	                <tr>
+	                	<td>全选
+	                        <input type="checkbox" id="selectAll" onclick="selectAll()" />
+	                    </td>
 	                    <td>留言ID</td>
 	                    <td>标题</td>
 	                    <td>用户名</td>
 	                    <td width="180px">时间</td>
 	                    <td>内容</td>
-	                    <td>全选
-	                        <input type="checkbox" id="selectAll" onclick="selectAll()" />
-	                    </td>
+	                    
 	                </tr>
 	            </thead>
 	            <tbody>
 	                <form method="post" name="deleteForm">
 	                    <c:forEach var="note" items="${noteList}">
 	                        <tr>
+	                        	<td>
+	                                <input type="checkbox" name="delete" value="${note.id }">
+	                            </td>
 	                            <td>${note.id }</td>
 	                            <td>${note.title }</td>
 	                            <td>${note.author }</td>
 	                            <td width="100px">${note.ly_time }</td>
 	                            <td>${note.content }</td>
-	                            <td>
-	                                <input type="checkbox" name="delete" value="${note.id }">
-	                            </td>
 	                        </tr>
 	                    </c:forEach>
 	                </form>
@@ -95,10 +97,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                    <pg:param name="pageSize" value="${notePager.pageSize }" />
 	                    <pg:param name="pageNo" value="${currentPageNo}" />
 	                    <pg:first>
-	                        <li><a href="${pageUrl}">首页</a></li>
+	                        <li><a class="btn" href="${pageUrl}">首页</a></li>
 	                    </pg:first>
 	                    <pg:prev>
-	                        <li><a href="${pageUrl}">上一页</a></li>
+	                        <li><a class="btn" href="${pageUrl}">上一页</a></li>
 	                    </pg:prev>
 	                    <pg:pages>
 	                        <c:choose>
@@ -111,15 +113,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                        </c:choose>
 	                    </pg:pages>
 	                    <pg:next>
-	                        <li><a href="${pageUrl}">下一页</a></li>
+	                        <li><a class="btn" href="${pageUrl}">下一页</a></li>
 	                    </pg:next>
 	                    <pg:last>
-	                        <li><a href="${pageUrl}">尾页</a></li>
+	                        <li><a class="btn" href="${pageUrl}">尾页</a></li>
 	                    </pg:last>
 	                </pg:pager>
 	            </ul>
 	            <div>
-	                <input type="button" value="删除" onclick="removeNote(${notePager.pageOffset},${notePager.pageSize})">
+	                
 	            </div>
 	        </div>
 	    </div>

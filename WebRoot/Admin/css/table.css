@@ -2,34 +2,37 @@
 .page {
     overflow: hidden;
     line-height: 25px;
-    margin-top:20px;
+    margin-top:25px;
 }
 
 .page ul {
+	padding:5px 0px;
     float: left;
-    margin-left: 400px
+    margin-left: 200px;
 }
 
 .page ul li {
-    float: left;
+    display:inline-block;
     margin:0px 5px;
 }
-
-.page ul li a,.page div input{
-	padding: 3px 10px;
+.page .btn{
+	background:#fff;
 	border:1px solid #65ADE6;
-	border-radius:2px;
-	background:#F7FcFc;
-}
- .page ul li:hover a, .page div input:hover{
-	background:#65ADE6;
-	color:#fff!important;
+	padding:4px 13px;
+	font-size:12px;
 	cursor:pointer;
+	color:#333;
+	border-radius:2px;
 }
 
+.page .btn:hover{
+	background:#65ADE6;
+	color:#fff;
+}
  .page div {
-    float: right;
-    margin-right: 40px;
+ 	padding:5px 0px;
+    float: left;
+    margin-left: 100px;
 }
 
 table {

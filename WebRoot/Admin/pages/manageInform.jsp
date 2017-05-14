@@ -23,67 +23,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="Admin/css/admin-index.css">
     <script type="text/javascript" src="Admin/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="Admin/easyui/jquery.easyui.min.js"></script>
-	
-	<script type="text/javascript">
-		function selectAll() {
-			var deletes =document.getElementsByName("delete");
-			var selectAll = document.getElementById("selectAll");
-			for(var i = 0;i<deletes.length;i++) {
-				if(selectAll.checked == true) {
-				 	deletes[i].checked = true;
-				}
-				else {
-					deletes[i].checked = false;
-				}
-			}
-		}
-		function removeInform(pageOffset,pageSize) {
-			var deletes = document.getElementsByName("delete");
-			var count = 0;
-			var informs = new Array();
-			for(var i = 0;i<deletes.length;i++) {
-				if(deletes[i].checked) {
-					count++;
-					informs.push(deletes[i].value);
-				}
-			}
-			if(count == 0) {
-				alert("请选择要删除的项目");
-				return false;
-			}
-			var oform = document.getElementsByTagName("form")[0];
-			oform.action = "deleteInform?informIds="+informs+"&pageOffset="+pageOffset+"&pageSize="+pageSize;
-			oform.submit();
-		}
-	</script>
+	<script type="text/javascript" src="Admin/js/admin.js"></script>
   </head>
 	<body>
-  <div class="tablewrapper">
+<div class="tablewrapper">
+	<div class="title">公告信息</div>
     <div class="tablecontent">
-        <div class="title">公告信息</div>
+    <div class="option-area">
+    <input class="btn-default" type="button" value="删除" onclick="removeInform(${informPager.pageOffset},${informPager.pageSize})">
+    </div>
         <table cellspacing="0">
             <thead>
                 <tr>
+                	<td>全选<input type="checkbox" id="selectAll" onclick="selectAll()"></td>
                     <td>公告ID</td>
                     <td>标题</td>
                     <td>时间</td>
                     <td>内容</td>
-                    <td>全选<input type="checkbox" id="selectAll" onclick="selectAll()"></td>
+                    <td colspan = "2">操作</td>
                 </tr>
             </thead>
             <tbody>
                 <form method="post" name="deleteForm">
                     <c:forEach var="inform" items="${informList}">
                         <tr>
+                        	<td>
+                                <input type="checkbox" name="delete" value="${inform.informId }">
+                            </td>
                             <td>${inform.informId }</td>
                             <td>${inform.informTitle }</td>
-                            <td width="100px">${inform.informTime }</td>
+                            <td width="180px">${inform.informTime }</td>
                             <td>
                                 ${inform.informContent }
                             </td>
-                            <td>
-                                <input type="checkbox" name="delete" value="${inform.informId }">
-                            </td>
+                            <td><a href="javascript:void(0)" onclick="setUpdateInform(${inform.informId })">修改</a></td>
+                            <td><a href="deleteInform?informIds=${inform.informId }">删除</a></td>
+                            
                         </tr>
                     </c:forEach>
                 </form>
@@ -96,12 +71,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <pg:param name="pageNo" value="${currentPageNo}" />
                     <pg:first>
                         <li>
-                            <a href="${pageUrl}">首页</a>
+                            <a class="btn" href="${pageUrl}">首页</a>
                         </li>
                     </pg:first>
                     <pg:prev>
                         <li>
-                            <a href="${pageUrl}">上一页</a>
+                            <a class="btn" href="${pageUrl}">上一页</a>
                         </li>
                     </pg:prev>
                     <pg:pages>
@@ -117,16 +92,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </c:choose>
                     </pg:pages>
                     <pg:next>
-                        <li><a href="${pageUrl}">下一页</a></li>
+                        <li><a class="btn" href="${pageUrl}">下一页</a></li>
                     </pg:next>
                     <pg:last>
                         <li>
-                            <a href="${pageUrl}">尾页</a></li>
+                            <a class="btn" href="${pageUrl}">尾页</a></li>
                     </pg:last>
-                </pg:pager>5r
+                </pg:pager>
             </ul>
             <div>
-                <input type="button" value="删除" onclick="removeInform(${informPager.pageOffset},${informPager.pageSize})">
+                
             </div>
         </div>
     </div>

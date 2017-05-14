@@ -1,8 +1,9 @@
-<%@ page language="java" pageEncoding="GBK"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="tools.jsp" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+/* request.setCharacterEncoding("utf-8"); */
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -10,8 +11,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>∂©µ•π‹¿Ì</title>
-    
+    <title>Â∑≤ÂèëË¥ßËÆ¢Âçï</title>
+    <meta charset="utf-8" />
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<link rel="icon" href="Admin/images/icon.png">
@@ -23,96 +24,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="Admin/css/admin-index.css">
     <script type="text/javascript" src="Admin/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="Admin/easyui/jquery.easyui.min.js"></script>
-	<script type="text/javascript">
-		function selectAll() {
-			var deletes =document.getElementsByName("delete");
-			var selectAll = document.getElementById("selectAll");
-			for(var i = 0;i<deletes.length;i++) {
-				if(selectAll.checked == true) {
-				 	deletes[i].checked = true;
-				}
-				else {
-					deletes[i].checked = false;
-				}
-			}
-		}
-		
-		function removeOrder(pageOffset,pageSize) {
-			var deletes = document.getElementsByName("delete");
-			var count = 0;
-			var orders = new Array();
-			for(var i = 0;i<deletes.length;i++) {
-				if(deletes[i].checked) {
-					count++;
-					orders.push(deletes[i].value);
-				}
-			}
-			if(count == 0) {
-				alert("«Î—°‘Ò“™…æ≥˝µƒœÓƒø");
-				return false;
-			}
-			var oform = document.getElementsByTagName("form")[0];
-			oform.action = "deleteOrder?orderIds="+orders+"&pageOffset="+pageOffset+"&pageSize="+pageSize;
-			oform.submit();
-		}
-
-		function freezeOrder(pageOffset,pageSize) {
-			var deletes = document.getElementsByName("delete");
-			var count = 0;
-			var orders = new Array();
-			for(var i = 0;i<deletes.length;i++) {
-				if(deletes[i].checked) {
-					count++;
-					orders.push(deletes[i].value);
-				}
-			}
-			if(count == 0) {
-				alert("ªπ√ª”–—°÷–∂©µ•œÓ");
-				return false;
-			}
-			var oform = document.getElementsByTagName("form")[0];
-			oform.action = "freezeOrderServlet?orderIds="+orders+"&pageOffset="+pageOffset+"&pageSize="+pageSize;
-			oform.submit();
-		}
-	</script>
-  </head>
+    <script type="text/javascript" src="Admin/js/admin.js"></script>
+</head>
   
   <body>
-  <div class="tablewrapper">
+<div class="tablewrapper">
+  	<div class="title">Â∑≤ÂèëË¥ßËÆ¢Âçï</div>
     <div class="tablecontent">
-    <div class="title">“—∑¢ªı∂©µ•</div>
+    	<div class="option-area">
+            <input class="search-input" type="text" id="OrderID" name="OrderID" placeholder="ËØ∑ËæìÂÖ•ËÆ¢ÂçïÂè∑Á†Å">
+            <div id="searchDiv" style="display: inline"></div>
+            <button class="btn-default" onclick="searchOrder(1)">Êü•ËØ¢</button>
+            <button class="btn-default"><a href="getOrderPagerServlet">Êü•ÁúãÊâÄÊúâËÆ¢Âçï</a></button>
+            <input class="btn-default" type="button" value="Âà†Èô§" onclick="removeOrder(${orderPager.pageOffset},${orderPager.pageSize})">
+       	</div>
         <table cellspacing="0">
             <thead>
                 <tr>
-                    <td>∂©µ•ID</td>
-                    <td>”√ªß√˚</td>
-                    <td>–’√˚</td>
-                    <td>µÿ÷∑</td>
-                    <td>” ±‡</td>
-                    <td>Email</td>
-                    <td> ±º‰</td>
-                    <td>◊¥Ã¨</td>
-                    <td>≤Ÿ◊˜</td>
-                    <td><input type="checkbox" id="selectAll" onclick="selectAll()">»´—°</td>
+                	<td>ÂÖ®ÈÄâ<input type='checkbox' id='selectAll' onclick='selectAll()'></td>
+                    <td>ËÆ¢ÂçïID</td>
+                    <td>Áî®Êà∑Âêç</td>
+                    <td>ÂßìÂêç</td>
+                    <td>Âú∞ÂùÄ</td>
+                    <td>ÈÇÆÁºñ</td>
+                    <td>Êó∂Èó¥</td>
+                    <td colspan='2'>Êìç‰Ωú</td>
                 </tr>
             </thead>
             <tbody>
                 <form method="post" name="sendForm">
                     <c:forEach var="order" items="${ orderList}">
                         <tr>
+                        	<td>
+                                <input type="checkbox" name="delete" value="${order.orderId }">
+                            </td>
                             <td>${order.orderId }</td>
                             <td>${order.user.name }</td>
                             <td>${order.recvName }</td>
                             <td>${order.user.address }</td>
                             <td>${order.user.postcode}</td>
-                            <td>${order.user.email}</td>
                             <td>${order.orderDate }</td>
-                            <td>${order.flag }</td>
-                            <td><a href="getOneOrderServlet?orderId=${order.orderId}">œÍ«È</a></td>
-                            <td>
-                                <input type="checkbox" name="delete" value="${order.orderId }">
-                            </td>
-                            
+                            <td><a href="getOneOrderServlet?orderId=${order.orderId}">ËØ¶ÊÉÖ</a></td>
+                            <td><a href="deleteOrder?orderIds=${order.orderId }">Âà†Èô§</a></td>
                         </tr>
                     </c:forEach>
                 </form>
@@ -126,12 +79,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <pg:param name="pageNo" value="${currentPageNo}" />
                     <pg:first>
                         <li>
-                            <a href="${pageUrl}"> ◊“≥</a>
+                            <a class="btn" href="${pageUrl}">È¶ñÈ°µ</a>
                         </li>
                     </pg:first>
                     <pg:prev>
                         <li>
-                            <a href="${pageUrl}">…œ“ª“≥</a>
+                            <a class="btn" href="${pageUrl}">‰∏ä‰∏ÄÈ°µ</a>
                         </li>
                     </pg:prev>
                     <pg:pages>
@@ -148,19 +101,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </pg:pages>
                     <pg:next>
                         <li>
-                            <a href="${pageUrl}">œ¬“ª“≥</a>
+                            <a class="btn" href="${pageUrl}">‰∏ã‰∏ÄÈ°µ</a>
                         </li>
                     </pg:next>
                     <pg:last>
                         <li>
-                            <a href="${pageUrl}">Œ≤“≥</a>
+                            <a class="btn" href="${pageUrl}">Â∞æÈ°µ</a>
                         </li>
                     </pg:last>
                 </pg:pager>
             </ul>
             <div>
-                <input type="button" value="∂≥Ω·" onclick="freezeOrder(${orderPager.pageOffset},${orderPager.pageSize})">
-                <input type="button" value="…æ≥˝" onclick="removeOrder(${orderPager.pageOffset},${orderPager.pageSize})">
+                <%-- <input class="btn" type="button" value="ÂÜªÁªì" onclick="freezeOrder(${orderPager.pageOffset},${orderPager.pageSize})"> --%>
+                
             </div>
         </div>
     </div>

@@ -355,8 +355,8 @@ public class Model {
 	public boolean SendOrder(int orderid) {
 		return adminOrderDao.SendOrder(orderid);
 	}
-	public Order searchOrderByOrderId(int id){
-		return adminOrderDao.searchOrderByOrderId(id);
+	public Order searchOrderByOrderId(int id,int flag){
+		return adminOrderDao.searchOrderByOrderId(id,flag);
 	}
 	public boolean UpdateOrderInfo(Order order) {
 		return adminOrderDao.UpdateOrderInfo(order);

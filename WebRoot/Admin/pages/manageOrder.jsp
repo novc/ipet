@@ -1,4 +1,4 @@
-<%@ page language="java" pageEncoding="GBK"%>
+<%@ page language="java" pageEncoding="UTF-8"%>
 <%@ include file="tools.jsp" %>
 <%
 String path = request.getContextPath();
@@ -10,8 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>¶©µ¥¹ÜÀí</title>
-    
+    <title>è®¢å•ç®¡ç†</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<link rel="icon" href="Admin/images/icon.png">
@@ -22,118 +21,70 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="Admin/css/admin-index.css">
     <script type="text/javascript" src="Admin/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="Admin/easyui/jquery.easyui.min.js"></script>
-	
-	<script type="text/javascript">
-		function selectAll() {
-			var deletes =document.getElementsByName("delete");
-			var selectAll = document.getElementById("selectAll");
-			for(var i = 0;i<deletes.length;i++) {
-				if(selectAll.checked == true) {
-				 	deletes[i].checked = true;
-				}
-				else {
-					deletes[i].checked = false;
-				}
-			}
-		}
-		
-		function removeOrder(pageOffset,pageSize) {
-			var deletes = document.getElementsByName("delete");
-			var count = 0;
-			var orders = new Array();
-			for(var i = 0;i<deletes.length;i++) {
-				if(deletes[i].checked) {
-					count++;
-					orders.push(deletes[i].value);
-				}
-			}
-			if(count == 0) {
-				alert("ÇëÑ¡ÔñÒªÉ¾³ıµÄÏîÄ¿");
-				return false;
-			}
-			var oform = document.getElementsByTagName("form")[0];
-			oform.action = "deleteOrder?orderIds="+orders+"&pageOffset="+pageOffset+"&pageSize="+pageSize;
-			oform.submit();
-		}
-		
-		function updateOrder(orderId){
-			if(window.sessionStorage){
-				window.sessionStorage.setItem("updateOrderId",orderId);
-				console.log(sessionStorage.getItem("updateOrderId"));
-				window.location.href="Admin/pages/updateOrderInfo.jsp"; 
-			}else{
-				console.log("session error");
-			}
-			
-		}
-		
-	
-	</script>
+    <script type="text/javascript" src="Admin/js/admin.js"></script>
   </head>
   
   <body>
 <div class="tablewrapper">
-<div class="title">ËùÓĞ¶©µ¥</div>
+	<div class="title">æ‰€æœ‰è®¢å•</div>
     <div class="tablecontent">
-    	
-    	<div class="searchwrapper">
-            <input class="search-input" type="text" id="OrderID" name="OrderID" placeholder="ÇëÊäÈë¶©µ¥ºÅÂë">
+    	<div class="option-area">
+            <input class="search-input" type="text" id="OrderID" name="OrderID" placeholder="è¯·è¾“å…¥è®¢å•å·ç ">
             <div id="searchDiv" style="display: inline"></div>
-            <button class="btn-default" onclick="searchOrder()">²éÑ¯</button>
-            <button class="btn-default"><a href="getOrderPagerServlet">²é¿´ËùÓĞ¶©µ¥</a></button>
+            <button class="btn-default" onclick="searchOrder(2)">æŸ¥è¯¢</button>
+            <button class="btn-default"><a href="getOrderPagerServlet">æŸ¥çœ‹æ‰€æœ‰è®¢å•</a></button>
+            <input class="btn-default" type="button" value="åˆ é™¤" onclick="removeOrder(${orderPager.pageOffset},${orderPager.pageSize})">
        	</div>
         <table cellspacing="0">
             <thead>
                 <tr>
-                    <td>¶©µ¥ID</td>
-                    <td>ÓÃ»§Ãû</td>
-                    <td>ĞÕÃû</td>
-                    <td>µØÖ·</td>
-                    <td>ÓÊ±à</td>
-                    <td>Ê±¼ä</td>
-                    <td>×´Ì¬</td>
-                    <td colspan="3">²Ù×÷</td>
-                    <td><input type="checkbox" id="selectAll" onclick="selectAll()">È«Ñ¡</td>
+                <td>å…¨é€‰<input type="checkbox" id="selectAll" onclick="selectAll()"></td>
+                    <td>è®¢å•ID</td>
+                    <td>ç”¨æˆ·å</td>
+                    <td>å§“å</td>
+                    <td>åœ°å€</td>
+                    <td>é‚®ç¼–</td>
+                    <td>æ—¶é—´</td>
+                    <td>çŠ¶æ€</td>
+                    <td colspan="3">æ“ä½œ</td>
+                    
                 </tr>
             </thead>
             <tbody>
                 <form method="post" name="deleteForm">
                     <c:forEach var="order" items="${ orderList}">
                         <tr>
+                        	<td>
+                                <input type="checkbox" name="delete" value="${order.orderId }">
+                            </td>
                             <td>${order.orderId }</td>
                             <td>${order.user.name }</td>
                             <td>${order.recvName }</td>
                             <td>${order.user.address }</td>
                             <td>${order.user.postcode}</td>
                             <td>${order.orderDate }</td>
-                            <td>${order.flag }</td>
-                            <td><a href="getOneOrderServlet?orderId=${order.orderId}">ÏêÇé</a></td>
-                            <td><a onclick="updateOrder(${order.orderId }) ">ĞŞ¸Ä</a></td>
-                            <td><a href="deleteOrder?orderIds=${order.orderId }">É¾³ı</a></td>
-                            <td>
-                                <input type="checkbox" name="delete" value="${order.orderId }">
-                            </td>
-                            
-                            
+                            <td>${order.flagName }</td>
+                            <td><a href="getOneOrderServlet?orderId=${order.orderId}">è¯¦æƒ…</a></td>
+                            <td><a href="javascript:void(0);" onclick="setUpdateOrderInfo(${order.orderId },'getOrderPagerServlet') ">ä¿®æ”¹</a></td>
+                            <td><a href="deleteOrder?orderIds=${order.orderId }">åˆ é™¤</a></td>
                         </tr>
                     </c:forEach>
                 </form>
             </tbody>
-            <tfoot></tfoot>
         </table>
         <div class="page">
         	<ul>
-                <pg:pager items="${orderPager.totalNum }" maxPageItems="${orderPager.pageSize}" export="currentPageNo = pageNumber" url="getOrderSendPagerServlet">
+                <pg:pager items="${orderPager.totalNum }" maxPageItems="${orderPager.pageSize}" export="currentPageNo = pageNumber" url="getOrderPagerServlet">
                     <pg:param name="pageSize" value="${orderPager.pageSize }" />
                     <pg:param name="pageNo" value="${currentPageNo}" />
                     <pg:first>
                         <li>
-                            <a href="${pageUrl}">Ê×Ò³</a>
+                            <a class="btn" href="${pageUrl}">é¦–é¡µ</a>
                         </li>
                     </pg:first>
                     <pg:prev>
                         <li>
-                            <a href="${pageUrl}">ÉÏÒ»Ò³</a>
+                            <a class="btn" href="${pageUrl}">ä¸Šä¸€é¡µ</a>
                         </li>
                     </pg:prev>
                     <pg:pages>
@@ -150,52 +101,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </pg:pages>
                     <pg:next>
                         <li>
-                            <a href="${pageUrl}">ÏÂÒ»Ò³</a>
+                            <a class="btn" href="${pageUrl}">ä¸‹ä¸€é¡µ</a>
                         </li>
                     </pg:next>
                     <pg:last>
                         <li>
-                            <a href="${pageUrl}">Î²Ò³</a>
+                            <a class="btn" href="${pageUrl}">å°¾é¡µ</a>
                         </li>
                     </pg:last>
                 </pg:pager>
             </ul>
-            <div>
-                <input type="button" value="É¾³ı" onclick="removeOrder(${orderPager.pageOffset},${orderPager.pageSize})">
-            </div>
+            
         </div>
     </div>
-	</div>
-	<script type="text/javascript">
-	/* ¸ù¾İ¶©µ¥ºÅ²éÑ¯¶©µ¥ */
-	function searchOrder() {
-		
-		var orderId = document.getElementById("OrderID").value;
-		var searchDiv = document.getElementById("searchDiv");
-		if(orderId != ""&&(!isNaN(orderId))) {
-			$.ajax({
-				type: "POST",
-			    url: "GetOrderByOrderIDServlet",
-			    data: {
-			    	"orderId":OrderID.value
-			    },
-			    success: function(msg){
-			    	console.log(msg);
-			    	var res = $.parseJSON(msg);
-			      	$("tbody").empty();
-			      	$("tbody").append("<tr><td>"+res.orderId+"</td><td>"+res.name+"</td><td>"+res.recvName+"</td><td>"+res.address+"</td><td>"+res.postcode+"</td><td>"+res.email+"</td><td>"+res.orderDate+"</td><td>"+res.flag+"</td><td><a href='getOneOrderServlet?orderId='"+res.orderId+">ÏêÇé</a></td><td><input type='checkbox' name='delete' value="+res.orderId+"></td></tr>");
-			    },
-			    error:function(){
-			    	return;
-			    }
-			})
-		} else {
-			searchDiv.innerHTML = "ÇëÊäÈë2Î»Êı×ÖµÄ¶©µ¥ºÅ";
-			searchDiv.style.color="red";
-			searchDiv.style.marginBottom="20px";
-		}
-	}
-
-	</script>
+</div>
   </body>
 </html>
