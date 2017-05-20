@@ -33,16 +33,18 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Order order = new Order();
-				User user = new User();
+//				User user = new User();
+				String flagName = (rs.getInt("flag")==1)?"已发货":"未发货";
 				order.setOrderId(rs.getInt("orderId"));
-				user.setName(rs.getString("name"));
+				order.setName(rs.getString("name"));
 				order.setRecvName(rs.getString("recvName"));
-				user.setAddress(rs.getString("address"));
-				user.setPostcode(rs.getString("postcode"));
-				user.setEmail(rs.getString("email"));
-				order.setUser(user);
+				order.setAddress(rs.getString("address"));
+				order.setPostcode(rs.getString("postcode"));
+				order.setEmail(rs.getString("email"));
 				order.setOrderDate(rs.getString("orderDate"));
 				order.setFlag(rs.getInt("flag"));
+				order.setFlagName(flagName);
+				
 				orderList.add(order);
 			}
 		} catch (Exception e) {
@@ -108,16 +110,18 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Order order = new Order();
-				User user = new User();
+//				User user = new User();
+				String flagName = (rs.getInt("flag")==1)?"已发货":"未发货";
 				order.setOrderId(rs.getInt("orderId"));
-				user.setName(rs.getString("name"));
+				order.setName(rs.getString("name"));
 				order.setRecvName(rs.getString("recvName"));
-				user.setAddress(rs.getString("address"));
-				user.setPostcode(rs.getString("postcode"));
-				user.setEmail(rs.getString("email"));
-				order.setUser(user);
+				order.setAddress(rs.getString("address"));
+				order.setPostcode(rs.getString("postcode"));
+				order.setEmail(rs.getString("email"));
 				order.setOrderDate(rs.getString("orderDate"));
 				order.setFlag(rs.getInt("flag"));
+				order.setFlagName(flagName);
+				
 				orderList.add(order);
 			}
 		} catch (Exception e) {
@@ -147,16 +151,18 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Order order = new Order();
-				User user = new User();
+//				User user = new User();
+				String flagName = (rs.getInt("flag")==1)?"已发货":"未发货";
 				order.setOrderId(rs.getInt("orderId"));
-				user.setName(rs.getString("name"));
-				order.setRecvName(rs.getString("RecvName"));
-				user.setAddress(rs.getString("address"));
-				user.setPostcode(rs.getString("postcode"));
-				user.setEmail(rs.getString("email"));
-				order.setUser(user);
+				order.setName(rs.getString("name"));
+				order.setRecvName(rs.getString("recvName"));
+				order.setAddress(rs.getString("address"));
+				order.setPostcode(rs.getString("postcode"));
+				order.setEmail(rs.getString("email"));
 				order.setOrderDate(rs.getString("orderDate"));
 				order.setFlag(rs.getInt("flag"));
+				order.setFlagName(flagName);
+				
 				orderList.add(order);
 			}
 		} catch (Exception e) {
@@ -208,6 +214,7 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 		}
 		return false;
 	}
+	
 	public boolean SendOrder(int orderid) {
 		DbUtil dbUtil = null;
 		PreparedStatement pre = null;
@@ -233,94 +240,6 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 		return false;
 	}
 
-	public OrderPager getOrderPager(int index, int pageSize) {
-		Map orderMap = new HashMap();
-		DbUtil db = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			db = new DbUtil();
-			String sql = "select * from tb_order order by orderId limit ?,? ";
-			ps = db.getCon().prepareStatement(sql);
-			ps.setInt(1, index);
-			ps.setInt(2, pageSize);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				String flagName = (rs.getInt("flag")==1)? "已发货" : "未发货";
-				Order order = new Order();
-				User user = new User();
-				order.setOrderId(rs.getInt("orderId"));
-				user.setName(rs.getString("name"));
-				order.setRecvName(rs.getString("recvName"));
-				user.setAddress(rs.getString("address"));
-				user.setPostcode(rs.getString("postcode"));
-				user.setEmail(rs.getString("email"));
-				order.setUser(user);
-				order.setOrderDate(rs.getString("orderDate"));
-				order.setFlagName(flagName);
-				orderMap.put(order.getOrderId(), order);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				ps.close();
-				db.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		OrderPager op = new OrderPager();
-		op.setOrderMap(orderMap);
-		op.setPageSize(pageSize);
-		op.setTotalNum(getAllOrder().size());
-		return op;
-	}
-
-	public OrderSendPager getOrderSendPager(int index, int pageSize) {
-		Map orderMap = new HashMap();
-		DbUtil db = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			db = new DbUtil();
-			String sql = "select * from tb_order where flag=1 order by orderId limit ?,?";
-			ps = db.getCon().prepareStatement(sql);
-			ps.setInt(1, index);
-			ps.setInt(2, pageSize);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				Order order = new Order();
-				User user = new User();
-				order.setOrderId(rs.getInt("orderId"));
-				user.setName(rs.getString("name"));
-				order.setRecvName(rs.getString("recvName"));
-				user.setAddress(rs.getString("address"));
-				user.setPostcode(rs.getString("postcode"));
-				user.setEmail(rs.getString("email"));
-				order.setUser(user);
-				order.setOrderDate(rs.getString("orderDate"));
-				order.setFlag(rs.getInt("flag"));
-				orderMap.put(order.getOrderId(), order);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				ps.close();
-				db.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		OrderSendPager op = new OrderSendPager();
-		op.setOrderMap(orderMap);
-		op.setPageSize(pageSize);
-		op.setTotalNum(getSendOrder(1).size());
-		return op;
-	}
 	public boolean deleteOrder(int[] ids) {		
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;
@@ -364,128 +283,6 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 		return false;
 	}
 
-	public OrderNotSendPager getOrderNotSendPager(int index, int pageSize) {
-		Map orderMap = new HashMap();
-		DbUtil db = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			db = new DbUtil();
-			String sql = "select * from tb_order where flag=0 order by orderId limit ?,?";
-			ps = db.getCon().prepareStatement(sql);
-			ps.setInt(1, index);
-			ps.setInt(2, pageSize);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				Order order = new Order();
-				User user = new User();
-				order.setOrderId(rs.getInt("orderId"));
-				user.setName(rs.getString("name"));
-				order.setRecvName(rs.getString("recvName"));
-				user.setAddress(rs.getString("address"));
-				user.setPostcode(rs.getString("postcode"));
-				user.setEmail(rs.getString("email"));
-				order.setUser(user);
-				order.setOrderDate(rs.getString("orderDate"));
-				order.setFlag(rs.getInt("flag"));
-				orderMap.put(order.getOrderId(), order);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				ps.close();
-				db.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		OrderNotSendPager op = new OrderNotSendPager();
-		op.setOrderMap(orderMap);
-		op.setPageSize(pageSize);
-		op.setTotalNum(getSendOrder(0).size());
-		return op;
-	}
-	public OrderFreezePager getOrderFreezePager(int index,int pageSize) {
-		Map orderMap = new HashMap();
-		DbUtil db = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			db = new DbUtil();
-			String sql = "select * from tb_order where flag=2 order by orderId limit ?,?";
-			ps = db.getCon().prepareStatement(sql);
-			ps.setInt(1, index);
-			ps.setInt(2, pageSize);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				Order order = new Order();
-				User user = new User();
-				order.setOrderId(rs.getInt("orderId"));
-				user.setName(rs.getString("name"));
-				order.setRecvName(rs.getString("recvName"));
-				user.setAddress(rs.getString("address"));
-				user.setPostcode(rs.getString("postcode"));
-				user.setEmail(rs.getString("email"));
-				order.setUser(user);
-				order.setOrderDate(rs.getString("orderDate"));
-				order.setFlag(rs.getInt("flag"));
-				orderMap.put(order.getOrderId(), order);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				ps.close();
-				db.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		OrderFreezePager op = new OrderFreezePager();
-		op.setOrderMap(orderMap);
-		op.setPageSize(pageSize);
-		op.setTotalNum(getSendOrder(2).size());
-		return op;
-	}
-
-	public boolean freezeOrder(int[] orderids) {
-		DbUtil daoUtil = null;
-		PreparedStatement ps = null;
-		Connection conn = null;
-		String sql = "update tb_order set flag=2 where orderId=? order by orderId";
-		try {
-			daoUtil = new DbUtil();
-			conn = daoUtil.getCon();
-			conn.setAutoCommit(false);
-			ps = conn.prepareStatement(sql);
-			for(int j=0;j<orderids.length;j++) {
-				ps.setInt(1, orderids[j]);
-				ps.addBatch();
-			}
-			int[] k = ps.executeBatch();
-			conn.commit();
-			if(k.length == orderids.length) {
-				return true;
-			}
-		} catch (Exception e) {
-			try {
-				conn.rollback();
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		} finally {
-			try {
-				ps.close();
-				daoUtil.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return false;
-	}
 	public boolean UpdateOrderInfo(Order order){
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;
@@ -513,52 +310,6 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 		}
 		return false;
 	}
-	/**
-	 * 根据用户输入的关键字搜索订单
-	 * @param keywords 用户输入的关键字 
-	 */
-	@Override
-	public Order searchOrderByOrderId(int orderId,int flag) {
-		Order order = new Order();
-		DbUtil db = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		
-		try {
-			db = new DbUtil();
-			String sql = "";
-			if(flag== 0){
-				sql = "select * from tb_order where orderId = ? and flag = 0";
-			}else if(flag == 1){
-				sql = "select * from tb_order where orderId = ? and flag = 1";
-			}else{
-				sql = "select * from tb_order where orderId = ?";
-			}
-			ps = db.getCon().prepareStatement(sql);
-			ps.setInt(1, orderId);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				String flagName = (rs.getInt("flag")==1)?"已发货":"未发货";
-				order.setOrderId(rs.getInt("orderId"));
-				order.setName(rs.getString("name"));
-				order.setRecvName(rs.getString("recvName"));
-				order.setAddress(rs.getString("address"));
-				order.setPostcode(rs.getString("postcode"));
-				order.setOrderDate(rs.getString("orderDate"));
-				order.setFlagName(flagName);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				ps.close();
-				db.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return order;
-	}
+
 	
 }

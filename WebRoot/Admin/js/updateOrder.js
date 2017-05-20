@@ -1,17 +1,35 @@
 $.ajax({
-	url:"GetOrderByOrderIDServlet",
-	type:"POST",
-	data:{
-		"orderId":sessionStorage.getItem("updateOrderId")
-	},
-	success:function(msg){
-		var res =$.parseJSON(msg);
-		console.log(res);
-		$("input[name='orderId']").val(res.orderId);
-		$("input[name='user']").val(res.name);
-		$("input[name='recvName']").attr("placeholder",res.recvName);
-		$("input[name='address']").attr("placeholder",res.address);
-		$("input[name='postcode']").attr("placeholder",res.postcode);
-		$("input[name='orderDate']").val(res.orderDate);
-	}
-});
+ 	url:"http://nov:8080/ipet/getOrderByOrderIDServlet",
+ 	type:"POST",
+ 	data:{
+ 		"orderId":sessionStorage.getItem("updateOrderId"),
+ 		"flag":3
+ 	},
+ 	success:function(msg){
+ 		var res =$.parseJSON(msg);
+ 		console.log(res);
+ 		$("input[name='orderId']").val(res.orderId);
+ 		$("input[name='user']").val(res.name);
+ 		$("input[name='recvName']").val(res.recvName);
+ 		$("input[name='address']").val(res.address);
+ 		$("input[name='postcode']").val(res.postcode);
+ 		$("input[name='orderDate']").val(res.orderDate);
+ 	}
+ });
+function updateOrder(flag){
+	$.ajax({
+		url:"http://nov:8080/ipet/updateOrderInfoServlet",
+		type:"POST",
+		data:{
+			"orderId":$("input[name='orderId']").val(),
+			"recvName":$("input[name='recvName']").val(),
+			"address":$("input[name='address']").val(),
+			"postcode":$("input[name='postcode']").val()
+		},
+		success:function(msg){
+			window.alert(msg);
+			window.history.go(-1);
+			window.location.reload(true);
+		}
+	})
+}

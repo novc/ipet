@@ -20,18 +20,9 @@ public class AdminSendOrderServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-       //获得当前页号
-		String pageOffset_str = request.getParameter("pageOffset");
-		//获得页面大小
-		String pageSize_str = request.getParameter("pageSize");
-		//获得要处理的订单号
 		String orderId_str = request.getParameter("orderId");
-		int pageOffset = 0;
-		int pageSize = 5;
 		int orderId = 0;
-		if(pageOffset_str != null && pageSize_str != null && orderId_str!=null) {
-			pageOffset = Integer.parseInt(pageOffset_str);
-			pageSize = Integer.parseInt(pageSize_str);
+		if(orderId_str!=null) {
 			orderId = Integer.parseInt(orderId_str);
 		}
 		Model model = new Model();
@@ -40,11 +31,10 @@ public class AdminSendOrderServlet extends HttpServlet {
 		//获得订单号对应的订单项List
 		List orderItemList = (List) order.getOrderItem();
 		int size = orderItemList.size();
+		PrintWriter out=response.getWriter();
 		//逐条读取每条订单项
 		if(size==0){
-			response.setCharacterEncoding("utf-8");//要用XML这个也要设为UTF-8才能不错乱码
 			String str1 = new String("订单数据错误，没有对应的订单项");
-			PrintWriter out=response.getWriter();
 			out.println(str1);
 		}else{
 			for(int i=0;i<size;i++){
@@ -54,20 +44,16 @@ public class AdminSendOrderServlet extends HttpServlet {
 					int newNum = Goods.getGoodsNum()-orderItem.getGoodsNum();
 					model.updateGoodsNum(newNum, orderItem.getGoodsId());
 					model.SendOrder(orderId);
+					out.print("成功");
 				}else {
 					String str = new String("库存不足");
-					PrintWriter out=response.getWriter();
 					out.println(str);
-					out.flush();
-					out.close();
 				}
-				RequestDispatcher dispatcher =  request.getRequestDispatcher("getOrderNotSendPagerServlet?pager.offset="+pageOffset+"&pageSize="+pageSize);
-		    	dispatcher.forward(request, response);
 				return;
 			}
 		}
-		
-				
+		out.flush();
+		out.close();
 	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

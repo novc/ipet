@@ -22,34 +22,44 @@ public class UpdateOrderInfoServlet extends HttpServlet {
 		String str_RecvName = request.getParameter("recvName");
 		String str_Address = request.getParameter("address");
 		String str_Postcode = request.getParameter("postcode");
-		String str_Servlet = request.getParameter("updateOrderServlet");
+//		String str_Page = request.getParameter("returnPage");
 		int orderId = Integer.parseInt(str_OrderId);
-		 
+		String returnPage = "";
+//		if(str_Page=="1"){
+//			returnPage
+//		}
+				
 		Order order = new Order();
 		order.setOrderId(orderId);
 		order.setRecvName(str_RecvName);
 		order.setAddress(str_Address);
 		order.setPostcode(str_Postcode);
 		Model model= new Model();
-		/*指定跳转的servlet 回到发起请求的jsp相对应的servlet*/ 
-		if(str_Servlet==" "){
+		PrintWriter out = response.getWriter();
+				
+		/*指定跳转的页面 回到发起请求的jsp相对应的servlet*/ 
+//		if(str_Page==null){
 			if(model.UpdateOrderInfo(order)){//修改成功
-		    	RequestDispatcher dispatcher =  request.getRequestDispatcher("getOrderPagerServlet");
-		    	dispatcher.forward(request, response);
+				out.println("修改成功");
+//		    	RequestDispatcher dispatcher =  request.getRequestDispatcher("Admin/pages/manageOrder.html");
+//		    	dispatcher.forward(request, response);
 		    }else{//修改失败
-		    	RequestDispatcher dispatcher =  request.getRequestDispatcher("getOrderPagerServlet");
-		    	dispatcher.forward(request, response);
+		    	out.println("修改失败");
+//		    	RequestDispatcher dispatcher =  request.getRequestDispatcher("Admin/pages/manageOrder.html");
+//		    	dispatcher.forward(request, response);
 		    }
-		}else{
-			if(model.UpdateOrderInfo(order)){//修改成功
-		    	RequestDispatcher dispatcher =  request.getRequestDispatcher(str_Servlet);
-		    	dispatcher.forward(request, response);
-		    }else{//修改失败
-		    	RequestDispatcher dispatcher =  request.getRequestDispatcher(str_Servlet);
-		    	dispatcher.forward(request, response);
-		    }
-		}
-	    
+//		}else{
+//			
+//			if(model.UpdateOrderInfo(order)){//修改成功
+//		    	RequestDispatcher dispatcher =  request.getRequestDispatcher(str_Page+".html");
+//		    	dispatcher.forward(request, response);
+//		    }else{//修改失败
+//		    	RequestDispatcher dispatcher =  request.getRequestDispatcher(str_Page+".html");
+//		    	dispatcher.forward(request, response);
+//		    }
+//		}
+	    out.flush();
+	    out.close();
 		
 	}
 

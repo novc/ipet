@@ -15,16 +15,16 @@ public class DeleteOrderServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
          //获得用户 id集合
-		String orders_str = request.getParameter("orderIds");
-		//获得当前页号
-		String pageOffset_str = request.getParameter("pageOffset");
-		String pageSize_str = request.getParameter("pageSize");
-		int pageOffset = 0;
-		int pageSize = 5;
-		if(pageOffset_str != null && pageSize_str != null) {
-			pageOffset = Integer.parseInt(pageOffset_str);
-			pageSize = Integer.parseInt(pageSize_str);
-		}
+		String orders_str = request.getParameter("orderId");
+//		//获得当前页号
+//		String pageOffset_str = request.getParameter("pageOffset");
+//		String pageSize_str = request.getParameter("pageSize");
+//		int pageOffset = 0;
+//		int pageSize = 5;
+//		if(pageOffset_str != null && pageSize_str != null) {
+//			pageOffset = Integer.parseInt(pageOffset_str);
+//			pageSize = Integer.parseInt(pageSize_str);
+//		}
 		String[] ids_str = null;
 		if(orders_str != "") {
 			ids_str = orders_str.split(",");
@@ -35,9 +35,15 @@ public class DeleteOrderServlet extends HttpServlet {
 			System.out.println(ids[i]);
 		}	
 		Model model = new Model();
+		PrintWriter out = response.getWriter();
+		
 		if(model.deleteOrder(ids)) {
-			request.getRequestDispatcher("getOrderPagerServlet?pager.offset="+pageOffset+"&pageSize="+pageSize).forward(request, response);
+			out.print("删除成功");
+		}else{
+			out.print("删除失败");
 		}
+		out.flush();
+		out.close();
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

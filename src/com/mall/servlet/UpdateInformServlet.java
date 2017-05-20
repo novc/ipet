@@ -26,15 +26,15 @@ public class UpdateInformServlet extends HttpServlet {
 		inform.setInformId(informId);
 		inform.setInformTitle(str_InformTitle);
 		inform.setInformContent(str_InformContent);
-		Model model= new Model();
-		/*指定跳转的servlet 回到发起请求的jsp相对应的servlet*/ 
-		if(model.UpdateInform(inform)){//修改成功
-	    	RequestDispatcher dispatcher =  request.getRequestDispatcher("getInformPagerServlet");
-	    	dispatcher.forward(request, response);
-	    }else{//修改失败
-	    	RequestDispatcher dispatcher =  request.getRequestDispatcher("getInformPagerServlet");
-	    	dispatcher.forward(request, response);
-	    }
+//		Model model= new Model();
+//		/*指定跳转的servlet 回到发起请求的jsp相对应的servlet*/ 
+//		if(model.UpdateInform(inform)){//修改成功
+//	    	RequestDispatcher dispatcher =  request.getRequestDispatcher("getInformPagerServlet");
+//	    	dispatcher.forward(request, response);
+//	    }else{//修改失败
+//	    	RequestDispatcher dispatcher =  request.getRequestDispatcher("getInformPagerServlet");
+//	    	dispatcher.forward(request, response);
+//	    }
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

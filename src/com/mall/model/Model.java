@@ -355,36 +355,12 @@ public class Model {
 	public boolean SendOrder(int orderid) {
 		return adminOrderDao.SendOrder(orderid);
 	}
-	public Order searchOrderByOrderId(int id,int flag){
-		return adminOrderDao.searchOrderByOrderId(id,flag);
-	}
 	public boolean UpdateOrderInfo(Order order) {
 		return adminOrderDao.UpdateOrderInfo(order);
 	}
-	public OrderPager getOrderPager(int index, int pageSize) {
-		return adminOrderDao.getOrderPager(index, pageSize);
-	}
-	
-	public OrderSendPager getOrderSendPager(int index, int pageSize) {
-		return adminOrderDao.getOrderSendPager(index, pageSize);
-	}
-	
 	public boolean deleteOrder(int[] ids) {
 		return adminOrderDao.deleteOrder(ids);
 	}
-	
-	public OrderNotSendPager getOrderNotSendPager(int index, int pageSize) {
-		return adminOrderDao.getOrderNotSendPager(index, pageSize);
-	}
-	
-	public OrderFreezePager getOrderFreezePager(int index,int pageSize) {
-		return adminOrderDao.getOrderFreezePager(index, pageSize);
-	}
-	
-	public boolean freezeOrder(int[] orderids) {
-		return adminOrderDao.freezeOrder(orderids);
-	}
-	
 	//根据当前用户的用户名查订单
 	public List selectOrder(String name){
 		return od.selectOrder(name);

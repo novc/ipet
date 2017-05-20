@@ -15,13 +15,7 @@ public interface AdminOrderDao {
 	public List getSendOrder(int flag);
 	public boolean SendOrders(int[] orderids);
 	public boolean SendOrder(int orderid);
-	public OrderPager getOrderPager(int index, int pageSize);
-	public OrderSendPager getOrderSendPager(int index,int pageSize);
 	public boolean deleteOrder(int[] ids);
-	public OrderNotSendPager getOrderNotSendPager(int index,int pageSize);
-	public OrderFreezePager getOrderFreezePager(int index,int pageSize);
-	public boolean freezeOrder(int[] orderids);
-	public Order searchOrderByOrderId(int id,int flag);
 	public boolean UpdateOrderInfo(Order order);
 	
 }

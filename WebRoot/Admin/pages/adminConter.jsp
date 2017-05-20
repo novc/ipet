@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	
-	<script type="text/javascript" src="Admin/js/admin.js"></script>
+	
 	<link rel="icon" href="Admin/images/icon.png">
     <link rel="stylesheet" type="text/css" href="Admin/css/basic.css">
     <link rel="stylesheet" type="text/css" href="Admin/easyui/themes/default/easyui.css">
@@ -23,6 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="Admin/css/admin-index.css">
     <script type="text/javascript" src="Admin/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="Admin/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="Admin/js/admin.js"></script>
   </head>
   
   <body class="easyui-layout">
@@ -46,9 +47,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
             <div title="订单管理">
                 <ul>
-				    <li><a href="getOrderPagerServlet" target="contentIframe">所有订单</a></li>
-				    <li><a href="getOrderNotSendPagerServlet" target="contentIframe">未发货订单</a></li>
-				    <li><a href="getOrderSendPagerServlet" target="contentIframe">已发货订单</a></li>
+				    <li><a href="Admin/pages/manageOrder.html?flag=3" target="contentIframe">所有订单</a></li>
+				    <li><a href="Admin/pages/manageOrder.html?flag=0" target="contentIframe">未发货订单</a></li>
+				    <li><a href="Admin/pages/manageOrder.html?flag=1" target="contentIframe">已发货订单</a></li>
 				</ul>
             </div>
             <div title="公告管理">

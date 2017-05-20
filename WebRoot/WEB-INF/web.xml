@@ -707,7 +707,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>DeleteOrderServlet</servlet-name>
-    <url-pattern>/deleteOrder</url-pattern>
+    <url-pattern>/deleteOrderServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>GetNotSendOrderPagerServlet</servlet-name>
@@ -846,12 +846,7 @@
     <servlet-name>GetOrderByOrderIDServlet</servlet-name>
     <servlet-class>com.mall.servlet.GetOrderByOrderIDServlet</servlet-class>
   </servlet>
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>sd</servlet-name>
-    <servlet-class>com.mall.servlet.sd</servlet-class>
-  </servlet>
+
   <servlet>
     <description>This is the description of my J2EE component</description>
     <display-name>This is the display name of my J2EE component</display-name>
@@ -862,6 +857,13 @@
     <servlet-name>UpdateOrderInfoServlet</servlet-name>
     <servlet-class>com.mall.servlet.UpdateOrderInfoServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>GetOrderServlet</servlet-name>
+    <servlet-class>com.mall.servlet.GetOrderServlet</servlet-class>
+  </servlet>
+
+
+
 
 
 
@@ -907,11 +909,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>GetOrderByOrderIDServlet</servlet-name>
-    <url-pattern>/GetOrderByOrderIDServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>sd</servlet-name>
-    <url-pattern>/servlet/sd</url-pattern>
+    <url-pattern>/getOrderByOrderIDServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AjaxTest</servlet-name>
@@ -920,5 +918,9 @@
   <servlet-mapping>
     <servlet-name>UpdateOrderInfoServlet</servlet-name>
     <url-pattern>/updateOrderInfoServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GetOrderServlet</servlet-name>
+    <url-pattern>/getOrderServlet</url-pattern>
   </servlet-mapping>
 </web-app>
