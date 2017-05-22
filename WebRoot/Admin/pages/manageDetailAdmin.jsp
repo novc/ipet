@@ -124,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </tr>
                 <tr>
                     <td><a href="getAdminPagerServlet">·µ»Ø</a></td>
-                    <td>
+                    <td> 
                         <input type="submit" name="update" value="ÐÞ¸Ä" size=4>${updateMessage}</td>
                 </tr>
             </table>

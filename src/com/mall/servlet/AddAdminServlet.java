@@ -15,8 +15,6 @@ public class AddAdminServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("gbk");
-		response.setContentType("text/html;charset=utf-8");
 		String adminName=request.getParameter("adminName");
 		int adminTypeId=Integer.parseInt(request.getParameter("adminTypeId"));
 		String loginName=request.getParameter("loginName");
@@ -27,13 +25,14 @@ public class AddAdminServlet extends HttpServlet {
 		admin.setLoginName(loginName);
 		admin.setLoginPwd(loginPwd);
 		Model model= new Model();
+		PrintWriter out = response.getWriter();
 	   if(model.addAdmin(admin)) {
-			request.setAttribute("addMessage", "添加成功");
+			out.print("添加成功");
 		} else {
-			request.setAttribute("addMessage", "添加失败");
+			out.print("添加失败");
 		}
-		request.getRequestDispatcher("Admin/pages/addAdmin.jsp").forward(request, response);
-
+	   out.flush();
+	   out.close();
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

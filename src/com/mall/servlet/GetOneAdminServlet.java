@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
+import com.mall.model.Model;
 import com.mall.po.Admin;
-import com.mall.po.AdminPager;
+import com.mall.daoimpl.AdminDaoImpl;;
+
 
 public class GetOneAdminServlet extends HttpServlet {
 
@@ -21,11 +24,17 @@ public class GetOneAdminServlet extends HttpServlet {
 		if(id_str != null) {
 			id = Integer.parseInt(id_str);
 		}
-		AdminPager adminPager = (AdminPager) request.getSession().getAttribute("adminPager");
-		Map adminMap = adminPager.getAdminMap();
-		Admin admin = (Admin) adminMap.get(id);
-		request.setAttribute("admin", admin);
-		request.getRequestDispatcher("Admin/pages/manageDetailAdmin.jsp").forward(request, response);
+
+		AdminDaoImpl adminDaoImpl = new AdminDaoImpl();
+		Admin admin = adminDaoImpl.SelectOneAdmin(id);
+		PrintWriter out = response.getWriter();
+		String jsonstr = JSON.toJSONString(admin);
+		out.print(JSON.toJSON(jsonstr));
+
+		out.flush();
+		out.close();
+
+		
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

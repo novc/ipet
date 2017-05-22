@@ -13,7 +13,7 @@ public class AllowAddAdminServlet extends HttpServlet {
 	throws ServletException, IOException {		
 	int adminType = (Integer)request.getSession().getAttribute("adminType");
     if(adminType==4){
-	request.getRequestDispatcher("Admin/pages/addAdmin.jsp").forward(request, response);
+	request.getRequestDispatcher("Admin/pages/addAdmin.html").forward(request, response);
     }else{
 	request.getRequestDispatcher("Admin/pages/adminLoginError.jsp").forward(request, response);
     }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 
+import com.alibaba.fastjson.JSON;
 import com.mall.model.Model;
 import com.mall.po.AdminPager;
 
@@ -21,7 +22,7 @@ public class GetAdminPagerServlet extends HttpServlet{
 			String pageSize_str = request.getParameter("pageSize");
 			int offset = 0;
 			int pagecurrentPageNo = 1;
-			int pageSize = 5;
+			int pageSize = 10;
 			if(pagerOffset != null && pageSize_str != null) {
 				offset = Integer.parseInt(pagerOffset);
 				pageSize = Integer.parseInt(pageSize_str);
@@ -37,9 +38,17 @@ public class GetAdminPagerServlet extends HttpServlet{
 				}		
 			up.setPageOffset(offset);
 			up.setPagecurrentPageNo(pagecurrentPageNo);
-			request.getSession().setAttribute("adminList", up.getAdminMap().values());
-			request.getSession().setAttribute("adminPager", up);
-			request.getRequestDispatcher("Admin/pages/manageAdmins.jsp").forward(request, response);
+//			request.getSession().setAttribute("adminList", up.getAdminMap().values());
+//			request.getSession().setAttribute("adminPager", up);
+//			request.getRequestDispatcher("Admin/pages/manageAdmins.jsp").forward(request, response);
+//			
+			String str = JSON.toJSONString(up.getAdminMap().values());
+			PrintWriter out = response.getWriter();
+			out.print(JSON.toJSON(str));
+
+			out.flush();
+			out.close();
+			
 	    }else{
 		request.getRequestDispatcher("Admin/pages/adminLoginError.jsp").forward(request, response);
 	   }

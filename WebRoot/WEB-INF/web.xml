@@ -434,8 +434,8 @@
     <servlet-class>com.mall.servlet.GetInformPagerServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>GetNotePagerServlet</servlet-name>
-    <servlet-class>com.mall.servlet.GetNotePagerServlet</servlet-class>
+    <servlet-name>GetNoteServlet</servlet-name>
+    <servlet-class>com.mall.servlet.GetNoteServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>GetOrderPagerServlet</servlet-name>
@@ -643,7 +643,7 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>DeleteInformServlet</servlet-name>
-    <url-pattern>/deleteInform</url-pattern>
+    <url-pattern>/deleteInformServlet</url-pattern>
   </servlet-mapping>
     <servlet-mapping>
     <servlet-name>DeleteAdminsServlet</servlet-name>
@@ -687,15 +687,15 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>DeleteNoteServlet</servlet-name>
-    <url-pattern>/deleteNote</url-pattern>
+    <url-pattern>/deleteNoteServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>GetInformPagerServlet</servlet-name>
     <url-pattern>/getInformPagerServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>GetNotePagerServlet</servlet-name>
-    <url-pattern>/getNotePagerServlet</url-pattern>
+    <servlet-name>GetNoteServlet</servlet-name>
+    <url-pattern>/getNoteServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>GetOrderPagerServlet</servlet-name>

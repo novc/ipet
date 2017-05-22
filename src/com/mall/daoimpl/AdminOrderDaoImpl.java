@@ -137,6 +137,44 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 		}
 		return orderList;
 	}
+	
+	public Order searchOrderByOrderId(int orderId,int flag) {
+		Order order = new Order();
+		DbUtil dao = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			dao = new DbUtil();
+			String sql = "select * from tb_order where orderId = ? and flag = ? order by orderId";
+			ps = dao.getCon().prepareStatement(sql);
+			ps.setInt(1, orderId);
+			ps.setInt(2, flag);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				String flagName = (rs.getInt("flag")==1)?"已发货":"未发货";
+				order.setOrderId(rs.getInt("orderId"));
+				order.setName(rs.getString("name"));
+				order.setRecvName(rs.getString("recvName"));
+				order.setAddress(rs.getString("address"));
+				order.setPostcode(rs.getString("postcode"));
+				order.setEmail(rs.getString("email"));
+				order.setOrderDate(rs.getString("orderDate"));
+				order.setFlag(rs.getInt("flag"));
+				order.setFlagName(flagName);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+				dao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return order;
+	}
 
 	public List getSendOrder(int flag) {
 		List orderList = new ArrayList();

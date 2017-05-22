@@ -17,5 +17,6 @@ public interface AdminOrderDao {
 	public boolean SendOrder(int orderid);
 	public boolean deleteOrder(int[] ids);
 	public boolean UpdateOrderInfo(Order order);
+	public Order searchOrderByOrderId(int orderId,int flag);
 	
 }

@@ -196,7 +196,7 @@ public class Model {
 	private AdminInformDao adminInformDao = new AdminInformDaoImpl();
 	private AdminOrderDao adminOrderDao = new AdminOrderDaoImpl();
 	
-	public Map getAllUsers() {
+	public List getAllUsers() {
 		return userDao.getAllUsers();
 	}
 	
@@ -360,6 +360,9 @@ public class Model {
 	}
 	public boolean deleteOrder(int[] ids) {
 		return adminOrderDao.deleteOrder(ids);
+	}
+	public Order searchOrderByOrderId(int orderId,int flag){
+		return adminOrderDao.searchOrderByOrderId(orderId,flag);
 	}
 	//根据当前用户的用户名查订单
 	public List selectOrder(String name){

@@ -15,15 +15,7 @@ public class DeleteUserServlet extends HttpServlet {
 			throws ServletException, IOException {
 		//获得用户 id集合
 		String users_str = request.getParameter("userIds");
-		//获得当前页号
-		String pageOffset_str = request.getParameter("pageOffset");
-		String pageSize_str = request.getParameter("pageSize");
-		int pageOffset = 0;
-		int pageSize = 5;
-		if(pageOffset_str != null && pageSize_str != null) {
-			pageOffset = Integer.parseInt(pageOffset_str);
-			pageSize = Integer.parseInt(pageSize_str);
-		}
+		
 		String[] ids_str = null;
 		if(users_str != "") {
 			ids_str = users_str.split(",");
@@ -33,9 +25,14 @@ public class DeleteUserServlet extends HttpServlet {
 			ids[i] = Integer.parseInt(ids_str[i]);
 		}
 		Model model = new Model();
+		PrintWriter out = response.getWriter();
 		if(model.deleteUsers(ids)) {
-			request.getRequestDispatcher("getUserPagerServlet?pager.offset="+pageOffset+"&pageSize="+pageSize).forward(request, response);
+			out.print("删除成功");
+		}else{
+			out.print("删除失败");
 		}
+		out.flush();
+		out.close();
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

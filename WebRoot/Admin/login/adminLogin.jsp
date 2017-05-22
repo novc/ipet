@@ -8,13 +8,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    <title>后台登陆</title>
+    <title>后台登录</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
 	<link rel="icon" href="Admin/images/icon.png">
 	<link rel="stylesheet" type="text/css" href="Admin/css/basic.css">
 	<link rel="stylesheet" type="text/css" href="Admin/css/adminLogin.css">

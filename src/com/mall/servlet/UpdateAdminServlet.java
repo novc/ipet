@@ -17,11 +17,7 @@ public class UpdateAdminServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("gb2312");
-		response.setCharacterEncoding("gb2312");	
-		HttpSession session = request.getSession();	  
 		Admin admin= new Admin(); 
-		System.out.println(request.getParameter("adminId")+"*******");
 		int adminId= Integer.parseInt(request.getParameter("adminId"));
 		String adminName=request.getParameter("adminName");
 		int adminTypeId=Integer.parseInt(request.getParameter("adminTypeId"));
@@ -34,16 +30,14 @@ public class UpdateAdminServlet extends HttpServlet {
 		admin.setLoginName(loginName);
 		admin.setLoginPwd(loginPwd);
 		Model model= new Model();
+		PrintWriter out = response.getWriter();
 	    if(model.updateAdmin(admin)){//修改成功
-	    	session.setAttribute("admin", admin);
-	    	session.setAttribute("updateMessage","修改成功");
-	    	response.sendRedirect("Admin/pages/manageDetailAdmin.jsp");
-	    	
+	    	 out.print("修改成功");
 	    }else{//修改失败
-	    	session.setAttribute("updateMessage","修改失败");
-	    	request.getRequestDispatcher("Admin/pages/manageDetailAdmin.jsp").forward(request, response);
-	    	
+	    	 out.print("修改失败");
 	    }
+		out.flush();
+		out.close();
 	}
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 	throws ServletException, IOException {

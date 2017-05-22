@@ -18,7 +18,6 @@ public class AdminLoginServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("gb2312");
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
 		Admin admin = new Admin();
@@ -52,7 +51,6 @@ public class AdminLoginServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		this.doGet(request, response);
 	}
 

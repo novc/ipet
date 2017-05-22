@@ -14,12 +14,11 @@ public class DeleteAdminsServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("gb2312");
 		String adminIds = request.getParameter("adminIds");
 		String pageOffset_str = request.getParameter("pageOffset");
 		String pageSize_str = request.getParameter("pageSize");
 		int pageOffset = 0;
-		int pageSize = 5;
+		int pageSize = 10;
 		if(pageOffset_str != null && pageSize_str != null) {
 			pageOffset = Integer.parseInt(pageOffset_str);
 			pageSize = Integer.parseInt(pageSize_str);
@@ -32,7 +31,11 @@ public class DeleteAdminsServlet extends HttpServlet {
 			}
 			Model model = new Model();
 			if(model.deleteAdmin(ids)) {
-				request.getRequestDispatcher("getAdminPagerServlet?pager.offset="+pageOffset+"&pageSize="+pageSize).forward(request, response);
+				PrintWriter out = response.getWriter();
+				out.print("删除成功");
+
+				out.flush();
+				out.close();
 			}
 		}
 	}

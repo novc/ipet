@@ -78,8 +78,8 @@ public class AdminUserDaoImpl implements AdminUserDao{
 		return false;
 	}
 
-	public Map getAllUsers() {
-		Map userMap = new HashMap();
+	public List getAllUsers() {
+		List userList = new ArrayList();
 		DbUtil dao = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -105,7 +105,7 @@ public class AdminUserDaoImpl implements AdminUserDao{
 				user.setAnswer(rs.getString("answer"));
 				user.setImg(rs.getString("img"));
 				user.setScore(rs.getInt("score"));
-				userMap.put(new Integer(user.getId()), user);
+				userList.add(user);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -118,7 +118,7 @@ public class AdminUserDaoImpl implements AdminUserDao{
 				e.printStackTrace();
 			}
 		}
-		return userMap;
+		return userList;
 	}
 
 	public UserPager getUserPager(int index, int pageSize) {

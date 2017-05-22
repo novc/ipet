@@ -72,8 +72,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   <body>
   	<div class="tablewrapper">
+  	<div class="title">公告信息</div>
 	    <div class="tablecontent">
-	        <div class="title">公告信息</div>
+	        
 	        <div>
 	        	<div class="searchwrapper">
 	        		<span>按商品名查询:</span>

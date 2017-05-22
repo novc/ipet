@@ -8,17 +8,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
-    <title>发布公告</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<link rel="icon" href="Admin/images/icon.png">
     <link rel="stylesheet" type="text/css" href="Admin/css/basic.css">
     <link rel="stylesheet" type="text/css" href="Admin/easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="Admin/easyui/themes/icon.css">
-
     <link rel="stylesheet" type="text/css" href="Admin/css/admin-index.css">
     <script type="text/javascript" src="Admin/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="Admin/easyui/jquery.easyui.min.js"></script>
@@ -26,10 +18,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   	<div class="tablewrapper">
-  	<div class="title">公告信息</div>
+  	<div class="title">发布公告</div>
     <div class="tablecontent">
-        
-        <form action="addInformServlet" method="get">
+        <form>
             <table id="t2">
                 <tr>
                     <td>标题:</td>
@@ -45,15 +36,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </tr>
                 <tr>
                     <td>
-                        <input class="btn-default" type="submit" value="添加">
+                        <input class="btn-default" onclick="addInform()" type="button" value="添加">
                     </td>
-                    <td>${message }</td>
                 </tr>
             </table>
         </form>
     </div>
 </div>
 
-  	
+<script type="text/javascript">
+	function addInform(informId){
+	$.ajax({
+		url:"http://nov:8080/ipet/addInformServlet",
+		type:"POST",
+		data:{
+			"informTitle":$("input[name=informTitle]").val(),
+			"informContent":$("textarea[name=informContent]").val()
+		},
+		success:function (msg){
+			window.alert(msg);
+			window.location.href="Admin/pages/manageInform.html";
+		}
+	})
+}
+</script>
   </body>
 </html>

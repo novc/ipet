@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
 import com.mall.model.Model;
 import com.mall.po.GoodsPager;
 import com.mall.po.InformPager;
@@ -38,6 +39,16 @@ public class GetGoodsPagerServlet extends HttpServlet {
 		GoodsPager.setPageOffset(pageOffset);
 		GoodsPager.setPageSize(pageSize);
 		GoodsPager.setPagecurrentPageNo(pagecurrentPageNo);
+		
+//		PrintWriter out = response.getWriter();
+//		String jsonstr = JSON.toJSONString(GoodsPager.getGoodsMap().values());
+//		out.print(JSON.toJSON(jsonstr));
+//
+//		out.flush();
+//		out.close();
+//
+//		
+		
 		request.setAttribute("GoodsPager", GoodsPager);
 		request.setAttribute("GoodsList", GoodsPager.getGoodsMap().values());
 		request.getRequestDispatcher("Admin/pages/manageGoods.jsp").forward(request, response);

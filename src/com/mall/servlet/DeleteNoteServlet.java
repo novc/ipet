@@ -14,15 +14,7 @@ public class DeleteNoteServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String notes_str = request.getParameter("noteIds");
-		String pageOffset_str = request.getParameter("pageOffset");
-		String pageSize_str = request.getParameter("pageSize");
-		int pageOffset = 0;
-		int pageSize = 10;
-		if(pageOffset_str != null && pageSize_str != null) {
-			pageOffset = Integer.parseInt(pageOffset_str);
-			pageSize = Integer.parseInt(pageSize_str);
-		}
+		String notes_str = request.getParameter("noteId");
 		String[] ids_str = null;
 		if(notes_str != "") {
 			ids_str = notes_str.split(",");
@@ -33,7 +25,11 @@ public class DeleteNoteServlet extends HttpServlet {
 		}
 		Model model = new Model();
 		if(model.deleteNote(ids)) {
-			request.getRequestDispatcher("getNotePagerServlet?pager.offset="+pageOffset+"&pageSize="+pageSize).forward(request, response);
+			PrintWriter out = response.getWriter();
+			out.print("删除成功");
+
+			out.flush();
+			out.close();
 		}
 	}
 

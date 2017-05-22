@@ -14,22 +14,30 @@ public class AddInformServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("gb2312");
 		String informTitle = request.getParameter("informTitle");
 		String informContent = request.getParameter("informContent");
+		String result = "";
 		if(informTitle != null && informContent != null) {
-			byte[] buf1 = informTitle.getBytes("iso8859-1");
-			byte[] buf2 = informContent.getBytes("iso8859-1");
 			Model model = new Model();
 			Inform inform = new Inform();
-			inform.setInformTitle(new String(buf1));
-			inform.setInformContent(new String(buf2));
+			inform.setInformTitle(informTitle);
+			inform.setInformContent(informContent);
 			if(model.addInform(inform)) {
-				request.setAttribute("message","添加成功");
+				result="发布成功";
+				PrintWriter out = response.getWriter();
+				out.print(result);
+		
+				out.flush();
+				out.close();
 			} else {
-				request.setAttribute("message","添加失败");
+				result = "发布失败";
+				PrintWriter out = response.getWriter();
+				out.print(result);
+		
+				out.flush();
+				out.close();
 			}
-			request.getRequestDispatcher("Admin/pages/addInform.jsp").forward(request, response);
+			
 		}
 	}
 

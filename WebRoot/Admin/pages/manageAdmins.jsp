@@ -11,11 +11,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <title>管理员管理</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<link rel="icon" href="Admin/images/icon.png">
     <link rel="stylesheet" type="text/css" href="Admin/css/basic.css">
     <link rel="stylesheet" type="text/css" href="Admin/css/table.css">
     <link rel="stylesheet" type="text/css" href="Admin/easyui/themes/default/easyui.css">
@@ -23,6 +18,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="Admin/css/admin-index.css">
     <script type="text/javascript" src="Admin/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="Admin/easyui/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="Admin/js/manageAdmin.js"></script>
+    
 	
 	<script type="text/javascript">
 		function selectAll() {

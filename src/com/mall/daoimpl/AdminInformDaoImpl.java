@@ -50,7 +50,7 @@ public class AdminInformDaoImpl implements AdminInformDao {
 		ResultSet rs = null;
 		try {
 			dao = new DbUtil();
-			String sql = "select * from tb_inform";
+			String sql = "select * from tb_inform order by informId desc";
 			ps = dao.getCon().prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
