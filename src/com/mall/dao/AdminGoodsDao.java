@@ -15,4 +15,8 @@ public interface AdminGoodsDao {
 	public List getAllGoodsName();
 	public GoodsPager getGoodsPager(int index,int pageSize);
 	public boolean deleteGoods(int[] GoodsIds);
+	public boolean setGoodsSpecial(int goodId);
+	public boolean setGoodsHost(int goodId);
+	public boolean setGoodsSale(int goodId);
+	public boolean setGoodsNew(int goodId);
 }

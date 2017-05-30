@@ -292,6 +292,22 @@ public class Model {
 		return GoodsDao.deleteGoods(GoodsIds);
 	}
 	
+	public boolean setGoodsSpecial(int goodId){
+		return GoodsDao.setGoodsSpecial(goodId);
+	}
+	
+	public boolean setGoodsHost(int goodId){
+		return GoodsDao.setGoodsHost(goodId);
+	}
+	
+	public boolean setGoodsSale(int goodId){
+		return GoodsDao.setGoodsSale(goodId);
+	}
+	
+	public boolean setGoodsNew(int goodId){
+		return GoodsDao.setGoodsNew(goodId);
+	}
+	
 	public List getAllNotes() {
 		return noteDao.getAllNotes();
 	}

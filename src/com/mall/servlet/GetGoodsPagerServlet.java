@@ -40,20 +40,22 @@ public class GetGoodsPagerServlet extends HttpServlet {
 		GoodsPager.setPageSize(pageSize);
 		GoodsPager.setPagecurrentPageNo(pagecurrentPageNo);
 		
-//		PrintWriter out = response.getWriter();
-//		String jsonstr = JSON.toJSONString(GoodsPager.getGoodsMap().values());
-//		out.print(JSON.toJSON(jsonstr));
-//
-//		out.flush();
-//		out.close();
-//
-//		
+		PrintWriter out = response.getWriter();
+		String jsonstr = JSON.toJSONString(GoodsPager.getGoodsMap().values());
+		out.print(JSON.toJSON(jsonstr));
+
+		out.flush();
+		out.close();
+
 		
-		request.setAttribute("GoodsPager", GoodsPager);
-		request.setAttribute("GoodsList", GoodsPager.getGoodsMap().values());
-		request.getRequestDispatcher("Admin/pages/manageGoods.jsp").forward(request, response);
+		
+//		request.setAttribute("GoodsPager", GoodsPager);
+//		request.setAttribute("GoodsList", GoodsPager.getGoodsMap().values());
+//		request.getRequestDispatcher("Admin/pages/manageGoods.jsp").forward(request, response);
+		
 		}else{
-			request.getRequestDispatcher("Admin/pages/adminLoginError.jsp").forward(request, response);
+			
+//			request.getRequestDispatcher("Admin/pages/adminLoginError.jsp").forward(request, response);
 		}
 	}
 

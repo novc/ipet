@@ -200,7 +200,127 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 		bp.setTotalNum(GoodsMap.size());
 		return bp;
 	}
-
+	
+	public boolean setGoodsSpecial(int goodId){
+		DbUtil dbUtil = null;
+		PreparedStatement ps = null;
+		Connection conn = null;
+		String sql = "update tb_goods set specialgoods=1 where bookId=?";
+		try {
+			dbUtil = new DbUtil();
+			ps = dbUtil.getCon().prepareStatement(sql);
+			ps.setInt(1, goodId);
+			int i = ps.executeUpdate();
+			if(i != 0) {// 修改成功
+				return true;
+			}
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		} finally {
+			try {
+				ps.close();
+				dbUtil.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
+	public boolean setGoodsHost(int goodId){
+		DbUtil dbUtil = null;
+		PreparedStatement ps = null;
+		Connection conn = null;
+		String sql = "update tb_goods set hostgoods=1 where bookId=?";
+		try {
+			dbUtil = new DbUtil();
+			ps = dbUtil.getCon().prepareStatement(sql);
+			ps.setInt(1, goodId);
+			int i = ps.executeUpdate();
+			if(i != 0) {// 修改成功
+				return true;
+			}
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		} finally {
+			try {
+				ps.close();
+				dbUtil.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
+	public boolean setGoodsSale(int goodId){
+		DbUtil dbUtil = null;
+		PreparedStatement ps = null;
+		Connection conn = null;
+		String sql = "update tb_goods set salegoods=1 where bookId=?";
+		try {
+			dbUtil = new DbUtil();
+			ps = dbUtil.getCon().prepareStatement(sql);
+			ps.setInt(1, goodId);
+			int i = ps.executeUpdate();
+			if(i != 0) {// 修改成功
+				return true;
+			}
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		} finally {
+			try {
+				ps.close();
+				dbUtil.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
+	public boolean setGoodsNew(int goodId){
+		DbUtil dbUtil = null;
+		PreparedStatement ps = null;
+		Connection conn = null;
+		String sql = "update tb_goods set newgoods=1 where bookId=?";
+		try {
+			dbUtil = new DbUtil();
+			ps = dbUtil.getCon().prepareStatement(sql);
+			ps.setInt(1, goodId);
+			int i = ps.executeUpdate();
+			if(i != 0) {// 修改成功
+				return true;
+			}
+		} catch (Exception e) {
+			try {
+				conn.rollback();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
+		} finally {
+			try {
+				ps.close();
+				dbUtil.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
 	public List getAllGoodsName() {
 		List GoodsNameList = new ArrayList();
 		DbUtil daoUtil = null;
@@ -228,6 +348,7 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 		}
 		return GoodsNameList;
 	}
+	
 	public GoodsPager getGoodsPager(int index,int pageSize) {
 		Map GoodsMap = new HashMap();
 		DbUtil db = null;
@@ -274,6 +395,7 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 		bp.setTotalNum(getAllGoods().size());
 		return bp;
 	}
+	
 	public boolean deleteGoods(int[] GoodsIds) {
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;

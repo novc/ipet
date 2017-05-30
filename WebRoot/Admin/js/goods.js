@@ -10,20 +10,16 @@ $(document).ready(function(){
 		loadFilter:pagerFilter,
 		rownumbers:"true",
 		columns:[[
-			{field:'orderId',title:'订单ID',width:100,align:'center'},
-			{field:'name',title:'用户名',width:100,align:'center'},
-			{field:'recvName',title:'收货人',width:100,align:'center'},
-			{field:'address',title:'收货地址',width:100,align:'center'},
-			{field:'postcode',title:'邮编',width:100,align:'center'},
-			{field:'orderDate',title:'下单时间',width:180,align:'center'},
-			{field:'flagName',title:'订单状态',width:100,align:'center'},
-			{field:'flag',width:100,align:'center',formatter: function(flag,res){
-				if (flag==0){
-					return ("<a href='javascript:sendOrder("+res.orderId+")'>发货</a>");
-				} else {
-					return ;
-				} 
-			}},
+
+			{field:'goodsId',title:'商品ID',width:100,align:'center'},
+			{field:'goodsName',title:'商品名称',width:100,align:'center'},
+			{field:'introduce',title:'商品介绍',width:100,align:'center'},
+			{field:'price',title:'价格',width:100,align:'center'},
+			{field:'nowPrice',title:'现价',width:100,align:'center'},
+			{field:'newGoods',title:'新品',width:180,align:'center'},
+			{field:'saleGoods',title:'特价商品',width:100,align:'center'},
+			{field:'hostGoods',title:'热卖商品',width:100,align:'center'},
+			{field:'goodsNum',title:'数量',width:100,align:'center'},
 			{field:'flag1',width:100,align:'center',formatter: function(f,res){
 					return "<a href='http://nov:8080/ipet/getOneOrderServlet?orderId="+res.orderId+"'>详情</a>";
 			}},
