@@ -30,7 +30,7 @@ public class AdminLoginDaoImpl implements AdminLoginDao {
 					throw new PasswordError("密码错误");
 				}
 			} else {
-				throw new NameNotFound("账号错误");
+				throw new NameNotFound("登录名错误");
 			}
 		} catch(NameNotFound nnf) {
 			throw nnf;

@@ -2,6 +2,10 @@ package com.mall.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +26,12 @@ public class GetOneOrderServlet extends HttpServlet {
 			int orderId = 0;
 			orderId = Integer.parseInt(orderId_str);
 			Model model = new Model();
+			List orderItemList = new ArrayList();
 			Order order = model.getOneOrder(orderId);
-			request.setAttribute("order", order);
-			request.getRequestDispatcher("Admin/pages/manageDetailOrder.jsp").forward(request, response);
+			orderItemList = order.getOrderItem();
+			PrintWriter out = response.getWriter();
+			System.out.println(orderItemList);
+			out.print(JSON.toJSON(orderItemList));
 		}
 	}
 

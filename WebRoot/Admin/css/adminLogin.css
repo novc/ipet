@@ -74,6 +74,7 @@
 
 .main .login-wrap .login-area .input input {
     float: right;
+    padding:0px 8px;
     width: 285px;
     height: 43px;
     color: #666;

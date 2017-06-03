@@ -15,20 +15,23 @@ public class DeleteInformServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String informIds = request.getParameter("informId");
-		
-		if(informIds != "") {
+		System.out.println(informIds);
+		if(informIds != null) {
 			String[] ids_str = informIds.split(",");
 			int[] ids = new int[ids_str.length];
+			
 			for(int i=0;i<ids_str.length;i++) {
 				ids[i] = Integer.parseInt(ids_str[i]);
 			}
 			Model model = new Model();
+			PrintWriter out = response.getWriter();
 			if(model.deleteInform(ids)) {
-				PrintWriter out = response.getWriter();
 				out.print("删除成功");
-				out.flush();
-				out.close();
+			}else{
+				out.print("删除失败");
 			}
+			out.flush();
+			out.close();
 		}
 	}
 

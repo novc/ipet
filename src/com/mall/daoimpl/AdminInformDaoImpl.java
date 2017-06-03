@@ -13,6 +13,7 @@ import com.mall.common.DbUtil;
 import com.mall.dao.AdminInformDao;
 import com.mall.po.Inform;
 import com.mall.po.InformPager;
+import com.mall.po.Order;
 
 public class AdminInformDaoImpl implements AdminInformDao {
 
@@ -75,6 +76,34 @@ public class AdminInformDaoImpl implements AdminInformDao {
 		return informList;
 	}
 
+	public boolean UpdateInform(Inform inform){
+		DbUtil daoUtil = null;
+		PreparedStatement ps = null;
+		String sql = "update tb_inform set informTitle=?,informContent=?,informTime=? where informId=?";
+		try {
+			daoUtil = new DbUtil();
+			ps = daoUtil.getCon().prepareStatement(sql);
+			ps.setString(1, inform.getInformTitle());
+			ps.setString(2, inform.getInformContent());
+            ps.setString(3, inform.getInformTime());
+            ps.setInt(4, inform.getInformId());
+			int i = ps.executeUpdate();
+			if(i != 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				daoUtil.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
 	public boolean deleteInform(int[] ids) {
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;
@@ -112,12 +141,11 @@ public class AdminInformDaoImpl implements AdminInformDao {
 	}
 
 	public Inform getOneInform(int id) {
-		Inform inform = null;
-		DbUtil dao = null;
+		Inform inform = new Inform();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
+		DbUtil dao = new DbUtil();
 		try {
-			dao = new DbUtil();
 			String sql = "select * from tb_inform where informId = ?";
 			ps = dao.getCon().prepareStatement(sql);
 			ps.setInt(1, id);

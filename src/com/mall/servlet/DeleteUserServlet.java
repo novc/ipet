@@ -14,11 +14,10 @@ public class DeleteUserServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//获得用户 id集合
-		String users_str = request.getParameter("userIds");
-		
-		String[] ids_str = null;
-		if(users_str != "") {
-			ids_str = users_str.split(",");
+		String userIds_str = request.getParameter("ids");
+		String [] ids_str = null;
+		if(userIds_str != null) {
+			ids_str = userIds_str.split(",");
 		}
 		int[] ids = new int[ids_str.length];
 		for(int i=0;i<ids_str.length;i++) {

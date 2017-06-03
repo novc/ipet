@@ -24,38 +24,28 @@ public class GetOrderServlet extends HttpServlet {
 		Model model = new Model();
 		Order order = new Order();
 		List orderList = new ArrayList();
-		int orderId = Integer.parseInt(str_OrderId);
-		int flag = Integer.parseInt(str_flag);
-//		所有要求订单
-		if(orderId==0){
-			if(flag==1){
-				orderList = model.getSendOrder(1);
-			}else if(flag==0){
-				orderList = model.getNotSendOrder(0);
-			}else{
-				orderList = model.getAllOrder();
-			}
-			String str_OrderList = JSON.toJSONString(orderList);
-			PrintWriter out = response.getWriter();
-			out.println(JSON.toJSON(str_OrderList));
-			out.flush();
-			out.close();
-			
-		}else{
-//			按条件查询
-			if(flag==1){
-				order = model.searchOrderByOrderId(orderId,1);
-			}else if(flag==0){
-				order = model.searchOrderByOrderId(orderId,0);
-			}else{
-				order = model.searchOrderByOrderId(orderId,2);
-			}
-			String str_Order = JSON.toJSONString(order);
-			PrintWriter out = response.getWriter();
-			out.println(JSON.toJSON(str_Order));
-			out.flush();
-			out.close();
+		int nOrderId = 0;
+		int nFlag = 0;
+		
+		if (str_OrderId==null&&str_flag==null){
+			orderList = model.getAllOrder();
+//			System.out.println("无查询条件");
+		}else if(str_OrderId!=null){
+			nOrderId = Integer.parseInt(str_OrderId);
+			orderList.add(model.getOrderByOrderId(nOrderId));
+//			System.out.println(nOrderId);
+		}else if(str_flag!=null){
+			nFlag = Integer.parseInt(str_flag);
+			orderList=model.getOrderByOrderFlag(nFlag);
+//			System.out.println(nFlag);
 		}
+
+		String str_OrderList = JSON.toJSONString(orderList);
+		PrintWriter out = response.getWriter();
+		out.println(JSON.toJSON(str_OrderList));
+		out.flush();
+		out.close();
+	
 	}
 
 	

@@ -12,4 +12,5 @@ public interface AdminInformDao {
 	public boolean deleteInform(int[] ids);
 	public Inform getOneInform(int id);
 	public InformPager getInformPager(int index,int pageSize);
+	public boolean UpdateInform(Inform inform);
 }

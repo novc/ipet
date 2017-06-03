@@ -378,8 +378,8 @@
     <servlet-class>com.mall.servlet.AddInformServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>GetAllInformServlet</servlet-name>
-    <servlet-class>com.mall.servlet.GetAllInformServlet</servlet-class>
+    <servlet-name>GetInformServlet</servlet-name>
+    <servlet-class>com.mall.servlet.GetInformServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>DeleteInformServlet</servlet-name>
@@ -389,10 +389,7 @@
     <servlet-name>DeleteAdminsServlet</servlet-name>
     <servlet-class>com.mall.servlet.DeleteAdminsServlet</servlet-class>
   </servlet>
-  <servlet>
-    <servlet-name>UpdateInformServlet</servlet-name>
-    <servlet-class>com.mall.servlet.UpdateInformServlet</servlet-class>
-  </servlet>
+  
   <servlet>
     <servlet-name>GetOneInformServlet</servlet-name>
     <servlet-class>com.mall.servlet.GetOneInformServlet</servlet-class>
@@ -638,8 +635,8 @@
     <url-pattern>/addInformServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>GetAllInformServlet</servlet-name>
-    <url-pattern>/getAllInformServlet</url-pattern>
+    <servlet-name>GetInformServlet</servlet-name>
+    <url-pattern>/getInformServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>DeleteInformServlet</servlet-name>
@@ -649,10 +646,7 @@
     <servlet-name>DeleteAdminsServlet</servlet-name>
     <url-pattern>/deleteAdmin</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>UpdateInformServlet</servlet-name>
-    <url-pattern>/updateInformServlet</url-pattern>
-  </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>GetOneInformServlet</servlet-name>
     <url-pattern>/getOneInformServlet</url-pattern>
@@ -846,13 +840,6 @@
     <servlet-name>GetOrderByOrderIDServlet</servlet-name>
     <servlet-class>com.mall.servlet.GetOrderByOrderIDServlet</servlet-class>
   </servlet>
-
-  <servlet>
-    <description>This is the description of my J2EE component</description>
-    <display-name>This is the display name of my J2EE component</display-name>
-    <servlet-name>AjaxTest</servlet-name>
-    <servlet-class>com.mall.servlet.AjaxTest</servlet-class>
-  </servlet>
   <servlet>
     <servlet-name>UpdateOrderInfoServlet</servlet-name>
     <servlet-class>com.mall.servlet.UpdateOrderInfoServlet</servlet-class>
@@ -860,6 +847,27 @@
   <servlet>
     <servlet-name>GetOrderServlet</servlet-name>
     <servlet-class>com.mall.servlet.GetOrderServlet</servlet-class>
+  </servlet>
+  
+  <servlet>
+  	<description>
+  	</description>
+  	<servlet-name>AdminUpdateUserServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.AdminUpdateUserServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>UpdateInformServlet</display-name>
+  	<servlet-name>UpdateInformServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.UpdateInformServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>UpdateOrderItemServlet</display-name>
+  	<servlet-name>UpdateOrderItemServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.UpdateOrderItemServlet</servlet-class>
   </servlet>
 
 
@@ -911,10 +919,7 @@
     <servlet-name>GetOrderByOrderIDServlet</servlet-name>
     <url-pattern>/getOrderByOrderIDServlet</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>AjaxTest</servlet-name>
-    <url-pattern>/ajaxTest</url-pattern>
-  </servlet-mapping>
+  
   <servlet-mapping>
     <servlet-name>UpdateOrderInfoServlet</servlet-name>
     <url-pattern>/updateOrderInfoServlet</url-pattern>
@@ -922,5 +927,17 @@
   <servlet-mapping>
     <servlet-name>GetOrderServlet</servlet-name>
     <url-pattern>/getOrderServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AdminUpdateUserServlet</servlet-name>
+  	<url-pattern>/adminUpdateUserServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateInformServlet</servlet-name>
+  	<url-pattern>/updateInformServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateOrderItemServlet</servlet-name>
+  	<url-pattern>/UpdateOrderItemServlet</url-pattern>
   </servlet-mapping>
 </web-app>

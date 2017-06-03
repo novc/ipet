@@ -46,6 +46,7 @@ import com.mall.po.Note;
 import com.mall.po.NotePager;
 import com.mall.po.Order;
 import com.mall.po.OrderFreezePager;
+import com.mall.po.OrderItem;
 import com.mall.po.OrderNotSendPager;
 import com.mall.po.OrderPager;
 import com.mall.po.OrderSendPager;
@@ -200,16 +201,24 @@ public class Model {
 		return userDao.getAllUsers();
 	}
 	
-	public boolean deleteUserById(int id) {
-		return userDao.deleteUserById(id);
-	}
-	
 	public boolean deleteUsers(int[] ids) {
 		return userDao.deleteUsers(ids);
 	}
 	
 	public UserPager getUserPager(int index, int pageSize) {
 		return userDao.getUserPager(index, pageSize);
+	}
+	
+	public User getUserByUserId(int userid){
+		return userDao.getUserByUserId(userid);
+	}
+	
+	public User getUserByUserName(String username){
+		return userDao.getUserByUserName(username);
+	}
+	
+	public boolean UpdateUserInfo(User user){
+		return userDao.UpdateUserInfo(user);
 	}
 	
 	public AdminPager getAdminPager(int index, int pageSize) {
@@ -348,6 +357,10 @@ public class Model {
 		return adminInformDao.getInformPager(index, pageSize);
 	}
 	
+	public boolean UpdateInform(Inform inform){
+		return adminInformDao.UpdateInform(inform);
+	}
+	
 	public List getAllOrder() {
 		return adminOrderDao.getAllOrder();
 	}
@@ -375,11 +388,25 @@ public class Model {
 		return adminOrderDao.UpdateOrderInfo(order);
 	}
 	public boolean deleteOrder(int[] ids) {
-		return adminOrderDao.deleteOrder(ids);
+		return adminOrderDao.deleteOrders(ids);
 	}
-	public Order searchOrderByOrderId(int orderId,int flag){
-		return adminOrderDao.searchOrderByOrderId(orderId,flag);
+	
+	public boolean UpdateOrderItem(OrderItem orderItem) {
+		return adminOrderDao.UpdateOrderItem(orderItem);
 	}
+	
+	public boolean deleteOrderItems(int[] ids) {
+		return adminOrderDao.deleteOrderItems(ids);
+	}
+	
+	public Order getOrderByOrderId(int orderId){
+		return adminOrderDao.getOrderByOrderId(orderId);
+	}
+	
+	public List getOrderByOrderFlag(int flag){
+		return adminOrderDao.getOrderByOrderFlag(flag);
+	}
+	
 	//根据当前用户的用户名查订单
 	public List selectOrder(String name){
 		return od.selectOrder(name);

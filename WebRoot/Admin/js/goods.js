@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$("#dg").datagrid({
-		url:"http://nov:8080/ipet/getGoodsPagerServlet,
+		url:"http://nov:8080/ipet/getGoodsPagerServlet",
 		fitColumns:true,
 		striped:true,
 		rownumbers:true,

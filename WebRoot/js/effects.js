@@ -1,4 +1,4 @@
-// Copyright (c) 2005 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
+/*// Copyright (c) 2005 Thomas Fuchs (http://script.aculo.us, http://mir.aculo.us)
 // Contributors:
 //  Justin Palmer (http://encytemedia.com/)
 //  Mark Pilgrim (http://diveintomark.org/)
@@ -6,7 +6,7 @@
 // 
 // See scriptaculous.js for full license.  
 
-/* ------------- element ext -------------- */  
+ ------------- element ext --------------   
  
 // converts rgb() and #xxx to #xxxxxx format,  
 // returns self (or first argument) if not convertable  
@@ -90,7 +90,7 @@ Array.prototype.call = function() {
   this.each(function(f){ f.apply(this, args) });
 }
 
-/*--------------------------------------------------------------------------*/
+--------------------------------------------------------------------------
 
 var Effect = {
   tagifyText: function(element) {
@@ -146,7 +146,7 @@ var Effect = {
 
 var Effect2 = Effect; // deprecated
 
-/* ------------- transitions ------------- */
+ ------------- transitions ------------- 
 
 Effect.Transitions = {}
 
@@ -176,7 +176,7 @@ Effect.Transitions.full = function(pos) {
   return 1;
 }
 
-/* ------------- core effects ------------- */
+ ------------- core effects ------------- 
 
 Effect.ScopedQueue = Class.create();
 Object.extend(Object.extend(Effect.ScopedQueue.prototype, Enumerable), {
@@ -523,7 +523,7 @@ Object.extend(Object.extend(Effect.ScrollTo.prototype, Effect.Base.prototype), {
   }
 });
 
-/* ------------- combination effects ------------- */
+ ------------- combination effects ------------- 
 
 Effect.Fade = function(element) {
   var oldOpacity = Element.getInlineOpacity(element);
@@ -901,3 +901,4 @@ Effect.Fold = function(element) {
       }} });
   }}, arguments[1] || {}));
 }
+*/

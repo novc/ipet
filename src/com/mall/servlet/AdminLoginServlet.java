@@ -26,7 +26,7 @@ public class AdminLoginServlet extends HttpServlet {
 		Model model = new Model();	
 		try {
 			int type= (Integer)model.login(admin);
-			if(type!=0) {				
+			if(type!=0) {//登陆成功
 				ServletContext context = this.getServletContext();
 				request.getSession().setAttribute("adminType",type);
 				List adminList = (List) context.getAttribute("adminList");

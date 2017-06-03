@@ -19,7 +19,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="Admin/easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="Admin/easyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="Admin/easyui/demo.css">
-    <link rel="stylesheet" type="text/css" href="Admin/css/admin-index.css">
+    <link rel="stylesheet" type="text/css" href="Admin/css/admin.css">
+    
     <script type="text/javascript" src="Admin/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="Admin/easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="Admin/js/admin.js"></script>
@@ -49,8 +50,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div title="订单管理">
                 <ul>
 				    <li><a href="Admin/pages/manageOrder.html?flag=3" target="contentIframe">所有订单</a></li>
-				    <li><a href="Admin/pages/manageOrder.html?flag=0" target="contentIframe">未发货订单</a></li>
-				    <li><a href="Admin/pages/manageOrder.html?flag=1" target="contentIframe">已发货订单</a></li>
 				</ul>
             </div>
             <div title="公告管理">

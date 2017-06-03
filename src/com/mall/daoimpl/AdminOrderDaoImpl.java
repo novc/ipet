@@ -138,17 +138,16 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 		return orderList;
 	}
 	
-	public Order searchOrderByOrderId(int orderId,int flag) {
+	public Order getOrderByOrderId(int orderId) {
 		Order order = new Order();
 		DbUtil dao = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
 			dao = new DbUtil();
-			String sql = "select * from tb_order where orderId = ? and flag = ? order by orderId";
+			String sql = "select * from tb_order where orderId = ? order by orderId desc";
 			ps = dao.getCon().prepareStatement(sql);
 			ps.setInt(1, orderId);
-			ps.setInt(2, flag);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				String flagName = (rs.getInt("flag")==1)?"已发货":"未发货";
@@ -175,6 +174,47 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 		}
 		return order;
 	}
+	
+	public List getOrderByOrderFlag(int flag) {
+		List orderList = new ArrayList();
+		
+		DbUtil dao = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			dao = new DbUtil();
+			String sql = "select * from tb_order where flag = ? order by orderId desc";
+			ps = dao.getCon().prepareStatement(sql);
+			ps.setInt(1, flag);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Order order = new Order();
+				String flagName = (rs.getInt("flag")==1)?"已发货":"未发货";
+				order.setOrderId(rs.getInt("orderId"));
+				order.setName(rs.getString("name"));
+				order.setRecvName(rs.getString("recvName"));
+				order.setAddress(rs.getString("address"));
+				order.setPostcode(rs.getString("postcode"));
+				order.setEmail(rs.getString("email"));
+				order.setOrderDate(rs.getString("orderDate"));
+				order.setFlag(rs.getInt("flag"));
+				order.setFlagName(flagName);
+				orderList.add(order);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+				dao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return orderList;
+	}
+	
 
 	public List getSendOrder(int flag) {
 		List orderList = new ArrayList();
@@ -278,7 +318,7 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 		return false;
 	}
 
-	public boolean deleteOrder(int[] ids) {		
+	public boolean deleteOrders(int[] ids) {		
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;
 		PreparedStatement ps2 = null;
@@ -338,6 +378,70 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				daoUtil.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+	
+	public boolean UpdateOrderItem(OrderItem orderItem){
+		DbUtil daoUtil = null;
+		PreparedStatement ps = null;
+		String sql = "update tb_order set price=?,goodsNum=? where orderItemId=?";
+		try {
+			daoUtil = new DbUtil();
+			ps = daoUtil.getCon().prepareStatement(sql);
+			ps.setFloat(1, orderItem.getPrice());
+			ps.setInt(2, orderItem.getGoodsNum());
+            ps.setInt(4, orderItem.getOrderItemId());
+			int i = ps.executeUpdate();
+			if(i != 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				daoUtil.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return false;
+	}
+
+	public boolean deleteOrderItems(int[] ids) {		
+		DbUtil daoUtil = null;
+		PreparedStatement ps = null;
+		Connection conn = null;
+		String sql = "delete from tb_orderitem where orderId=?";
+		
+		try {
+			daoUtil = new DbUtil();
+			conn = daoUtil.getCon();
+			conn.setAutoCommit(false);
+			ps = conn.prepareStatement(sql);	
+			for(int j=0;j<ids.length;j++) {
+				ps.setInt(1, ids[j]);
+				ps.addBatch();
+			}
+			int[] k = ps.executeBatch();
+			conn.commit();			
+			if(k.length == ids.length) {
+				return true;
+			}			
+		} catch (Exception e) {			
+			try {
+				conn.rollback();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		} finally {
 			try {
 				ps.close();
