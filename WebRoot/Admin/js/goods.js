@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$("#dg").datagrid({
-		url:"http://nov:8080/ipet/getGoodsPagerServlet",
+		url:"http://nov:8080/ipet/GetGoodsServlet",
 		fitColumns:true,
 		striped:true,
 		rownumbers:true,
@@ -10,7 +10,6 @@ $(document).ready(function(){
 		loadFilter:pagerFilter,
 		rownumbers:"true",
 		columns:[[
-
 			{field:'goodsId',title:'商品ID',width:100,align:'center'},
 			{field:'goodsName',title:'商品名称',width:100,align:'center'},
 			{field:'introduce',title:'商品介绍',width:100,align:'center'},
@@ -31,47 +30,5 @@ $(document).ready(function(){
 			}}
 		]]
 		
-	})
-})
-
-
-
-function deleteOrder(orderId) {
-	window.confirm("确认删除该订单？");
-	$.ajax({
-		url:"http://nov:8080/ipet/deleteOrderServlet",
-		type:"POST",
-		data:{
-			"orderId":orderId
-		},
-		success:function(msg){
-			window.alert(msg);
-			window.location.reload(true);
-		}
-	})
-};//end of 订单删除
-
-function setUpdateOrderInfo(orderId){
-	if(window.sessionStorage){
-		window.sessionStorage.setItem("updateOrderId",orderId);
-		window.location.href="updateOrderInfo.html";
-	}else{
-		console.log("session error");
-	}
-};//end of 订单修改准备信息
-
-function sendOrder(orderId){
-	$.ajax({
-		url:"http://nov:8080/ipet/adminSendOrderServlet",
-		type:"POST",
-		data:{
-			orderId:orderId
-		},
-		success:function(msg){
-			window.alert(msg);
-			window.location.reload(true);
-		}
-	})
-}//end of 发货
-
-
+	});
+});

@@ -241,12 +241,23 @@ public class Model {
 		return adminDao1.checkNameExist(loginName);
 	}
 	
+	public List getAllAdmins(){
+		return adminDao.getAllAdmins();
+	}
+	
 	public boolean addAdmin(Admin admin){
 		return adminDao1.addAdmin(admin);
 	}
 	
 	public boolean updateAdmin(Admin admin){
 		return adminDao1.updateAdmin(admin);
+	}
+	
+	public List getAdminByType(int type){
+		return adminDao.getAdminByType(type);
+	}
+	public List getAdminByAdminName(String adminName){
+		return adminDao.getAdminByAdminName(adminName);
 	}
 	
     public boolean deleteAdmin(int[] ids){

@@ -18,18 +18,17 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 
 	public List getAllGoods() {
 		List goodslist = new ArrayList();
-		DbUtil daoUtil = null;
+		DbUtil daoUtil = new DbUtil();
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		String sql = null;
 		try {
-			daoUtil = new DbUtil();
 			sql = "select * from tb_goods";
 			ps = daoUtil.getCon().prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Goods goods1 = new Goods();
-				goods1.setGoodsId(rs.getInt("bookId"));
+				goods1.setGoodsId(rs.getInt("goodsId"));
 				goods1.setSuperTypeId(rs.getInt("superTypeId"));
 				goods1.setSubTypeId(rs.getInt("subTypeId"));
 				goods1.setGoodsName(rs.getString("goodsName"));
@@ -169,7 +168,7 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Goods Goods = new Goods();
-				Goods.setGoodsId(rs.getInt("bookId"));
+				Goods.setGoodsId(rs.getInt("goodsId"));
 				Goods.setSuperTypeId(rs.getInt("superTypeId"));
 				Goods.setSubTypeId(rs.getInt("subTypeId"));
 				Goods.setGoodsName(rs.getString("goodsName"));
@@ -205,7 +204,7 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 		DbUtil dbUtil = null;
 		PreparedStatement ps = null;
 		Connection conn = null;
-		String sql = "update tb_goods set specialgoods=1 where bookId=?";
+		String sql = "update tb_goods set specialgoods=1 where goodsId=?";
 		try {
 			dbUtil = new DbUtil();
 			ps = dbUtil.getCon().prepareStatement(sql);
@@ -235,7 +234,7 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 		DbUtil dbUtil = null;
 		PreparedStatement ps = null;
 		Connection conn = null;
-		String sql = "update tb_goods set hostgoods=1 where bookId=?";
+		String sql = "update tb_goods set hostgoods=1 where goodsId=?";
 		try {
 			dbUtil = new DbUtil();
 			ps = dbUtil.getCon().prepareStatement(sql);
@@ -265,7 +264,7 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 		DbUtil dbUtil = null;
 		PreparedStatement ps = null;
 		Connection conn = null;
-		String sql = "update tb_goods set salegoods=1 where bookId=?";
+		String sql = "update tb_goods set salegoods=1 where goodsId=?";
 		try {
 			dbUtil = new DbUtil();
 			ps = dbUtil.getCon().prepareStatement(sql);
@@ -295,7 +294,7 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 		DbUtil dbUtil = null;
 		PreparedStatement ps = null;
 		Connection conn = null;
-		String sql = "update tb_goods set newgoods=1 where bookId=?";
+		String sql = "update tb_goods set newgoods=1 where goodsId=?";
 		try {
 			dbUtil = new DbUtil();
 			ps = dbUtil.getCon().prepareStatement(sql);
@@ -363,7 +362,7 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Goods Goods = new Goods();
-				Goods.setGoodsId(rs.getInt("bookId"));
+				Goods.setGoodsId(rs.getInt("goodsId"));
 				Goods.setSuperTypeId(rs.getInt("superTypeId"));
 				Goods.setSubTypeId(rs.getInt("subTypeId"));
 				Goods.setGoodsName(rs.getString("goodsName"));
@@ -400,7 +399,7 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;
 		Connection conn = null;
-		String sql = "delete from tb_goods where bookId=?";
+		String sql = "delete from tb_goods where goodsId=?";
 		try {
 			daoUtil = new DbUtil();
 			conn = daoUtil.getCon();

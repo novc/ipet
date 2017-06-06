@@ -33,7 +33,7 @@ public class GoodsDaoImpl implements GoodsDao {
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
 					Goods Goods = new Goods();
-					Goods.setGoodsId(rs.getInt("bookId"));
+					Goods.setGoodsId(rs.getInt("goodsId"));
 					Goods.setGoodsName(rs.getString("GoodsName"));
 					Goods.setISBN(rs.getString("ISBN"));
 					Goods.setProduceDate(rs.getString("produceDate"));
@@ -86,7 +86,7 @@ public class GoodsDaoImpl implements GoodsDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Goods Goods = new Goods();
-				Goods.setGoodsId(rs.getInt("bookId"));
+				Goods.setGoodsId(rs.getInt("goodsId"));
 				Goods.setGoodsName(rs.getString("goodsName"));
 				Goods.setISBN(rs.getString("ISBN"));
 				Goods.setProduceDate(rs.getString("produceDate"));
@@ -115,7 +115,7 @@ public class GoodsDaoImpl implements GoodsDao {
 	public boolean updateGoodsNum(int num,int GoodsId) {
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;
-		String sql = "update tb_goods set GoodsNum=? where bookId=?";
+		String sql = "update tb_goods set GoodsNum=? where goodsId=?";
 		try {
 			daoUtil = new DbUtil();
 			ps = daoUtil.getCon().prepareStatement(sql);
@@ -141,7 +141,7 @@ public class GoodsDaoImpl implements GoodsDao {
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;
 		String sql = "update tb_goods set goodsName=?,goodsNum=?,introduce=?,ISBN=?,author=?,superTypeId=?,subTypeId=?,publisher=?,price=?,nowPrice=?," +
-				"produceDate=?,hostGoods=?,newGoods=?,saleGoods=?,specialGoods=? where bookId=?";
+				"produceDate=?,hostGoods=?,newGoods=?,saleGoods=?,specialGoods=? where goodsId=?";
 		try {
 			daoUtil = new DbUtil();
 			ps = daoUtil.getCon().prepareStatement(sql);
@@ -187,14 +187,14 @@ public class GoodsDaoImpl implements GoodsDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		DbUtil dbUtil = null;
-		String sql = "select * from tb_goods where bookId=?";
+		String sql = "select * from tb_goods where goodsId=?";
 		try {
 			dbUtil = new DbUtil();
 			pstmt = dbUtil.getCon().prepareStatement(sql);
 			pstmt.setInt(1, GoodsId);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
-				Goods.setGoodsId(rs.getInt("bookId"));
+				Goods.setGoodsId(rs.getInt("goodsId"));
 				Goods.setGoodsName(rs.getString("goodsName"));
 				Goods.setIntroduce(rs.getString("introduce"));
 				Goods.setISBN(rs.getString("ISBN"));
@@ -231,7 +231,7 @@ public class GoodsDaoImpl implements GoodsDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		DbUtil dbUtil = null;
-		String sql = "select B.name,A.goodsNum,B.orderDate from tb_orderitem A, tb_order B where A.orderId=B.orderId and A.bookId="+GoodsId+"";
+		String sql = "select B.name,A.goodsNum,B.orderDate from tb_orderitem A, tb_order B where A.orderId=B.orderId and A.goodsId="+GoodsId+"";
 		try 
 		{
 			dbUtil = new DbUtil();
@@ -346,7 +346,7 @@ public class GoodsDaoImpl implements GoodsDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				Goods Goods = new Goods();
-			    Goods.setGoodsId(rs.getInt("bookId"));
+			    Goods.setGoodsId(rs.getInt("goodsId"));
 				Goods.setGoodsName(rs.getString("goodsName"));
 				Goods.setPicture(rs.getString("picture"));
 				Goods.setPrice(rs.getFloat("price"));
@@ -421,7 +421,7 @@ public class GoodsDaoImpl implements GoodsDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				Goods Goods = new Goods();
-				Goods.setGoodsId(rs.getInt("bookId"));
+				Goods.setGoodsId(rs.getInt("goodsId"));
 				Goods.setGoodsName(rs.getString("goodsName"));
 				Goods.setPicture(rs.getString("picture"));
 				Goods.setPrice(rs.getFloat("price"));
@@ -509,7 +509,7 @@ public class GoodsDaoImpl implements GoodsDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()){
 				Goods Goods = new Goods();
-				Goods.setGoodsId(rs.getInt("bookId"));
+				Goods.setGoodsId(rs.getInt("goodsId"));
 				Goods.setGoodsName(rs.getString("goodsName"));
 				Goods.setPicture(rs.getString("picture"));
 				Goods.setPrice(rs.getFloat("price"));

@@ -2,15 +2,9 @@
 Navicat MySQL Data Transfer
 
 Source Server         : localhost
-Source Server Version : 50157
 Source Host           : localhost:3306
 Source Database       : shop
-
 Target Server Type    : MYSQL
-Target Server Version : 50157
-File Encoding         : 65001
-
-Date: 2014-01-09 20:24:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,13 +25,21 @@ CREATE TABLE `tb_admin` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of tb_admin
+-- Records of tb_admin 1 商品管理 2 订单管理 3 会员管理 4 系统
 -- ----------------------------
-INSERT INTO `tb_admin` VALUES ('1', '1', '商品管理员', 'admin1', 'admin1');
-INSERT INTO `tb_admin` VALUES ('2', '2', '订单管理员', 'admin2', 'admin2');
-INSERT INTO `tb_admin` VALUES ('3', '3', '会员管理员', 'admin3', 'admin3');
-INSERT INTO `tb_admin` VALUES ('4', '4', '系统管理员', 'admin4', 'admin4');
-
+INSERT INTO `tb_admin` VALUES ('1', '1', '商水', 'admin1', 'admin1');
+INSERT INTO `tb_admin` VALUES ('2', '2', '丁琪', 'admin2', 'admin2');
+INSERT INTO `tb_admin` VALUES ('3', '3', '文会', 'admin3', 'admin3');
+INSERT INTO `tb_admin` VALUES ('4', '4', '夏瑕', 'admin4', 'admin4');
+INSERT INTO `tb_admin` VALUES ('5', '1', '优乐', 'youyue', '123');
+INSERT INTO `tb_admin` VALUES ('6', '2', '白栎', 'baili', '123');
+INSERT INTO `tb_admin` VALUES ('7', '3', '李美婷', 'li', '123');
+INSERT INTO `tb_admin` VALUES ('8', '1', '李达', 'lida', '123');
+INSERT INTO `tb_admin` VALUES ('9', '2', '李建设', 'lijianshe', '123');
+INSERT INTO `tb_admin` VALUES ('10', '3', '白奕竹', 'baiyizhu', '123');
+INSERT INTO `tb_admin` VALUES ('11', '1', '容景', 'rongjing', '123');
+INSERT INTO `tb_admin` VALUES ('12', '2', '风书晚', 'shuwan', '123');
+INSERT INTO `tb_admin` VALUES ('13', '3', '杨子琪', 'yang', '123');
 -- ----------------------------
 -- Table structure for tb_admintype
 -- ----------------------------
@@ -61,7 +63,7 @@ INSERT INTO `tb_admintype` VALUES ('4', '系统管理员');
 -- ----------------------------
 DROP TABLE IF EXISTS `tb_goods`;
 CREATE TABLE `tb_goods` (
-  `bookId` int(11) NOT NULL AUTO_INCREMENT,
+  `goodsId` int(11) NOT NULL AUTO_INCREMENT,
   `superTypeId` int(11) DEFAULT NULL,
   `subTypeId` int(11) DEFAULT NULL,
   `goodsName` varchar(200) DEFAULT NULL,
@@ -79,7 +81,7 @@ CREATE TABLE `tb_goods` (
   `hostgoods` int(11) DEFAULT NULL,
   `specialgoods` int(11) DEFAULT NULL,
   `goodsNum` int(11) DEFAULT NULL,
-  PRIMARY KEY (`bookId`),
+  PRIMARY KEY (`goodsId`),
   KEY `subTypeId` (`subTypeId`),
   KEY `superTypeId` (`superTypeId`),
   CONSTRAINT `tb_goods_ibfk_1` FOREIGN KEY (`subTypeId`) REFERENCES `tb_subtype` (`subTypeId`),
@@ -114,13 +116,61 @@ CREATE TABLE `tb_inform` (
   `informTitle` varchar(30) DEFAULT NULL,
   `informContent` varchar(30) DEFAULT NULL,
   `informTime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	
   PRIMARY KEY (`informId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_inform
 -- ----------------------------
-INSERT INTO `tb_inform` VALUES ('1', '电子商务网站试营业啦~~', '欢迎大家光临，有任何意见请您及时给我们留言，谢谢啦。', '2014-01-04 14:09:53');
+INSERT INTO `tb_inform` VALUES ('1', 'ipet商城营业啦~~', '欢迎大家光临，有任何意见请您及时给我们留言，谢谢啦。', '2017-5-14');
+INSERT INTO `tb_inform` VALUES ('2', '这里提供宠物', '欢迎大家光临，有任何意见请您及时给我们留言', '2017-5-14');
+INSERT INTO `tb_inform` VALUES ('3', '测试', '你看到我了吗', '2017-5-14');
+
+
+-- ----------------------------
+-- Table structure for tb_user
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_user`;
+CREATE TABLE `tb_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) NOT NULL,
+  `password` varchar(16) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `trueName` varchar(40) NOT NULL,
+  `sex` varchar(30) DEFAULT NULL,
+  `birthday` varchar(20) DEFAULT NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `postcode` varchar(10) DEFAULT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `mphone` varchar(15) DEFAULT NULL,
+  `question` varchar(30) NOT NULL,
+  `answer` varchar(30) NOT NULL,
+  `img` varchar(100) DEFAULT NULL,
+  `score` int(11) DEFAULT '1000',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_user
+-- ----------------------------
+INSERT INTO `tb_user` VALUES ('1', 'baiyizhu', '123', '1235@qq.com', '白奕竹', '男', '1995-11-25', '上海', '1000001', '88546461', '15646113645', '你的第一任老师是谁', '庞龙', null, null);
+INSERT INTO `tb_user` VALUES ('2', 'tom', '123', 'tom@163.com', '汤姆', '男', '1995-11-25', '天津', '1000002', '23873736', '15646113645', '你母亲的名字是什么', '张珂', null, null);
+INSERT INTO `tb_user` VALUES ('3', 'Jerry', '123', 'jerry@163.com', '珍妮', '女', '1995-11-25', '上海', '1000003', '87389646', '15646113645', '你父亲的名字是什么', '张龙', null, null);
+INSERT INTO `tb_user` VALUES ('4', 'gusheng', '123', 'gusheng@qust.com', '顾声声', '女', '1995-11-25', '北京', '1000004', '84613116', '15646113645', '你小学什么时候毕业的', '2010', null, null);
+INSERT INTO `tb_user` VALUES ('5', 'qiang', '123', 'qiang@qust.com', '莫青城', '男', '1995-11-25', '山西太原', '1000005', '4335964', '15646113645', '你的出生日期', '1889-7-6', null, null);
+INSERT INTO `tb_user` VALUES ('6', 'xuan', '123', 'xuan@qust.com', '林轩', '女', '1995-11-25', '黑龙江', '1000006', '56416126', '15646113645', '你最喜欢的星座', '射手', null, null);
+INSERT INTO `tb_user` VALUES ('7', 'duan', '123', 'duan@qust.com', '段轻晚', '女', '1995-11-25', '吉林长春', '1000007', '296532036', '15646113645', '', '庞龙', null, null);
+INSERT INTO `tb_user` VALUES ('8', 'ning', '123', 'ning@qust.com', '宁宁', '男', '1995-11-25', '安徽合肥', '1000008', '5914320', '15646113645', '你的第一任老师是谁', '庞龙', null, null);
+INSERT INTO `tb_user` VALUES ('9', 'miao', '123', 'miao@qust.com', '林思妙', '女', '1995-11-25', '江西', '1000009', '126230', '15646113645', '你的第一任老师是谁', '庞龙', null, null);
+INSERT INTO `tb_user` VALUES ('10', 'lan', '123', 'lan@qust.com', '叶海蓝', '女', '1995-11-25', '广东广州', '1000010', '88546461', '15646113645', '你做喜欢的职业', '程序员', null, null);
+INSERT INTO `tb_user` VALUES ('11', 'ling', '123', 'ling@qust.com', '灵歌', '女', '1995-11-25', '河南郑州', '1000011', '88546461', '15646113645', '你的座右铭', '我爱学习，学习使我快乐', null, null);
+INSERT INTO `tb_user` VALUES ('12', 'monkey', '123', 'monkey@qust.com', '毛斌', '男', '1995-11-25', '上海', '1000012', '88546461', '15646113645', '我爱工作', '工作使我快乐', null, null);
+INSERT INTO `tb_user` VALUES ('13', 'tang', '123', 'tang@qust.com', '唐伯虎', '男', '1995-11-25', '山东济南', '1000013', '88546461', '15646113645', '你第一任班主任是谁', '宫倾城', null, null);
+INSERT INTO `tb_user` VALUES ('14', 'yao', '123', 'yao@qust.com', '李逍遥', '男', '1995-11-25', '河北沧州', '1000014', '88546461', '15646113645', '我爱java', 'java使我快乐', null, null);
+INSERT INTO `tb_user` VALUES ('15', 'shan', '123', 'shan@qust.com', '张山', '男', '1995-11-25', '山西大同', '1000015', '88546461', '15646113645', '我爱SQL', 'SQL使我快乐', null, null);
+INSERT INTO `tb_user` VALUES ('16', 'like', '123', 'like@qust.com', '李可', '男', '1995-11-25', '上海', '1000016', '88546461', '15646113645', '我爱前端开发', '前端使我快乐', null, null);
+
 
 -- ----------------------------
 -- Table structure for tb_note
@@ -129,7 +179,7 @@ DROP TABLE IF EXISTS `tb_note`;
 CREATE TABLE `tb_note` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(20) NOT NULL,
-  `author` varchar(20) NOT NULL,
+  `author` varchar(30) NOT NULL,
   `content` varchar(50) NOT NULL,
   `ly_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `imgs` varchar(20) DEFAULT NULL,
@@ -144,6 +194,7 @@ INSERT INTO `tb_note` VALUES ('4', '有没有优惠啊', 'demo123', '有木有�
 INSERT INTO `tb_note` VALUES ('5', '好多哦', 'ha2222', '好看哦', '2014-01-06 19:57:24', 'images/face/pic4.gif');
 INSERT INTO `tb_note` VALUES ('6', '有没有特价啊？', 'hello111', '有没有活动秒杀啊', '2014-01-06 23:05:14', 'images/face/pic1.gif');
 
+
 -- ----------------------------
 -- Table structure for tb_order
 -- ----------------------------
@@ -155,7 +206,7 @@ CREATE TABLE `tb_order` (
   `address` varchar(20) DEFAULT NULL,
   `postcode` varchar(10) DEFAULT NULL,
   `email` varchar(20) DEFAULT NULL,
-  `orderDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `orderDate` TIMESTAMP defAULT  CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `flag` int(11) DEFAULT NULL,
   PRIMARY KEY (`orderId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
@@ -163,8 +214,25 @@ CREATE TABLE `tb_order` (
 -- ----------------------------
 -- Records of tb_order
 -- ----------------------------
-INSERT INTO `tb_order` VALUES ('35', 'hellokitty', '上海', 'hellokitty', '111222', '1095080675@qq.com', '2014-01-09 19:32:30', '0');
-INSERT INTO `tb_order` VALUES ('36', 'hellokitty', '上海', 'hellokitty', '111222', '1095080675@qq.com', '2014-01-09 20:22:24', '1');
+INSERT INTO `tb_order` VALUES ('35', 'yao', '黎明', '上海', '161616', '16465262@qq.com', '2017-5-15', '0');
+INSERT INTO `tb_order` VALUES ('36', 'tom', '汤姆', '天津', '100610', '5dfgd@163.com', '2017-5-15', '0');
+INSERT INTO `tb_order` VALUES ('37', 'gusheng', '顾声', '北京', '521213', 'faef@sina.com', '2017-5-15', '1');
+INSERT INTO `tb_order` VALUES ('38', 'baiyizhu', '白奕竹', '青岛', '366552', '1215445@163.com', '2017-5-15', '1');
+INSERT INTO `tb_order` VALUES ('39', 'gusheng', '顾声', '北京', '521213', 'faef@sina.com', '2017-5-15', '1');
+INSERT INTO `tb_order` VALUES ('40', 'baiyizhu', '白奕竹', '青岛', '366552', '1215445@163.com', '2017.5.5', '0');
+INSERT INTO `tb_order` VALUES ('41', 'gusheng', '顾声', '北京', '521213', 'faef@sina.com', '2017-5-15', '1');
+INSERT INTO `tb_order` VALUES ('42', 'baiyizhu', '白g奕竹', '青岛', '366552', '1215445@163.com', '2017.5.5', '0');
+INSERT INTO `tb_order` VALUES ('43', 'gusheng', '顾声ca', '北京', '521213', 'faef@sina.com', '2017-5-15', '1');
+INSERT INTO `tb_order` VALUES ('44', 'baiyizhu', '白奕竹ver', '青岛', '366552', '1215445@163.com', '2017.5.5', '0');
+INSERT INTO `tb_order` VALUES ('45', 'gwusheng', '顾声gw', '北京', '521213', 'faef@sina.com', '2017-5-15', '1');
+INSERT INTO `tb_order` VALUES ('46', 'baiyizhu', '白奕rw竹', '青岛', '366552', '1215445@163.com', '2017.5.5', '0');
+INSERT INTO `tb_order` VALUES ('47', 'gusheng', '顾gr声', '北京', '521213', 'faef@sina.com', '2017-5-15', '1');
+INSERT INTO `tb_order` VALUES ('48', 'baiyizhu', '白df奕竹', '青岛', '366552', '1215445@163.com', '2017.5.5', '0');
+INSERT INTO `tb_order` VALUES ('49', 'gusheng', '顾声ge', '北京', '521213', 'faef@sina.com', '2017-5-15', '1');
+INSERT INTO `tb_order` VALUES ('50', 'baiyizhu', '白gsgr奕竹', '青岛', '366552', '1215445@163.com', '2017.5.5', '0');
+INSERT INTO `tb_order` VALUES ('51', 'gusheng', '顾s声', '北京', '521213', 'faef@sina.com', '2017-5-15', '1');
+
+
 
 -- ----------------------------
 -- Table structure for tb_orderitem
@@ -173,15 +241,15 @@ DROP TABLE IF EXISTS `tb_orderitem`;
 CREATE TABLE `tb_orderitem` (
   `orderItemId` int(11) NOT NULL AUTO_INCREMENT,
   `orderId` int(11) DEFAULT NULL,
-  `bookId` int(11) DEFAULT NULL,
+  `goodsId` int(11) DEFAULT NULL,
   `goodsName` varchar(50) DEFAULT NULL,
   `price` float DEFAULT NULL,
   `goodsNum` int(11) DEFAULT NULL,
   PRIMARY KEY (`orderItemId`),
   KEY `orderId` (`orderId`),
-  KEY `bookId` (`bookId`),
+  KEY `goodsId` (`goodsId`),
   CONSTRAINT `tb_orderitem_ibfk_1` FOREIGN KEY (`orderId`) REFERENCES `tb_order` (`orderId`),
-  CONSTRAINT `tb_orderitem_ibfk_2` FOREIGN KEY (`bookId`) REFERENCES `tb_goods` (`bookId`)
+  CONSTRAINT `tb_orderitem_ibfk_2` FOREIGN KEY (`goodsId`) REFERENCES `tb_goods` (`goodsId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -192,7 +260,28 @@ INSERT INTO `tb_orderitem` VALUES ('88', '35', '214', '金鱼', '399', '1');
 INSERT INTO `tb_orderitem` VALUES ('89', '36', '220', '小猫咪', '358', '1');
 INSERT INTO `tb_orderitem` VALUES ('90', '36', '217', '荷兰兔', '1212', '1');
 INSERT INTO `tb_orderitem` VALUES ('91', '36', '214', '金鱼', '399', '1');
-
+INSERT INTO `tb_orderitem` VALUES ('92', '37', '220', '小猫咪', '358', '1');
+INSERT INTO `tb_orderitem` VALUES ('93', '37', '214', '金鱼', '399', '1');
+INSERT INTO `tb_orderitem` VALUES ('94', '38', '220', '小猫咪', '358', '1');
+INSERT INTO `tb_orderitem` VALUES ('95', '39', '217', '荷兰兔', '1212', '1');
+INSERT INTO `tb_orderitem` VALUES ('96', '40', '214', '金鱼', '399', '1');
+INSERT INTO `tb_orderitem` VALUES ('97', '41', '220', '小猫咪', '358', '1');
+INSERT INTO `tb_orderitem` VALUES ('98', '42', '214', '金鱼', '399', '1');
+INSERT INTO `tb_orderitem` VALUES ('99', '43', '220', '小猫咪', '358', '1');
+INSERT INTO `tb_orderitem` VALUES ('100', '44', '217', '荷兰兔', '1212', '1');
+INSERT INTO `tb_orderitem` VALUES ('101', '45', '214', '金鱼', '399', '1');
+INSERT INTO `tb_orderitem` VALUES ('102', '46', '217', '荷兰兔', '1212', '1');
+INSERT INTO `tb_orderitem` VALUES ('103', '46', '214', '金鱼', '399', '1');
+INSERT INTO `tb_orderitem` VALUES ('104', '47', '220', '小猫咪', '358', '1');
+INSERT INTO `tb_orderitem` VALUES ('105', '47', '214', '金鱼', '399', '1');
+INSERT INTO `tb_orderitem` VALUES ('106', '48', '220', '小猫咪', '358', '1');
+INSERT INTO `tb_orderitem` VALUES ('107', '49', '217', '荷兰兔', '1212', '1');
+INSERT INTO `tb_orderitem` VALUES ('108', '49', '214', '金鱼', '399', '1');
+INSERT INTO `tb_orderitem` VALUES ('109', '48', '220', '小猫咪', '358', '1');
+INSERT INTO `tb_orderitem` VALUES ('110', '49', '214', '金鱼', '399', '1');
+INSERT INTO `tb_orderitem` VALUES ('111', '50', '220', '小猫咪', '358', '1');
+INSERT INTO `tb_orderitem` VALUES ('112', '50', '217', '荷兰兔', '1212', '1');
+INSERT INTO `tb_orderitem` VALUES ('113', '51', '214', '金鱼', '399', '1');
 -- ----------------------------
 -- Table structure for tb_subtype
 -- ----------------------------
@@ -253,41 +342,5 @@ INSERT INTO `tb_supertype` VALUES ('69', '宠物鸟');
 INSERT INTO `tb_supertype` VALUES ('70', '宠物兔');
 INSERT INTO `tb_supertype` VALUES ('71', '宠物猪');
 
--- ----------------------------
--- Table structure for tb_user
--- ----------------------------
-DROP TABLE IF EXISTS `tb_user`;
-CREATE TABLE `tb_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `password` varchar(16) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  `trueName` varchar(40) NOT NULL,
-  `sex` varchar(30) DEFAULT NULL,
-  `birthday` varchar(20) DEFAULT NULL,
-  `address` varchar(100) DEFAULT NULL,
-  `postcode` varchar(10) DEFAULT NULL,
-  `phone` varchar(15) DEFAULT NULL,
-  `mphone` varchar(15) DEFAULT NULL,
-  `question` varchar(30) NOT NULL,
-  `answer` varchar(30) NOT NULL,
-  `img` varchar(100) DEFAULT NULL,
-  `score` int(11) DEFAULT '1000',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of tb_user
--- ----------------------------
-INSERT INTO `tb_user` VALUES ('1', 'hellokitty', '111111', '1095080675@qq.com', '咔咔咔', '男', '1995-11-25', '上海', '111222', '021-55558888', '13513513555', '你最爱的人的名字叫什么', 'cat', null, null);
-INSERT INTO `tb_user` VALUES ('2', 'go2013', '123456', 'go13@qq.com', '李琦', '女', '1995-10-22', '中华人民共和国', '111111', '010-58694562', '13913813777', '你喜欢的业余爱好是什么', '乒乓球', null, null);
-INSERT INTO `tb_user` VALUES ('3', 'hellokitty2', '123456', 'ello@qq.com', '哇哈哈', '男', '1993-10-18', '上海市', '111111', '021-88885555', '13512510001', '你喜欢的业余爱好是什么', '行吗好', null, null);
-INSERT INTO `tb_user` VALUES ('4', 'kitty14', '111111', 'kitty@qq.com', '张三四', '男', '1995-11-11', '中国上海', '111111', '021-22221111', '13913813888', '你喜欢的业余爱好是什么', '打球', null, null);
-INSERT INTO `tb_user` VALUES ('5', 'kitty15', '111111', 'kitty@qq.com', '李四五', '男', '1993-09-08', '中国', '100100', '010-68688888', '13313313333', '你喜欢的业余爱好是什么', '看书', null, null);
-INSERT INTO `tb_user` VALUES ('6', 'gogo2014', '111111', 'gogo@qq.com', '前进', '男', '1995-10-10', '中国', '100100', '010-88889999', '13512512888', '你喜欢的业余爱好是什么', 'play', null, null);
-INSERT INTO `tb_user` VALUES ('7', 'demo123', '123456', 'demo@qq.com', '王二', '男', '1993-12-12', '中国', '100100', '010-68688888', '13913913999', '你喜欢的业余爱好是什么', '游泳', null, null);
-INSERT INTO `tb_user` VALUES ('8', 'zhangyi', '111111', 'zhang@qq.com', '张呵呵', '男', '1994-12-11', '中国', '100111', '010-68688888', '13913813888', '你喜欢的业余爱好是什么', '跑步', null, null);
-INSERT INTO `tb_user` VALUES ('9', 'ha2222', '123456', 'ha222@qq.com', '哈哈哈', '男', '1996-11-11', '中国', '111111', '88885555', '13813713888', '你喜欢的业余爱好是什么', '打球', null, null);
-INSERT INTO `tb_user` VALUES ('10', 'hello111', '111111', 'hello@qq.com', '张三', '男', '1995-12-18', '中国', '111222', '55558888', '13513813999', '你喜欢的业余爱好是什么', '乒乓球', null, null);
-INSERT INTO `tb_user` VALUES ('11', 'aaa2014', '111111', 'aaa@qq.com', '呵呵好', '男', '1993-10-10', '中国', '111111', '88885555', '13913800001', '你喜欢的业余爱好是什么', '看电视', null, null);
-INSERT INTO `tb_user` VALUES ('12', 'wawawa', '111111', 'wahaha@qq.com', '哇哇', '男', '1994-11-11', '中国', '222222', '010-68688888', '13913913999', '你喜欢的业余爱好是什么', '打球', null, null);
+

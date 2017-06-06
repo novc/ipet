@@ -30,7 +30,6 @@ public class GetOneOrderServlet extends HttpServlet {
 			Order order = model.getOneOrder(orderId);
 			orderItemList = order.getOrderItem();
 			PrintWriter out = response.getWriter();
-			System.out.println(orderItemList);
 			out.print(JSON.toJSON(orderItemList));
 		}
 	}

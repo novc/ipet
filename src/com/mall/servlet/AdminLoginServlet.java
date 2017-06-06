@@ -25,8 +25,8 @@ public class AdminLoginServlet extends HttpServlet {
 		admin.setLoginPwd(password);
 		Model model = new Model();	
 		try {
-			int type= (Integer)model.login(admin);
-			if(type!=0) {//登陆成功
+			int type= (Integer)model.login(admin);//验证，登录成功则返回管理员类型，否则返回0  登录名密码错误抛出异常，返回0
+			if(type!=0) {//登录成功
 				ServletContext context = this.getServletContext();
 				request.getSession().setAttribute("adminType",type);
 				List adminList = (List) context.getAttribute("adminList");
@@ -35,15 +35,15 @@ public class AdminLoginServlet extends HttpServlet {
 					response.sendRedirect("Admin/pages/adminConter.jsp");
 				} else {
 					request.setAttribute("message","您已登录");
-					request.getRequestDispatcher("Admin/login/adminLogin.jsp").forward(request, response);
+					request.getRequestDispatcher("Admin/adminLogin.jsp").forward(request, response);
 				}
 			}
 		} catch(NameNotFound nnf) {
 			request.setAttribute("message", nnf.getMessage());
-			request.getRequestDispatcher("Admin/login/adminLogin.jsp").forward(request, response);
+			request.getRequestDispatcher("Admin/adminLogin.jsp").forward(request, response);
 		} catch(PasswordError pe) {
 			request.setAttribute("message", pe.getMessage());
-			request.getRequestDispatcher("Admin/login/adminLogin.jsp").forward(request, response);
+			request.getRequestDispatcher("Admin/adminLogin.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 

@@ -362,8 +362,8 @@
     <servlet-class>com.mall.servlet.GetUserPagerServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>GetAdminPagerServlet</servlet-name>
-    <servlet-class>com.mall.servlet.GetAdminPagerServlet</servlet-class>
+    <servlet-name>GetAdminServlet</servlet-name>
+    <servlet-class>com.mall.servlet.GetAdminServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>AddSuperTypeServlet</servlet-name>
@@ -435,38 +435,12 @@
     <servlet-class>com.mall.servlet.GetNoteServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>GetOrderPagerServlet</servlet-name>
-    <servlet-class>com.mall.servlet.GetOrderPagerServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>GetOrderSendPagerServlet</servlet-name>
-    <servlet-class>com.mall.servlet.GetOrderSendPagerServlet</servlet-class>
-  </servlet>
-
-  
-  <servlet>
     <servlet-name>DeleteOrderServlet</servlet-name>
     <servlet-class>com.mall.servlet.DeleteOrderServlet</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>GetNotSendOrderPagerServlet</servlet-name>
-    <servlet-class>com.mall.servlet.GetNotSendOrderPagerServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>GetOrderNotSendPagerServlet</servlet-name>
-    <servlet-class>com.mall.servlet.GetOrderNotSendPagerServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>GetOrderFreezePagerServlet</servlet-name>
-    <servlet-class>com.mall.servlet.GetOrderFreezePagerServlet</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>DeleteFreezeOrderServlet</servlet-name>
     <servlet-class>com.mall.servlet.DeleteFreezeOrderServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <servlet-name>FreezeOrderServlet</servlet-name>
-    <servlet-class>com.mall.servlet.FreezeOrderServlet</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>GetGoodsPagerServlet</servlet-name>
@@ -619,8 +593,8 @@
     <url-pattern>/getUserPagerServlet</url-pattern>
   </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>GetAdminPagerServlet</servlet-name>
-    <url-pattern>/getAdminPagerServlet</url-pattern>
+    <servlet-name>GetAdminServlet</servlet-name>
+    <url-pattern>/getAdminServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>AddSuperTypeServlet</servlet-name>
@@ -692,36 +666,8 @@
     <url-pattern>/getNoteServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-    <servlet-name>GetOrderPagerServlet</servlet-name>
-    <url-pattern>/getOrderPagerServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>GetOrderSendPagerServlet</servlet-name>
-    <url-pattern>/getOrderSendPagerServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
     <servlet-name>DeleteOrderServlet</servlet-name>
     <url-pattern>/deleteOrderServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>GetNotSendOrderPagerServlet</servlet-name>
-    <url-pattern>/getNotSendOrderPagerServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>GetOrderNotSendPagerServlet</servlet-name>
-    <url-pattern>/getOrderNotSendPagerServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>GetOrderFreezePagerServlet</servlet-name>
-    <url-pattern>/getOrderFreezePagerServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>DeleteFreezeOrderServlet</servlet-name>
-    <url-pattern>/deleteFreezeOrderServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>FreezeOrderServlet</servlet-name>
-    <url-pattern>/freezeOrderServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>GetGoodsPagerServlet</servlet-name>
@@ -869,6 +815,20 @@
   	<servlet-name>UpdateOrderItemServlet</servlet-name>
   	<servlet-class>com.mall.servlet.UpdateOrderItemServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<servlet-name>ReturnAdminTypeServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.ReturnAdminTypeServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>GetGoodsServlet</display-name>
+  	<servlet-name>GetGoodsServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.GetGoodsServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -939,5 +899,13 @@
   <servlet-mapping>
   	<servlet-name>UpdateOrderItemServlet</servlet-name>
   	<url-pattern>/UpdateOrderItemServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ReturnAdminTypeServlet</servlet-name>
+  	<url-pattern>/returnAdminTypeServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetGoodsServlet</servlet-name>
+  	<url-pattern>/GetGoodsServlet</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -1,7 +1,15 @@
-$.ready(function(){
-	$(".tip").css({"padding":"0px 10px","color":"red"});
+$.ajax({
+	url:"http://nov:8080/ipet/returnAdminTypeServlet",
+	type:"POST",
+	success:function(msg){
+		var nType = parseInt(msg);
+		if(nType==4){
+			return;
+		}else{
+			window.location.href="adminLoginError.jsp";
+		}
+	}
 });
-
 function Check(){
 	this.AdminNameflag = false;
 	this.LoginNameflag = false;
@@ -18,12 +26,12 @@ function Check(){
 				this.AdminNameflag = true;
 			}else{
 				$(".adminNameTip").html("格式为汉字或英文字母");
-				$(".adminNameTip").css({"font-size":"16px","color":"red"});
+				$(".adminNameTip").css({"font-size":"12px","color":"red"});
 				this.AdminNameflag = false;
 			}
 		}else{
 			$(".adminNameTip").html("真实姓名不能为空");
-			$(".adminNameTip").css({"font-size":"16px","color":"red"});
+			$(".adminNameTip").css({"font-size":"12px","color":"red"});
 			this.AdminNameflag = false;
 		}
 		
@@ -52,26 +60,22 @@ function Check(){
 							$(".loginNameTip").css({"font-size":"16px","color":"green"});
 							
 							that.LoginNameflag = true;
-							console.log("判断中1---"+that.LoginNameflag);
 						}else{
 							$(".loginNameTip").html("该登录名已存在");
-							$(".loginNameTip").css({"font-size":"16px","color":"red"});
+							$(".loginNameTip").css({"font-size":"12px","color":"red"});
 							that.LoginNameflag = false;
-							console.log("判断中2---"+this.LoginNameflag);
 						}
 					}
 				})
 			}else{
 				$(".loginNameTip").html("格式为数字或英文字母");
-				$(".loginNameTip").css({"font-size":"16px","color":"red"});
+				$(".loginNameTip").css({"font-size":"12px","color":"red"});
 				this.LoginNameflag = false;
-				console.log("判断中3---"+this.LoginNameflag);
 			}
 		}else{
 			$(".loginNameTip").html("登录名不能为空");
-			$(".loginNameTip").css({"font-size":"16px","color":"red"});
+			$(".loginNameTip").css({"font-size":"12px","color":"red"});
 			this.LoginNameflag = false;
-			console.log("判断中4---"+this.LoginNameflag);
 		}
 		
 		
@@ -87,12 +91,12 @@ function Check(){
 				this.Psw1flag = true;
 			}else{
 				$(".loginpw1Tip").html("密码至少包含字母、数字、特殊符号三种格式的两种，长度为6-20位");
-				$(".loginpw1Tip").css({"font-size":"16px","color":"red"});
+				$(".loginpw1Tip").css({"font-size":"12px","color":"red"});
 				this.Psw1flag = false;
 			}
 		}else{
 			$(".loginpw1Tip").html("密码不能为空");
-			$(".loginpw1Tip").css({"font-size":"16px","color":"red"});
+			$(".loginpw1Tip").css({"font-size":"12px","color":"red"});
 			this.Psw1flag = false;
 		}
 	};
@@ -106,21 +110,17 @@ function Check(){
 				this.Psw2flag = true;
 			}else{
 				$(".loginpw2Tip").html("两次密码输入不一致");
-				$(".loginpw2Tip").css({"font-size":"16px","color":"red"});
+				$(".loginpw2Tip").css({"font-size":"12px","color":"red"});
 				this.Psw2flag = false;
 			}
 		}else{
 			$(".loginpw2Tip").html("请确认密码");
-			$(".loginpw2Tip").css({"font-size":"16px","color":"red"});
+			$(".loginpw2Tip").css({"font-size":"12px","color":"red"});
 			this.Psw2flag = false;
 		}
 		
 	}
 	this.submit=function(){
-		console.log("AdminNameflag---"+this.AdminNameflag);
-		console.log("this.LoginNameflag---"+this.LoginNameflag);
-		console.log("this.Psw1flag---"+this.Psw1flag);
-		console.log("this.Psw2flag---"+this.Psw2flag);
 		
 		if(this.AdminNameflag && this.LoginNameflag && this.Psw1flag && this.Psw2flag){
 			$.ajax({
@@ -134,7 +134,7 @@ function Check(){
 				},
 				success:function(msg){
 					alert(msg);
-					window.location.href="manageAdmin.html";
+					window.location.href="adminManage.html";
 				}
 				
 			})
@@ -145,3 +145,7 @@ function Check(){
 }
 
 var check = new Check();
+
+function cancel(){
+	window.history.go(-1);
+}

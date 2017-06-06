@@ -392,13 +392,13 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 	public boolean UpdateOrderItem(OrderItem orderItem){
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;
-		String sql = "update tb_order set price=?,goodsNum=? where orderItemId=?";
+		String sql = "update tb_orderitem set price=?,goodsNum=? where orderItemId=?";
 		try {
 			daoUtil = new DbUtil();
 			ps = daoUtil.getCon().prepareStatement(sql);
 			ps.setFloat(1, orderItem.getPrice());
 			ps.setInt(2, orderItem.getGoodsNum());
-            ps.setInt(4, orderItem.getOrderItemId());
+            ps.setInt(3, orderItem.getOrderItemId());
 			int i = ps.executeUpdate();
 			if(i != 0) {
 				return true;

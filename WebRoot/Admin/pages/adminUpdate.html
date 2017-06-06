@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>updateAdminInfo.html</title>
+  <meta charset="utf-8">
+    <title>管理员修改</title>
     <link rel="stylesheet" type="text/css" href="../css/basic.css">
     <link rel="stylesheet" type="text/css" href="../easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="../easyui/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="../css/admin-index.css">
+    <link rel="stylesheet" type="text/css" href="../css/admin.css">
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="../easyui/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="../js/admin.js"></script>
@@ -31,9 +32,7 @@
   			$("select").val(res.adminType);
   			$("input[name=loginName]").val(res.loginName);
   			$("input[name=loginPwd]").val(res.loginPwd);
-  			 
   		}
-  	
   	})
   	
   	function updateAdminInfo(){
@@ -49,27 +48,27 @@
 	  		},
 	  		success:function(msg){
 	  			window.alert(msg);
-	  			window.location.href="manageAdmin.html";
+	  			window.location.href="adminManage.html";
 	  		}
 	  		
 	  	})
   	}
   </script>
    
-<div class="tablewrapper">
+<div class="Content">
 	<div class="title">修改管理员信息</div>
-    <div class="tablecontent">
+    <div >
         
         <form>
-            <table>
+            <table class="update-table">
                 <tr>
-                    <td>管理员ID&nbsp;&nbsp;</td>
+                    <td>管理员ID</td>
                     <td>
                         <input type="text" id="adminId" name="adminId" readonly />
                     </td>
                 </tr>
                 <tr>
-                    <td>管理员姓名&nbsp;&nbsp;</td>
+                    <td>管理员姓名</td>
                     <td>
                         <input type="text" name="adminName" />
                     </td>
@@ -81,7 +80,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>管理级别&nbsp;&nbsp;</td>
+                    <td>管理级别</td>
                     <td>
                         <select name="adminTypeId">
                            <option value="1">商品管理员</option>
@@ -91,19 +90,19 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>登录名&nbsp;&nbsp;</td>
+                    <td>登录名</td>
                     <td>
                         <input type="text" name="loginName" />
                     </td>
                 </tr>
                 <tr>
-                    <td>登录密码&nbsp;&nbsp;</td>
+                    <td>密码</td>
                     <td>
                         <input type="text" name="loginPwd"  />
                     </td>
                 </tr>
                 <tr>
-                    <td><a href="manageAdmin.html">返回</a></td>
+                    <td><a href="adminManage.html">返回</a></td>
                     <td><input type="button" onclick="updateAdminInfo()" name="update" value="修改" ></td>
                 </tr>
             </table>

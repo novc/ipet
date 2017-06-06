@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,8 +77,8 @@ public class AdminAdminDaoImpl implements AdminAdminDao{
 		return false;
 	}
 
-	public Map getAllAdmins() {
-		Map adminMap = new HashMap();
+	public List getAllAdmins() {
+		List adminList = new ArrayList();
 		DbUtil dao = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -93,7 +94,7 @@ public class AdminAdminDaoImpl implements AdminAdminDao{
 				admin.setLoginName(rs.getString("LoginName"));
 				admin.setLoginPwd(rs.getString("LoginPwd"));
 				admin.setAdminName(rs.getString("AdminName"));
-				adminMap.put(new Integer(admin.getId()), admin);
+				adminList.add(admin);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -106,7 +107,7 @@ public class AdminAdminDaoImpl implements AdminAdminDao{
 				e.printStackTrace();
 			}
 		}
-		return adminMap;
+		return adminList;
 	}
 
 	public AdminPager getAdminPager(int index, int pageSize) {
@@ -148,4 +149,72 @@ public class AdminAdminDaoImpl implements AdminAdminDao{
 		return up;
 		
 	}
+	
+	public List getAdminByAdminName(String adminName){
+		List adminList = new ArrayList();
+		DbUtil db = new DbUtil();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		try {
+			String sql = "select * from tb_admin where AdminName = ?";
+			ps = db.getCon().prepareStatement(sql);
+			ps.setString(1, adminName);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Admin admin = new Admin();
+				admin.setId(rs.getInt("ID"));
+				admin.setAdminType(rs.getInt("AdminType"));
+				admin.setLoginName(rs.getString("LoginName"));
+				admin.setLoginPwd(rs.getString("LoginPwd"));
+				admin.setAdminName(rs.getString("AdminName"));
+				adminList.add(admin);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+				db.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return adminList;
+	}
+	
+	public List getAdminByType(int type){
+		DbUtil db = new DbUtil();
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		
+		List adminList = new ArrayList();
+		try {
+			String sql = "select * from tb_admin where AdminType = ?";
+			ps = db.getCon().prepareStatement(sql);
+			ps.setInt(1, type);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Admin admin = new Admin();
+				admin.setId(rs.getInt("ID"));
+				admin.setAdminType(rs.getInt("AdminType"));
+				admin.setLoginName(rs.getString("LoginName"));
+				admin.setLoginPwd(rs.getString("LoginPwd"));
+				admin.setAdminName(rs.getString("AdminName"));
+				adminList.add(admin);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				ps.close();
+				db.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return adminList;
+	}
+	
 }

@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="header" data-options="region:'north',border:false">
         <h1 class="fl">宠物商城</h1>
         <div class="logininfo">
-            <div class="admin">欢迎您，<span>${admin.loginName}</span>&nbsp;!</div>
+            <div class="admin">欢迎您，<span>${admin.adminName}</span>&nbsp;!</div>
             <div class="time">现在是：<span></span></div>
         </div>
         <ul>
@@ -44,23 +44,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <div class="easyui-accordion">
             <div title="用户管理">
                 <ul>
-                	<li><a href="Admin/pages/manageUser.html" target="contentIframe">用户信息</a></li>
+                	<li><a href="Admin/pages/userManage.html" target="contentIframe">用户信息</a></li>
                 </ul>
             </div>
             <div title="订单管理">
                 <ul>
-				    <li><a href="Admin/pages/manageOrder.html?flag=3" target="contentIframe">所有订单</a></li>
+				    <li><a href="Admin/pages/orderManage.html" target="contentIframe">所有订单</a></li>
 				</ul>
             </div>
             <div title="公告管理">
             	<ul>
-            		<li><a href="Admin/pages/manageInform.html" target="contentIframe">公告信息</a></li>
-            		<li><a href="Admin/pages/addInform.jsp" target="contentIframe">发布公告</a></li>
+            		<li><a href="Admin/pages/informManage.html" target="contentIframe">公告信息</a></li>
+            		<li><a href="Admin/pages/informAdd.html" target="contentIframe">发布公告</a></li>
             	</ul>
             </div>
             <div title="留言查看">
             	<ul>
-            		<li><a href="Admin/pages/manageNote.html" target="contentIframe">留言信息</a></li>
+            		<li><a href="Admin/pages/NoteManage.html" target="contentIframe">留言信息</a></li>
             	</ul>
             </div>
             <div title="商品管理">
@@ -68,13 +68,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             		<li><a href="allowAddSuperServlet" target="contentIframe">添加商品物种</a></li>
             		<li><a href="allowAddSubServlet" target="contentIframe">添加商品类别</a></li>
             		<li><a href="allowAddGoodsServlet" target="contentIframe">添加商品</a></li>
-            		<li><a href="getGoodsPagerServlet" target="contentIframe">查看所有商品</a></li>
+            		<li><a href="Admin/pages/goodsManage.html" target="contentIframe">查看所有商品</a></li>
             	</ul>
             </div>
             <div title="Admin管理">
             	<ul>
-            		<li><a href="Admin/pages/manageAdmin.html" target="contentIframe" >管理员</a></li>
-            		<li><a href="Admin/pages/addAdmin.html" target="contentIframe">添加管理员</a></li>
+            		<li><a href="Admin/pages/adminManage.html" target="contentIframe" >管理员</a></li>
+            		<li><a href="Admin/pages/adminAdd.html" target="contentIframe">添加管理员</a></li>
             	</ul>
             </div>
         </div>
