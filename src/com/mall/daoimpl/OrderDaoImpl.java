@@ -49,8 +49,8 @@ public class OrderDaoImpl implements OrderDao {
 				OrderItem orderItems = (OrderItem)orderItem.get(i);
 				pstmt_item.setInt(1, orderId);
 				pstmt_item.setInt(2, orderItems.getGoodsId());
-				pstmt_item.setString(3, orderItems.getGoodsName());
-				pstmt_item.setFloat(4, orderItems.getPrice());
+//				pstmt_item.setString(3, orderItems.getGoodsName());
+//				pstmt_item.setFloat(4, orderItems.getPrice());
 				pstmt_item.setInt(5, orderItems.getGoodsNum());
 				pstmt_item.addBatch();
 			}
@@ -130,11 +130,11 @@ public class OrderDaoImpl implements OrderDao {
 		  while(re.next()){
 			  ordetrItem = new OrderItem();
 			  ordetrItem.setGoodsId(re.getInt("bookId"));
-			  ordetrItem.setGoodsName(re.getString("goodsName"));
+//			  ordetrItem.setGoodsTitle(re.getString("goodsTitle"));
 			  ordetrItem.setGoodsNum(re.getInt("goodsNum"));
 			  ordetrItem.setOrderId(re.getInt("orderId"));
 			  ordetrItem.setOrderItemId(re.getInt("orderItemId"));
-			  ordetrItem.setPrice(re.getFloat("price"));
+//			  ordetrItem.setPrice(re.getFloat("price"));
 			  list.add(ordetrItem);
 		  }
 		}catch (Exception e) {

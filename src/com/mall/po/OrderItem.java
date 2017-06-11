@@ -8,10 +8,6 @@ public class OrderItem {
 
 	private int GoodsId;
 
-	private String GoodsName;
-
-	private float price;
-
 	private int GoodsNum;
 
 	public int getGoodsId() {
@@ -20,14 +16,6 @@ public class OrderItem {
 
 	public void setGoodsId(int GoodsId) {
 		this.GoodsId = GoodsId;
-	}
-
-	public String getGoodsName() {
-		return GoodsName;
-	}
-
-	public void setGoodsName(String GoodsName) {
-		this.GoodsName = GoodsName;
 	}
 
 	public int getGoodsNum() {
@@ -53,14 +41,5 @@ public class OrderItem {
 	public void setOrderItemId(int orderItemId) {
 		this.orderItemId = orderItemId;
 	}
-
-	public float getPrice() {
-		return price;
-	}
-
-	public void setPrice(float price) {
-		this.price = price;
-	}
-	
 	
 }

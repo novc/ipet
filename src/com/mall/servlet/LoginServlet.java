@@ -18,36 +18,32 @@ public class LoginServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//获取客户端提交过来的信息
-		request.setCharacterEncoding("gb2312");
 		String name = request.getParameter("name");
 		String password=request.getParameter("password");
 		Model model = new Model();
+		PrintWriter out = response.getWriter();
 		try {
 			User user = model.userLogin(name, password);
 			user.setName(name);
 			ServletContext context = this.getServletContext();
 			List nameList = (List) context.getAttribute("nameList");
+			
 			if(!nameList.contains(name)) {
 				request.getSession().setAttribute("name", name);
-				request.getSession().setAttribute("user", user);
-				request.setAttribute("loginMessage", "");
-				response.sendRedirect("index.jsp");
+				out.print(1);
+				
 			} else {
 				request.getSession().setAttribute("name", name);
-				request.getSession().setAttribute("user", user);
-				request.setAttribute("loginMessage","该账号已经登录");
-				request.getRequestDispatcher("index.jsp").forward(request, response);
+				out.print(0);
 			}
-
+			
 		}catch (NameNotFoundException e) {
-			request.setAttribute("loginMessage", "账号错误");
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			out.print(2);
 		}catch(ErrPwdException e){
-			request.setAttribute("loginMessage", "密码错误");
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			out.print(3);
 		}
-		
+		out.flush();
+		out.close();
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

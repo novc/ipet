@@ -45,7 +45,6 @@ import com.mall.po.InformPager;
 import com.mall.po.Note;
 import com.mall.po.NotePager;
 import com.mall.po.Order;
-import com.mall.po.OrderFreezePager;
 import com.mall.po.OrderItem;
 import com.mall.po.OrderNotSendPager;
 import com.mall.po.OrderPager;

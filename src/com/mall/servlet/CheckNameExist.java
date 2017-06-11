@@ -15,26 +15,14 @@ public class CheckNameExist extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//处理乱码
-		response.setCharacterEncoding("gb2312");
-		response.setContentType("text/html;charset=gb2312");
-		response.setContentType("text/xml;charset=gb2312");
 		PrintWriter out = response.getWriter();
-		String name = request.getParameter("name");
+		String name = request.getParameter("username");
 		request.getSession().setAttribute("name",name);
 		Model model = new Model();
 		if(model.checkNameExist(name)){//用户名已存在
-			out.print("<Users>");
-			out.print("<user>");
-			out.print("<name>"+"exist"+"</name>");
-			out.print("</user>");
-			out.print("</Users>");
+			out.print(0);
 		}else{//可以注册
-			out.print("<Users>");
-			out.print("<user>");
-			out.print("<name>"+"notExist"+"</name>");
-			out.print("</user>");
-			out.print("</Users>");
+			out.print(1);
 		}
 	}
 

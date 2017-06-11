@@ -12,74 +12,60 @@ public class Goods implements Serializable {
 
 	private int subTypeId;
 
-	private String GoodsName;
+	private String goodsTitle;
 
 	private String introduce;
+
+	private String brandName;
+	
+	private String spec;
+	
+	private String measure;
 
 	private float price;
 
 	private float nowPrice;
 
-	private String picture;
-	
-	private String produceDate;
-	
-	private String publisher;
-	
-	private String author;
-	
-	private String ISBN;
+	private String indexImage;
 
-	private String inTime;
-
-	private int newGoods;
-
-	private int saleGoods;
-
-	private int hostGoods;
+	private int goodsNum;
 	
-	private int specialGoods;
+	private int sellNum;
 
-	private int GoodsNum;
+	private int collectNum;
+	
+	private String goodsDetailImg;
+	
+	private String key;
+	
+	private int click;
+
+	private int sale;
+	
+	private int special;
 
 	public int getGoodsId() {
 		return goodsId;
 	}
 
-	public void setGoodsId(int GoodsId) {
-		this.goodsId = GoodsId;
+	public void setGoodsId(int goodsId) {
+		this.goodsId = goodsId;
 	}
 
-	public String getGoodsName() {
-		return GoodsName;
+	public String getGoodsTitle() {
+		return goodsTitle;
 	}
 
-	public void setGoodsName(String GoodsName) {
-		this.GoodsName = GoodsName;
+	public void setGoodsTitle(String goodsTitle) {
+		this.goodsTitle = goodsTitle;
 	}
 
-	public int getGoodsNum() {
-		return GoodsNum;
+	public String getBrandName() {
+		return brandName;
 	}
 
-	public void setGoodsNum(int GoodsNum) {
-		this.GoodsNum = GoodsNum;
-	}
-
-	public int getHostGoods() {
-		return hostGoods;
-	}
-
-	public void setHostGoods(int hostGoods) {
-		this.hostGoods = hostGoods;
-	}
-
-	public String getInTime() {
-		return inTime;
-	}
-
-	public void setInTime(String inTime) {
-		this.inTime = inTime;
+	public void setBrandName(String brandName) {
+		this.brandName = brandName;
 	}
 
 	public String getIntroduce() {
@@ -90,14 +76,6 @@ public class Goods implements Serializable {
 		this.introduce = introduce;
 	}
 
-	public int getNewGoods() {
-		return newGoods;
-	}
-
-	public void setNewGoods(int newGoods) {
-		this.newGoods = newGoods;
-	}
-
 	public float getNowPrice() {
 		return nowPrice;
 	}
@@ -106,12 +84,12 @@ public class Goods implements Serializable {
 		this.nowPrice = nowPrice;
 	}
 
-	public String getPicture() {
-		return picture;
+	public String getIndexImg() {
+		return indexImage;
 	}
 
-	public void setPicture(String picture) {
-		this.picture = picture;
+	public void setIndexImg(String indexImg) {
+		this.indexImage = indexImg;
 	}
 
 	public float getPrice() {
@@ -122,12 +100,12 @@ public class Goods implements Serializable {
 		this.price = price;
 	}
 
-	public int getSaleGoods() {
-		return saleGoods;
+	public int getSale() {
+		return sale;
 	}
 
-	public void setSaleGoods(int saleGoods) {
-		this.saleGoods = saleGoods;
+	public void setSale(int sale) {
+		this.sale = sale;
 	}
 
 	public int getSubTypeId() {
@@ -146,45 +124,78 @@ public class Goods implements Serializable {
 		this.superTypeId = superTypeId;
 	}
 
-	public String getAuthor() {
-		return author;
+
+	public int getSpecial() {
+		return special;
 	}
 
-	public void setAuthor(String author) {
-		this.author = author;
+	public void setSpecial(int special) {
+		this.special = special;
 	}
 
-	public String getISBN() {
-		return ISBN;
+
+	public int getGoodsNum() {
+		return goodsNum;
 	}
 
-	public void setISBN(String isbn) {
-		ISBN = isbn;
+	public void setGoodsNum(int goodsNum) {
+		this.goodsNum = goodsNum;
 	}
 
-	public String getProduceDate() {
-		return produceDate;
+	public String getSpec() {
+		return spec;
 	}
 
-	public void setProduceDate(String date) {
-		this.produceDate = date;
+	public void setSpec(String spec) {
+		this.spec = spec;
 	}
 
-	public String getPublisher() {
-		return publisher;
+	public String getMeasure() {
+		return measure;
 	}
 
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
+	public void setMeasure(String measure) {
+		this.measure = measure;
 	}
 
-	public int getSpecialGoods() {
-		return specialGoods;
+	public int getSellNum() {
+		return sellNum;
 	}
 
-	public void setSpecialGoods(int specialGoods) {
-		this.specialGoods = specialGoods;
+	public void setSellNum(int sellNum) {
+		this.sellNum = sellNum;
 	}
 
+	public int getCollectNum() {
+		return collectNum;
+	}
+
+	public void setCollectNum(int collectNum) {
+		this.collectNum = collectNum;
+	}
+
+	public String getGoodsDetailImg() {
+		return goodsDetailImg;
+	}
+
+	public void setGoodsDetailImg(String goodsDetailImg) {
+		this.goodsDetailImg = goodsDetailImg;
+	}
+	
+	public int getClick() {
+		return click;
+	}
+
+	public void setClick(int click) {
+		this.click = click;
+	}
+	
+	public String getKey() {
+		return key;
+	}
+
+	public void setKey(String key) {
+		this.key = key;
+	}
 	
 }

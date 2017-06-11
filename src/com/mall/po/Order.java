@@ -7,18 +7,18 @@ import java.util.List;
  */
 public class Order {
 	private int orderId;
-
+	
+	private int userId;
+	
 	private String recvName;//收货人
 	
 	private User user;
-	
+
 	private String name;
 	
 	private String address; 
 
 	private String postcode; 
-
-	private String email; 
 
 	private String orderDate;
 
@@ -84,12 +84,12 @@ public class Order {
 		this.address = address;
 	}
 
-	public String getEmail() {
-		return email;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getPostcode() {

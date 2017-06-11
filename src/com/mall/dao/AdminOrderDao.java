@@ -3,7 +3,6 @@ package com.mall.dao;
 import java.util.List;
 
 import com.mall.po.Order;
-import com.mall.po.OrderFreezePager;
 import com.mall.po.OrderItem;
 import com.mall.po.OrderNotSendPager;
 import com.mall.po.OrderPager;

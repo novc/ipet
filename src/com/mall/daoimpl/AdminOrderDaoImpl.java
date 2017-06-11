@@ -12,7 +12,6 @@ import java.util.Map;
 import com.mall.common.DbUtil;
 import com.mall.dao.AdminOrderDao;
 import com.mall.po.Order;
-import com.mall.po.OrderFreezePager;
 import com.mall.po.OrderItem;
 import com.mall.po.OrderNotSendPager;
 import com.mall.po.OrderPager;
@@ -40,7 +39,6 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 				order.setRecvName(rs.getString("recvName"));
 				order.setAddress(rs.getString("address"));
 				order.setPostcode(rs.getString("postcode"));
-				order.setEmail(rs.getString("email"));
 				order.setOrderDate(rs.getString("orderDate"));
 				order.setFlag(rs.getInt("flag"));
 				order.setFlagName(flagName);
@@ -77,8 +75,8 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 				OrderItem orderItem = new OrderItem();
 				orderItem.setOrderItemId(rs.getInt("orderItemId"));
 				orderItem.setGoodsId(rs.getInt("bookId"));
-				orderItem.setGoodsName(rs.getString("goodsName"));
-				orderItem.setPrice(rs.getFloat("price"));
+//				orderItem.setGoodsName(rs.getString("goodsName"));
+//				orderItem.setPrice(rs.getFloat("price"));
 				orderItem.setGoodsNum(rs.getInt("goodsNum"));
 				orderItemList.add(orderItem);
 			}
@@ -117,7 +115,6 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 				order.setRecvName(rs.getString("recvName"));
 				order.setAddress(rs.getString("address"));
 				order.setPostcode(rs.getString("postcode"));
-				order.setEmail(rs.getString("email"));
 				order.setOrderDate(rs.getString("orderDate"));
 				order.setFlag(rs.getInt("flag"));
 				order.setFlagName(flagName);
@@ -156,7 +153,6 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 				order.setRecvName(rs.getString("recvName"));
 				order.setAddress(rs.getString("address"));
 				order.setPostcode(rs.getString("postcode"));
-				order.setEmail(rs.getString("email"));
 				order.setOrderDate(rs.getString("orderDate"));
 				order.setFlag(rs.getInt("flag"));
 				order.setFlagName(flagName);
@@ -195,7 +191,6 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 				order.setRecvName(rs.getString("recvName"));
 				order.setAddress(rs.getString("address"));
 				order.setPostcode(rs.getString("postcode"));
-				order.setEmail(rs.getString("email"));
 				order.setOrderDate(rs.getString("orderDate"));
 				order.setFlag(rs.getInt("flag"));
 				order.setFlagName(flagName);
@@ -236,7 +231,6 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 				order.setRecvName(rs.getString("recvName"));
 				order.setAddress(rs.getString("address"));
 				order.setPostcode(rs.getString("postcode"));
-				order.setEmail(rs.getString("email"));
 				order.setOrderDate(rs.getString("orderDate"));
 				order.setFlag(rs.getInt("flag"));
 				order.setFlagName(flagName);
@@ -396,7 +390,7 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 		try {
 			daoUtil = new DbUtil();
 			ps = daoUtil.getCon().prepareStatement(sql);
-			ps.setFloat(1, orderItem.getPrice());
+//			ps.setFloat(1, orderItem.getPrice());
 			ps.setInt(2, orderItem.getGoodsNum());
             ps.setInt(3, orderItem.getOrderItemId());
 			int i = ps.executeUpdate();

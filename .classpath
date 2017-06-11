@@ -7,5 +7,7 @@
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/fastjson-1.2.9.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/javax.servlet-5.1.12.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/taobao-sdk-java-auto_1455552377940-20160607.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/taobao-sdk-java-auto_1455552377940-20160607-source.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

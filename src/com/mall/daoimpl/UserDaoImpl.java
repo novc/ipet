@@ -19,22 +19,13 @@ public class UserDaoImpl implements UserDao{
 		boolean flag = false;
 		PreparedStatement pstmt = null;
 		DbUtil dbUtil = null;
-		String sql = "insert into tb_user values(null,?,?,?,?,?,?,?,?,?,?,?,?,null,null)";
+		String sql = "insert into tb_user values(null, ?, ?, null, null, null, null, null, null, null, ?, null, null, null, null)";
 		try {
 			dbUtil = new DbUtil();
 			pstmt = dbUtil.getCon().prepareStatement(sql);
 			pstmt.setString(1, user.getName());
 			pstmt.setString(2, user.getPassword());
-			pstmt.setString(3, user.getEmail());
-			pstmt.setString(4, user.getTrueName());
-			pstmt.setString(5, user.getSex());
-			pstmt.setString(6, user.getBirthday());
-			pstmt.setString(7, user.getAddress());
-			pstmt.setString(8, user.getPostcode());
-			pstmt.setString(9, user.getPhone());
-			pstmt.setString(10, user.getMphone());
-			pstmt.setString(11, user.getQuestion());
-			pstmt.setString(12, user.getAnswer());
+			pstmt.setString(3, user.getMphone());
 			int i = pstmt.executeUpdate();
 			if(i != 0) {//注册成功 
 				flag = true;

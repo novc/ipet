@@ -32,18 +32,28 @@ public class GoodsDaoImpl implements GoodsDao {
 				pstmt = dbUtil.getCon().prepareStatement(sql);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
-					Goods Goods = new Goods();
-					Goods.setGoodsId(rs.getInt("goodsId"));
-					Goods.setGoodsName(rs.getString("GoodsName"));
-					Goods.setISBN(rs.getString("ISBN"));
-					Goods.setProduceDate(rs.getString("produceDate"));
-					Goods.setAuthor(rs.getString("author"));
-					Goods.setPublisher(rs.getString("publisher"));
-					Goods.setIntroduce(rs.getString("introduce"));
-					Goods.setPrice(rs.getFloat("price"));
-					Goods.setNowPrice(rs.getFloat("nowPrice"));
-					Goods.setPicture(rs.getString("picture"));
-					all.add(Goods);					
+					Goods goods = new Goods();
+					goods.setGoodsId(rs.getInt("goodsId"));
+					goods.setSuperTypeId(rs.getInt("superTypeId"));
+					goods.setSubTypeId(rs.getInt("subTypeId"));
+					goods.setGoodsTitle(rs.getString("goodsTitle"));
+					goods.setIntroduce(rs.getString("introduce"));
+					goods.setBrandName(rs.getString("brandName"));
+					goods.setSpec(rs.getString("spec"));
+					goods.setMeasure(rs.getString("measure"));
+					goods.setPrice(rs.getFloat("price"));
+					goods.setNowPrice(rs.getFloat("nowPrice"));
+					goods.setIndexImg(rs.getString("indexImg"));
+					goods.setGoodsNum(rs.getInt("goodsNum"));
+					goods.setSellNum(rs.getInt("sellNum"));
+					goods.setCollectNum(rs.getInt("collectNum"));
+					goods.setGoodsDetailImg(rs.getString("goodsDetailImg"));
+					goods.setKey(rs.getString("key"));
+					goods.setClick(rs.getInt("click"));
+					goods.setSale(rs.getInt("sale"));
+					goods.setSpecial(rs.getInt("special"));
+//					goodsList.add(goods);
+					all.add(goods);					
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -59,19 +69,19 @@ public class GoodsDaoImpl implements GoodsDao {
 		}else {
 		if(type==1) {
 			//热卖商品
-			sql = "select * from tb_goods where hostGoods=?";
+			sql = "select * from tb_goods where sale=?";
 		}
 		if(type==2){
 			//新到商品
-			sql = "select * from tb_goods where newGoods=?";
+			sql = "select * from tb_goods where sale=?";
 		}
 		if(type==3){
 			//打折商品
-			sql = "select * from tb_goods where saleGoods=?";
+			sql = "select * from tb_goods where sale=?";
 		}
 		if(type==4){
 		 // 特别推荐
-			sql = "select * from tb_goods where specialGoods=?";
+			sql = "select * from tb_goods where special=?";
 		}
 		if(type==9){
 			 // 分类查看
@@ -87,15 +97,11 @@ public class GoodsDaoImpl implements GoodsDao {
 			while(rs.next()) {
 				Goods Goods = new Goods();
 				Goods.setGoodsId(rs.getInt("goodsId"));
-				Goods.setGoodsName(rs.getString("goodsName"));
-				Goods.setISBN(rs.getString("ISBN"));
-				Goods.setProduceDate(rs.getString("produceDate"));
-				Goods.setAuthor(rs.getString("author"));
-				Goods.setPublisher(rs.getString("publisher"));
+				Goods.setGoodsTitle(rs.getString("goodsTitle"));
 				Goods.setIntroduce(rs.getString("introduce"));
 				Goods.setPrice(rs.getFloat("price"));
 				Goods.setNowPrice(rs.getFloat("nowPrice"));
-				Goods.setPicture(rs.getString("picture"));
+				Goods.setIndexImg(rs.getString("indexImage"));
 				all.add(Goods);
 			}
 		} catch (SQLException e) {
@@ -145,22 +151,22 @@ public class GoodsDaoImpl implements GoodsDao {
 		try {
 			daoUtil = new DbUtil();
 			ps = daoUtil.getCon().prepareStatement(sql);
-			ps.setString(1, Goods.getGoodsName());
-			ps.setInt(2, Goods.getGoodsNum());
-            ps.setString(3, Goods.getIntroduce());
-            ps.setString(4, Goods.getISBN());
-            ps.setString(5, Goods.getAuthor());
-            ps.setInt(6, Goods.getSuperTypeId());
-            ps.setInt(7, Goods.getSubTypeId());
-            ps.setString(8, Goods.getPublisher());
-            ps.setFloat(9, Goods.getPrice());
-            ps.setFloat(10, Goods.getNowPrice());
-            ps.setString(11, Goods.getProduceDate());
-            ps.setInt(12, Goods.getHostGoods());
-            ps.setInt(13, Goods.getNewGoods());
-            ps.setInt(14, Goods.getSaleGoods());
-            ps.setInt(15, Goods.getSpecialGoods());
-            ps.setInt(16, Goods.getGoodsId());
+//			ps.setString(1, Goods.getGoodsName());
+//			ps.setInt(2, Goods.getGoodsNum());
+//            ps.setString(3, Goods.getIntroduce());
+//            ps.setString(4, Goods.getISBN());
+//            ps.setString(5, Goods.getAuthor());
+//            ps.setInt(6, Goods.getSuperTypeId());
+//            ps.setInt(7, Goods.getSubTypeId());
+//            ps.setString(8, Goods.getPublisher());
+//            ps.setFloat(9, Goods.getPrice());
+//            ps.setFloat(10, Goods.getNowPrice());
+//            ps.setString(11, Goods.getProduceDate());
+//            ps.setInt(12, Goods.getHostGoods());
+//            ps.setInt(13, Goods.getNewGoods());
+//            ps.setInt(14, Goods.getSaleGoods());
+//            ps.setInt(15, Goods.getSpecialGoods());
+//            ps.setInt(16, Goods.getGoodsId());
 			int i = ps.executeUpdate();
 			if(i != 0) {
 				return true;
@@ -183,8 +189,8 @@ public class GoodsDaoImpl implements GoodsDao {
 	 * @return Goods
 	 */
 	public Goods showGoodsById(int GoodsId){
-		Goods Goods = new Goods();
 		PreparedStatement pstmt = null;
+		Goods goods = new Goods();
 		ResultSet rs = null;
 		DbUtil dbUtil = null;
 		String sql = "select * from tb_goods where goodsId=?";
@@ -194,23 +200,26 @@ public class GoodsDaoImpl implements GoodsDao {
 			pstmt.setInt(1, GoodsId);
 			rs = pstmt.executeQuery();
 			if(rs.next()){
-				Goods.setGoodsId(rs.getInt("goodsId"));
-				Goods.setGoodsName(rs.getString("goodsName"));
-				Goods.setIntroduce(rs.getString("introduce"));
-				Goods.setISBN(rs.getString("ISBN"));
-				Goods.setAuthor(rs.getString("author"));
-				Goods.setProduceDate(rs.getString("produceDate"));
-				Goods.setSuperTypeId(rs.getInt("superTypeId"));
-				Goods.setSubTypeId(rs.getInt("subTypeId"));
-				Goods.setPublisher(rs.getString("publisher"));
-				Goods.setPrice(rs.getFloat("price"));
-				Goods.setNowPrice(rs.getFloat("nowPrice"));
-				Goods.setPicture(rs.getString("picture"));
-				Goods.setGoodsNum(rs.getInt("goodsNum"));
-				Goods.setHostGoods(rs.getInt("hostGoods"));
-				Goods.setNewGoods(rs.getInt("newGoods"));
-				Goods.setSaleGoods(rs.getInt("saleGoods"));
-				Goods.setSpecialGoods(rs.getInt("specialGoods"));
+				
+				goods.setGoodsId(rs.getInt("goodsId"));
+				goods.setSuperTypeId(rs.getInt("superTypeId"));
+				goods.setSubTypeId(rs.getInt("subTypeId"));
+				goods.setGoodsTitle(rs.getString("goodsTitle"));
+				goods.setIntroduce(rs.getString("introduce"));
+				goods.setBrandName(rs.getString("brandName"));
+				goods.setSpec(rs.getString("spec"));
+				goods.setMeasure(rs.getString("measure"));
+				goods.setPrice(rs.getFloat("price"));
+				goods.setNowPrice(rs.getFloat("nowPrice"));
+				goods.setIndexImg(rs.getString("indexImg"));
+				goods.setGoodsNum(rs.getInt("goodsNum"));
+				goods.setSellNum(rs.getInt("sellNum"));
+				goods.setCollectNum(rs.getInt("collectNum"));
+				goods.setGoodsDetailImg(rs.getString("goodsDetailImg"));
+				goods.setKey(rs.getString("key"));
+				goods.setClick(rs.getInt("click"));
+				goods.setSale(rs.getInt("sale"));
+				goods.setSpecial(rs.getInt("special"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -223,7 +232,7 @@ public class GoodsDaoImpl implements GoodsDao {
 				e.printStackTrace();
 			}
 		}
-		return Goods;
+		return goods;
 	}
 	
 	public List showBuyRecordsById(int GoodsId){
@@ -263,22 +272,22 @@ public class GoodsDaoImpl implements GoodsDao {
 		String sql = "insert into tb_goods values(null,?,?,?,?,?,?,?,?,?,?,?,null,?,?,?,?)";
 		try {
 			dbUtil = new DbUtil();
-			pstmt = dbUtil.getCon().prepareStatement(sql);
-			pstmt.setInt(1, Goods.getSuperTypeId());
-			pstmt.setInt(2, Goods.getSubTypeId());
-			pstmt.setString(3, Goods.getGoodsName());
-			pstmt.setString(4, Goods.getISBN());
-			pstmt.setString(5, Goods.getIntroduce());
-			pstmt.setFloat(6, Goods.getPrice());
-			pstmt.setFloat(7, Goods.getNowPrice());
-			pstmt.setString(8, Goods.getPicture());
-			pstmt.setString(9, Goods.getProduceDate());
-			pstmt.setString(10, Goods.getPublisher());
-			pstmt.setString(11, Goods.getAuthor());
-			pstmt.setInt(12, Goods.getNewGoods());
-			pstmt.setInt(13, Goods.getSaleGoods());
-			pstmt.setInt(14, Goods.getHostGoods());
-			pstmt.setInt(15, Goods.getGoodsNum());
+//			pstmt = dbUtil.getCon().prepareStatement(sql);
+//			pstmt.setInt(1, Goods.getSuperTypeId());
+//			pstmt.setInt(2, Goods.getSubTypeId());
+//			pstmt.setString(3, Goods.getGoodsName());
+//			pstmt.setString(4, Goods.getISBN());
+//			pstmt.setString(5, Goods.getIntroduce());
+//			pstmt.setFloat(6, Goods.getPrice());
+//			pstmt.setFloat(7, Goods.getNowPrice());
+//			pstmt.setString(8, Goods.getPicture());
+//			pstmt.setString(9, Goods.getProduceDate());
+//			pstmt.setString(10, Goods.getPublisher());
+//			pstmt.setString(11, Goods.getAuthor());
+//			pstmt.setInt(12, Goods.getNewGoods());
+//			pstmt.setInt(13, Goods.getSaleGoods());
+//			pstmt.setInt(14, Goods.getHostGoods());
+//			pstmt.setInt(15, Goods.getGoodsNum());
 			int i = pstmt.executeUpdate();
 			if(i != 0){
 				//插入商品成功
@@ -347,8 +356,8 @@ public class GoodsDaoImpl implements GoodsDao {
 			while(rs.next()){
 				Goods Goods = new Goods();
 			    Goods.setGoodsId(rs.getInt("goodsId"));
-				Goods.setGoodsName(rs.getString("goodsName"));
-				Goods.setPicture(rs.getString("picture"));
+//				Goods.setGoodsName(rs.getString("goodsName"));
+//				Goods.setPicture(rs.getString("picture"));
 				Goods.setPrice(rs.getFloat("price"));
 				Goods.setNowPrice(rs.getFloat("nowPrice"));
 				pageList.add(Goods);
@@ -387,8 +396,8 @@ public class GoodsDaoImpl implements GoodsDao {
 				//有相关商品		
 				while(rs.next()){
 					Goods Goods = new Goods();
-					Goods.setGoodsName(rs.getString("goodsName"));
-					Goods.setPicture(rs.getString("picture"));
+					Goods.setGoodsTitle(rs.getString("goodsTitle"));
+					Goods.setIndexImg(rs.getString("indexImage"));
 					searchList.add(Goods);
 				}	
 			}else{
@@ -422,8 +431,8 @@ public class GoodsDaoImpl implements GoodsDao {
 			while(rs.next()){
 				Goods Goods = new Goods();
 				Goods.setGoodsId(rs.getInt("goodsId"));
-				Goods.setGoodsName(rs.getString("goodsName"));
-				Goods.setPicture(rs.getString("picture"));
+				Goods.setGoodsTitle(rs.getString("goodsTitle"));
+				Goods.setIndexImg(rs.getString("indexImage"));
 				Goods.setPrice(rs.getFloat("price"));
 				Goods.setNowPrice(rs.getFloat("nowPrice"));
 				pageList.add(Goods);
@@ -463,8 +472,8 @@ public class GoodsDaoImpl implements GoodsDao {
 			if(rs.next()){//有相关商品
 				while(rs.next()){
 					Goods Goods = new Goods();
-					Goods.setGoodsName(rs.getString("goodsName"));
-					Goods.setPicture(rs.getString("picture"));
+					Goods.setGoodsTitle(rs.getString("goodsTitle"));
+					Goods.setIndexImg(rs.getString("indexImage"));
 					GoodsList.add(Goods);
 				}	
 			}else{//没有找到相关商品
@@ -508,21 +517,27 @@ public class GoodsDaoImpl implements GoodsDao {
 			pstmt.setString(3, str[1]);
 			rs = pstmt.executeQuery();
 			while(rs.next()){
-				Goods Goods = new Goods();
-				Goods.setGoodsId(rs.getInt("goodsId"));
-				Goods.setGoodsName(rs.getString("goodsName"));
-				Goods.setPicture(rs.getString("picture"));
-				Goods.setPrice(rs.getFloat("price"));
-				Goods.setNowPrice(rs.getFloat("nowPrice"));
-				Goods.setAuthor(rs.getString("author"));
-				Goods.setGoodsNum(rs.getInt("goodsNum"));
-				Goods.setProduceDate(rs.getString("produceDate"));
-				Goods.setPublisher(rs.getString("publisher"));
-				Goods.setSubTypeId(rs.getInt("subTypeId"));
-				Goods.setSuperTypeId(rs.getInt("superTypeId"));
-				Goods.setISBN(rs.getString("ISBN"));
-				Goods.setInTime(rs.getString("inTime"));
-				pageList.add(Goods);
+				Goods goods = new Goods();
+				goods.setGoodsId(rs.getInt("goodsId"));
+				goods.setSuperTypeId(rs.getInt("superTypeId"));
+				goods.setSubTypeId(rs.getInt("subTypeId"));
+				goods.setGoodsTitle(rs.getString("goodsTitle"));
+				goods.setIntroduce(rs.getString("introduce"));
+				goods.setBrandName(rs.getString("brandName"));
+				goods.setSpec(rs.getString("spec"));
+				goods.setMeasure(rs.getString("measure"));
+				goods.setPrice(rs.getFloat("price"));
+				goods.setNowPrice(rs.getFloat("nowPrice"));
+				goods.setIndexImg(rs.getString("indexImg"));
+				goods.setGoodsNum(rs.getInt("goodsNum"));
+				goods.setSellNum(rs.getInt("sellNum"));
+				goods.setCollectNum(rs.getInt("collectNum"));
+				goods.setGoodsDetailImg(rs.getString("goodsDetailImg"));
+				goods.setKey(rs.getString("key"));
+				goods.setClick(rs.getInt("click"));
+				goods.setSale(rs.getInt("sale"));
+				goods.setSpecial(rs.getInt("special"));
+				pageList.add(goods);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

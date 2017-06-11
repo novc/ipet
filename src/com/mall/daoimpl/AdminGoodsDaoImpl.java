@@ -27,21 +27,27 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 			ps = daoUtil.getCon().prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				Goods goods1 = new Goods();
-				goods1.setGoodsId(rs.getInt("goodsId"));
-				goods1.setSuperTypeId(rs.getInt("superTypeId"));
-				goods1.setSubTypeId(rs.getInt("subTypeId"));
-				goods1.setGoodsName(rs.getString("goodsName"));
-				goods1.setIntroduce(rs.getString("introduce"));
-				goods1.setPrice(rs.getFloat("price"));
-				goods1.setNowPrice(rs.getFloat("nowPrice"));
-				goods1.setPicture(rs.getString("picture"));
-				goods1.setInTime(rs.getString("inTime"));
-				goods1.setNewGoods(rs.getInt("newGoods"));
-				goods1.setSaleGoods(rs.getInt("saleGoods"));
-				goods1.setHostGoods(rs.getInt("hostGoods"));
-				goods1.setGoodsNum(rs.getInt("goodsNum"));
-				goodslist.add(goods1);
+				Goods goods = new Goods();
+				goods.setGoodsId(rs.getInt("goodsId"));
+				goods.setSuperTypeId(rs.getInt("superTypeId"));
+				goods.setSubTypeId(rs.getInt("subTypeId"));
+				goods.setGoodsTitle(rs.getString("goodsTitle"));
+				goods.setIntroduce(rs.getString("introduce"));
+				goods.setBrandName(rs.getString("brandName"));
+				goods.setSpec(rs.getString("spec"));
+				goods.setMeasure(rs.getString("measure"));
+				goods.setPrice(rs.getFloat("price"));
+				goods.setNowPrice(rs.getFloat("nowPrice"));
+				goods.setIndexImg(rs.getString("indexImg"));
+				goods.setGoodsNum(rs.getInt("goodsNum"));
+				goods.setSellNum(rs.getInt("sellNum"));
+				goods.setCollectNum(rs.getInt("collectNum"));
+				goods.setGoodsDetailImg(rs.getString("goodsDetailImg"));
+				goods.setKey(rs.getString("key"));
+				goods.setClick(rs.getInt("click"));
+				goods.setSale(rs.getInt("sale"));
+				goods.setSpecial(rs.getInt("special"));
+				goodslist.add(goods);
 			}
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -63,24 +69,24 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 		String sql = "";
 		try {
 			dao = new DbUtil();
-			sql = "insert into tb_goods values(null,?,?,?,?,?,?,?,?,?,?,?,null,?,?,?,?,?)";
+			sql = "insert into tb_goods values(null,?,?,?,?,?,?,?,?,?,?,null,?,?,?,?,?)";
 			ps = dao.getCon().prepareStatement(sql);
 			ps.setInt(1, Goods.getSuperTypeId());
 			ps.setInt(2, Goods.getSubTypeId());
-			ps.setString(3, Goods.getGoodsName());
-			ps.setString(4, Goods.getISBN());
-			ps.setString(5, Goods.getIntroduce());
+			ps.setString(3, Goods.getGoodsTitle());
+			ps.setString(4, Goods.getIntroduce());
+			ps.setFloat(5, Goods.getPrice());
 			ps.setFloat(6, Goods.getPrice());
 			ps.setFloat(7, Goods.getNowPrice());
-			ps.setString(8, Goods.getPicture());
-			ps.setString(9, Goods.getProduceDate());
-			ps.setString(10, Goods.getPublisher());
-			ps.setString(11, Goods.getAuthor());
-			ps.setInt(12, Goods.getNewGoods());
-			ps.setInt(13, Goods.getSaleGoods());
-			ps.setInt(14, Goods.getHostGoods());
-			ps.setInt(15, Goods.getSpecialGoods());
-			ps.setInt(16, Goods.getGoodsNum());
+//			ps.setString(8, Goods.getPicture());
+//			ps.setString(9, Goods.getProduceDate());
+//			ps.setString(10, Goods.getPublisher());
+//			ps.setString(11, Goods.getAuthor());
+//			ps.setInt(12, Goods.getNewGoods());
+//			ps.setInt(13, Goods.getSaleGoods());
+//			ps.setInt(14, Goods.getHostGoods());
+//			ps.setInt(15, Goods.getSpecialGoods());
+//			ps.setInt(16, Goods.getGoodsNum());
 			int i = ps.executeUpdate();
 			if(i != 0) {
 				return true;
@@ -156,6 +162,7 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 
 	public GoodsPager searchGoods(String GoodsName) {
 		Map GoodsMap = new HashMap();
+		List goodslist = new ArrayList();
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -167,21 +174,28 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 			ps.setString(1, GoodsName+"%");
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				Goods Goods = new Goods();
-				Goods.setGoodsId(rs.getInt("goodsId"));
-				Goods.setSuperTypeId(rs.getInt("superTypeId"));
-				Goods.setSubTypeId(rs.getInt("subTypeId"));
-				Goods.setGoodsName(rs.getString("goodsName"));
-				Goods.setIntroduce(rs.getString("introduce"));
-				Goods.setPrice(rs.getFloat("price"));
-				Goods.setNowPrice(rs.getFloat("nowPrice"));
-				Goods.setPicture(rs.getString("picture"));
-				Goods.setInTime(rs.getString("inTime"));
-				Goods.setNewGoods(rs.getInt("newGoods"));
-				Goods.setSaleGoods(rs.getInt("saleGoods"));
-				Goods.setHostGoods(rs.getInt("hostGoods"));
-				Goods.setGoodsNum(rs.getInt("goodsNum"));
-				GoodsMap.put(Goods.getGoodsId(),Goods);
+				Goods goods = new Goods();
+				goods.setGoodsId(rs.getInt("goodsId"));
+				goods.setSuperTypeId(rs.getInt("superTypeId"));
+				goods.setSubTypeId(rs.getInt("subTypeId"));
+				goods.setGoodsTitle(rs.getString("goodsTitle"));
+				goods.setIntroduce(rs.getString("introduce"));
+				goods.setBrandName(rs.getString("brandName"));
+				goods.setSpec(rs.getString("spec"));
+				goods.setMeasure(rs.getString("measure"));
+				goods.setPrice(rs.getFloat("price"));
+				goods.setNowPrice(rs.getFloat("nowPrice"));
+				goods.setIndexImg(rs.getString("indexImg"));
+				goods.setGoodsNum(rs.getInt("goodsNum"));
+				goods.setSellNum(rs.getInt("sellNum"));
+				goods.setCollectNum(rs.getInt("collectNum"));
+				goods.setGoodsDetailImg(rs.getString("goodsDetailImg"));
+				goods.setKey(rs.getString("key"));
+				goods.setClick(rs.getInt("click"));
+				goods.setSale(rs.getInt("sale"));
+				goods.setSpecial(rs.getInt("special"));
+				goodslist.add(goods);
+				GoodsMap.put(goods.getGoodsId(),goods);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -361,21 +375,27 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 			ps.setInt(2, pageSize);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				Goods Goods = new Goods();
-				Goods.setGoodsId(rs.getInt("goodsId"));
-				Goods.setSuperTypeId(rs.getInt("superTypeId"));
-				Goods.setSubTypeId(rs.getInt("subTypeId"));
-				Goods.setGoodsName(rs.getString("goodsName"));
-				Goods.setIntroduce(rs.getString("introduce"));
-				Goods.setPrice(rs.getFloat("price"));
-				Goods.setNowPrice(rs.getFloat("nowPrice"));
-				Goods.setPicture(rs.getString("picture"));
-				Goods.setInTime(rs.getString("inTime"));
-				Goods.setNewGoods(rs.getInt("newGoods"));
-				Goods.setSaleGoods(rs.getInt("saleGoods"));
-				Goods.setHostGoods(rs.getInt("hostGoods"));
-				Goods.setGoodsNum(rs.getInt("goodsNum"));
-				GoodsMap.put(Goods.getGoodsId(), Goods);
+				Goods goods = new Goods();
+				goods.setGoodsId(rs.getInt("goodsId"));
+				goods.setSuperTypeId(rs.getInt("superTypeId"));
+				goods.setSubTypeId(rs.getInt("subTypeId"));
+				goods.setGoodsTitle(rs.getString("goodsTitle"));
+				goods.setIntroduce(rs.getString("introduce"));
+				goods.setBrandName(rs.getString("brandName"));
+				goods.setSpec(rs.getString("spec"));
+				goods.setMeasure(rs.getString("measure"));
+				goods.setPrice(rs.getFloat("price"));
+				goods.setNowPrice(rs.getFloat("nowPrice"));
+				goods.setIndexImg(rs.getString("indexImg"));
+				goods.setGoodsNum(rs.getInt("goodsNum"));
+				goods.setSellNum(rs.getInt("sellNum"));
+				goods.setCollectNum(rs.getInt("collectNum"));
+				goods.setGoodsDetailImg(rs.getString("goodsDetailImg"));
+				goods.setKey(rs.getString("key"));
+				goods.setClick(rs.getInt("click"));
+				goods.setSale(rs.getInt("sale"));
+				goods.setSpecial(rs.getInt("special"));
+				GoodsMap.put(goods.getGoodsId(), goods);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

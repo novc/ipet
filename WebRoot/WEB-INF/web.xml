@@ -828,6 +828,12 @@
   	<servlet-name>GetGoodsServlet</servlet-name>
   	<servlet-class>com.mall.servlet.GetGoodsServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<servlet-name>SendMessageServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.SendMessageServlet</servlet-class>
+  </servlet>
 
 
 
@@ -907,5 +913,9 @@
   <servlet-mapping>
   	<servlet-name>GetGoodsServlet</servlet-name>
   	<url-pattern>/GetGoodsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SendMessageServlet</servlet-name>
+  	<url-pattern>/sendMessageServlet</url-pattern>
   </servlet-mapping>
 </web-app>
