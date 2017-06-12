@@ -1,0 +1,1144 @@
+@CHARSET "UTF-8";
+
+/* body {
+    background-color: #fff
+} */
+.top {
+    height: 29px
+}
+
+.main .search-bar {
+    margin-top: 10px
+}
+
+.main .search-bar h1 a {
+    display: inline-block;
+    width: 120px;
+    height: 60px;
+    margin-left: 50px; 
+    background: url(../img/logo.png) no-repeat
+}
+
+.main .search-bar .search_box {
+    width: 484px;
+    margin: 17px 0 0 100px
+}
+
+.main .search-bar .search_box .search_form {
+    width: 480px;
+    border: 2px solid #459d36
+}
+
+.main .search-bar .search_box .search_form input {
+    font-family: "微软雅黑";
+    float: left;
+    width: 402px;
+    height: 30px;
+    padding-left: 13px;
+    color: #999;
+    border: 0
+}
+
+.main .search-bar .search_box .search_form button {
+    font-family: "微软雅黑";
+    float: left;
+    width: 65px;
+    height: 32px;
+    cursor: pointer;
+    color: #fff;
+    border: 0;
+    background-color: #459d36
+}
+
+.main .search-bar .search_box .hotlink {
+    padding-top: 12px
+}
+
+.main .search-bar .search_box .hotlink a {
+    line-height: 12px;
+    display: inline-block;
+    padding: 0 10px;
+    border-right: 1px solid #ccc
+}
+
+.main .search-bar .search_box .hotlink a:hover {
+    color: #444
+}
+
+.main .search-bar .phone_code {
+    width: 220px;
+    height: 25px;
+    margin: 25px 0 0 40px;
+    background: url(../img/bg.png) 0 -520px
+}
+
+.main .search-bar .shopingcar {
+    line-height: 39px;
+    width: 130px;
+    height: 39px;
+    margin: 17px 0 0;
+    text-indent: 4em;
+    color: #666;
+    background: url(../img/shopping-cart.gif)
+}
+
+.main .nav {
+    position: relative;
+    background-color: #fff;
+    height: 37px
+}
+
+.main .nav .maincats-title {
+    display: inline-block;
+    width: 230px;
+    height: 37px
+}
+
+.main .nav .maincats-title button {
+    font-family: "微软雅黑";
+    font-size: 16px;
+    float: left;
+    width: 230px;
+    height: 37px;
+    line-height: 37px;
+    text-align: center;
+    border: 0;
+    background-color: #459d36;
+    color: #fff
+}
+
+.main .nav .menu {
+    display: inline-block;
+    background-color: #fff
+}
+
+.main .nav .menu li {
+    float: left
+}
+
+.main .nav .menu li a {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 37px;
+    position: relative;
+    padding: 0 25px;
+    color: #000
+}
+
+.main .nav .menu li a i {
+    display: inline-block;
+    width: 13px;
+    height: 17px;
+    margin-top: -2px;
+    margin-right: 5px;
+    vertical-align: middle;
+    background: url(../img/bg2.png) -35px -1280px
+}
+
+.main .nav .menu .hot_gift a img {
+    position: absolute;
+    top: -12px;
+    right: 8px
+}
+
+.main .nav .menu li a:hover {
+    color: #459d36
+}
+
+.main .nav .menu li a:hover i {
+    animation: rotate360 .2s
+}
+
+@keyframes rotate360 {
+    100% {
+        -webkit-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+.main .nav .catefm {
+    position: absolute;
+    width: 1200px;
+    top: 39px
+}
+
+.main .nav .catefm .catelist {
+    position: relative;
+    z-index: 10;
+    float: left;
+    width: 230px;
+    height: 357px;
+    background-color: #fcfcfc
+}
+
+
+.main .nav .catefm .catelist .dogType {
+    height: 357px;
+    background-color: #FCFCFC
+}
+
+.main .nav .catefm .catelist .dogType li {
+    padding: 0 12px
+}
+
+.main .nav .catefm .catelist .dogType li h3 {
+    font-weight: 400;
+    border-bottom: 1px dotted #ddd;
+    height: 53px;
+    line-height: 53px;
+    padding-left: 8px;
+    background: url(../img/bg2.png) 168px -1202px no-repeat;
+    transition: transform .1s
+}
+
+.main .nav .catefm .catelist .dogType li h3 span {
+    display: inline-block;
+    width: 18px;
+    height: 17px;
+    float: left;
+    margin-top: 19px;
+    margin-right: 8px;
+    background: url(../img/menuIco1.png) -2px 1px no-repeat
+}
+
+.main .nav .catefm .catelist .dogType li h3 a {
+    font-size: 14px;
+    font-family: "微软雅黑";
+    color: #444;
+    display: block;
+    margin-right: 13px
+}
+
+.main .nav .catefm .catelist .dogType li h3 a i {
+    font-size: 12px;
+    font-style: normal;
+    padding-left: 5px;
+    color: #999
+}
+
+.main .nav .catefm .catelist .dogType li h3 a:hover {
+    color: #248DCC
+}
+
+.main .nav .catefm .catelist .dogType .cate_list3 span {
+    background-position: -1px -33px
+}
+
+.main .nav .catefm .catelist .dogType .cate_list5 span {
+    background-position: -2px -68px
+}
+
+.main .nav .catefm .catelist .dogType .cate_list7 span {
+    background-position: -2px 1px
+}
+
+.main .nav .catefm .catelist .dogType .cate_list9 span {
+    background-position: -1px -33px
+}
+
+.main .nav .catefm .catelist .dogType .cate_list11 span {
+    background-position: -2px -68px
+}
+
+.main .nav .catefm .catelist .dogType li:hover {
+    border-top: 1px solid #459d36;
+    border-bottom: 1px solid #459d36;
+    border-right: 0;
+    margin-top: -1px;
+    background: #fff
+}
+
+.main .nav .catefm .catelist .dogType li:hover h3 {
+    border: none;
+    transform: translate(10px);
+    background-position: 190px -1207px
+}
+
+.main .nav .catefm .catels {
+    display: none;
+    position: relative;
+    z-index: 9;
+    left: -1px;
+    top: -1px;
+    float: left;
+    background-color: #fff;
+    border: 1px solid #138519;
+    min-height: 360px
+}
+
+.main .nav .catefm .catels .cate_1 {
+    float: left;
+    padding: 10px;
+    width: 150px;
+    background-color: #fff
+}
+
+.main .nav .catefm .catels .cate_1 .mid_list li {
+    border-bottom: 1px dotted #ddd;
+    padding-left: 25px;
+    line-height: 40px
+}
+
+.main .nav .catefm .catels .cate_1 .mid_list li a {
+    line-height: 15px;
+    padding: 0 7px;
+}
+
+.main .nav .catefm .catels .cate_1 .mid_list li a:hover {
+    color: #248DCC
+}
+
+
+.main .carrouselBox {
+    height: 360px;
+    background-color: #fff
+}
+
+.main .carrouselBox .swiper-container {
+    height: 360px;
+    width: 100%
+}
+
+.main .carrouselBox .swiper-container ul {
+    position: relative;
+    top: -360px;
+    background-color: #fff
+}
+
+.main .carrouselBox .swiper-container ul li {
+    overflow: hidden
+}
+
+.main .carrouselBox .swiper-container ul li img {
+    position: relative;
+    z-index: 1;
+    float: right;
+    border-bottom: 1px dotted #eee
+}
+
+.main .carrouselBox .swiper-container .slide0 {
+    background-color: #B07D5E
+}
+
+.main .carrouselBox .swiper-container .slide1 {
+    background-color: #000
+}
+
+.main .carrouselBox .swiper-container .slide2 {
+    background-color: #B39A57
+}
+
+.main .carrouselBox .swiper-container .slide3 {
+    background-color: #F1C8A8
+}
+
+.main .carrouselBox .swiper-container .slide4 {
+    background-color: #4F2F92
+}
+
+.main .carrouselBox .swiper-container .slide5 {
+    background-color: #28C2F4
+}
+
+.main .carrouselBox .swiper-container a {
+    position: relative;
+    margin-left: 230px
+}
+
+.main .renew {
+    margin-bottom: 30px
+}
+
+.main .fengqiang {
+    background-color: #fff;
+    height: 460px
+}
+
+.main .fengqiang .count-down {
+    position: relative;
+    z-index: 1;
+    width: 328px;
+    height: 460px;
+    background-color: #ff827f
+}
+
+.main .fengqiang .count-down .surprise-time {
+    height: 355px;
+    margin: 30px
+}
+
+.main .fengqiang .count-down .surprise-time .surprise-tit {
+    padding: 20px
+}
+
+.main .fengqiang .count-down .surprise-time .end-time {
+    margin-top: 70px;
+    color: #fff;
+    font-size: 14px
+}
+
+.main .fengqiang .count-down .surprise-time .time {
+    height: 63px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 16px
+}
+
+.main .fengqiang .count-down .surprise-time .time span {
+    display: inline-block;
+    width: 28px;
+    height: 35px;
+    line-height: 35px;
+    background-color: #fff;
+    border-radius: 5px;
+    color: #000;
+    font-size: 28px;
+    font-weight: 500
+}
+
+.main .fengqiang .count-down .surprise-time .this-time {
+    font-size: 36px
+}
+
+.main .fengqiang .count-down .wave {
+    position: relative;
+    bottom: 0;
+    height: 45px;
+    background: url(../img/wave1.png) no-repeat
+}
+
+.main .fengqiang .surprise-con {
+    position: relative;
+    z-index: 0;
+    width: 871px;
+    height: 458px;
+    border-left: 0;
+    background-color: #fff
+}
+
+.main .fengqiang .surprise-con .showBox {
+    overflow: hidden
+}
+
+.main .fengqiang .surprise-con ul {
+    width: 10000px;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    background-color: #fff
+}
+
+.main .fengqiang .surprise-con li {
+    float: left
+}
+
+.main .fengqiang .surprise-con .time-protit {
+    margin: 0 15px
+}
+
+.main .fengqiang .surprise-con .time-protit ul {
+    border-bottom: 1px dashed #e7e7e7
+}
+
+.main .fengqiang .surprise-con .time-protit ul li {
+    width: 119px;
+    height: 46px;
+    padding-top: 20px;
+    cursor: pointer;
+    text-align: center
+}
+
+.main .fengqiang .surprise-con .time-protit ul li div {
+    display: inline-block
+}
+
+.main .fengqiang .surprise-con .time-protit ul li .begin {
+    color: #000
+}
+
+.main .fengqiang .surprise-con .time-protit ul li .finished {
+    color: #999
+}
+
+.main .fengqiang .surprise-con .time-protit ul li .active-finished {
+    font-weight: 700;
+    font-size: 14px;
+    border-bottom: 2px solid #ed4044
+}
+
+.main .fengqiang .surprise-con .time-protit ul li .active-begin {
+    font-weight: 700;
+    font-size: 14px;
+    color: #ED4044;
+    border-bottom: 2px solid #ed4044
+}
+
+.main .fengqiang .surprise-con .time-procon {
+    margin: 0 15px;
+    position: relative
+}
+
+.main .fengqiang .surprise-con .time-procon .time-proBtn {
+    display: inline-block;
+    width: 30px;
+    height: 60px;
+    position: absolute;
+    z-index: 5;
+    top: 150px;
+    background: url(../img/index-ico.png) no-repeat;
+    cursor: pointer
+}
+
+.main .fengqiang .surprise-con .time-procon .time-proleft {
+    left: -15px;
+    background-position: -12px -76px
+}
+
+.main .fengqiang .surprise-con .time-procon .time-proright {
+    background-position: -45px -76px;
+    right: -17px
+}
+
+.main .fengqiang .surprise-con .time-procon ul {
+    overflow: hidden;
+    float: left;
+    margin-top: 30px
+}
+
+.main .fengqiang .surprise-con .time-procon li {
+    position: relative;
+    width: 170px;
+    padding: 20px
+}
+
+.main .fengqiang .surprise-con .time-procon li div {
+    margin: auto;
+    width: 155px;
+    height: 154px
+}
+
+.main .fengqiang .surprise-con .time-procon li div a {
+    display: block;
+    height: 100%
+}
+
+.main .fengqiang .surprise-con .time-procon li div a img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform .5s;
+    -moz-transition: transform .5s;
+    -webkit-transition: transform .5s;
+    -o-transition: transform .5s
+}
+
+.main .fengqiang .surprise-con .time-procon li div a img:hover {
+    transform: translate(0, -15px);
+    -ms-transform: translate(0, -15px);
+    -webkit-transform: translate(0, -15px);
+    -o-transform: translate(0, -15px);
+    -moz-transform: translate(0, -15px)
+}
+
+.main .fengqiang .surprise-con .time-procon li .time-proname {
+    display: block;
+    margin-top: 50px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden
+}
+
+.main .fengqiang .surprise-con .time-procon li p {
+    margin-top: 10px
+}
+
+.main .fengqiang .surprise-con .time-procon li p a {
+    display: block;
+    width: 120px;
+    height: 30px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    margin: auto;
+    background-color: #ed4044;
+    border-radius: 15px;
+    cursor: pointer
+}
+
+.main .fengqiang .surprise-con .time-procon li .progress-bar {
+    display: block;
+    width: 100%;
+    margin: 15px 0;
+    height: 3px;
+    background-color: #ddd;
+    border-radius: 5px
+}
+
+.main .fengqiang .surprise-con .time-procon li .progress-bar i {
+    display: block;
+    height: 3px;
+    background-color: #ed4044;
+    border-radius: 5px
+}
+
+.main .fengqiang .surprise-con .time-procon li .now-price {
+    color: #ed4044;
+    font-size: 20px
+}
+
+.main .fengqiang .surprise-con .time-procon li .now-price:before {
+    content: "￥";
+    font-size: 14px;
+    font-weight: 700
+}
+
+.main .fengqiang .surprise-con .time-procon li .old-price {
+    margin-left: 3px;
+    color: #999;
+    text-decoration: line-through;
+    font-size: 12px
+}
+
+.main .newPro {
+    height: 330px;
+    margin-top: 50px;
+    background-color: #fff
+}
+
+.main .newPro .left {
+    width: 328px;
+    height: 330px;
+    background: url(../img/ad-img1.jpg)
+}
+
+.main .newPro .left .wrap {
+    background-color: #F056A6;
+    width: 245px;
+    height: 200px;
+    margin: 110px auto auto
+}
+
+.main .newPro .left .wrap .changxianBox {
+    float: left;
+    margin: 5px;
+    border: 1px solid #fff
+}
+
+.main .newPro .left .wrap .changxianBox h2 {
+    font-family: "宋体";
+    text-align: center;
+    font-size: 45px;
+    color: #fff;
+    font-weight: 700;
+    margin-top: 5px
+}
+
+.main .newPro .left .wrap .changxianBox a {
+    display: block;
+    text-align: center;
+    color: #fff;
+    line-height: 20px
+}
+
+.main .newPro .left .wrap .changxianBox label {
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+    height: 10px;
+    background: url(../img/fgline.png) no-repeat
+}
+
+.main .newPro .left .wrap .changxianBox p {
+    margin: 3px;
+    text-align: center;
+    color: #fff
+}
+
+.main .newPro .left .wrap .changxianBox p span {
+    font-size: 20px;
+    color: #ff0
+}
+
+.main .newPro .left .wrap .changxianBox div {
+    margin-top: 10px;
+    height: 30px;
+    text-align: center
+}
+
+.main .newPro .left .wrap .changxianBox div a {
+    line-height: 30px;
+    color: #666
+}
+
+.main .newPro .right {
+    width: 871px;
+    border: 1px solid #ddd;
+    border-left: 0
+}
+
+.main .newPro .right a {
+    display: block;
+    float: left;
+    width: 290.3px;
+    height: 328px
+}
+
+.main .newPro .right a li .up {
+    padding: 0 30px;
+    margin-top: 30px;
+    border-right: 1px solid #ddd
+}
+
+.main .newPro .right a li .up h6 {
+    line-height: 25px;
+    font-size: 14px;
+    color: #000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.main .newPro .right a li .up span {
+    font-size: 14px;
+    color: red;
+    display: block;
+    margin: 15px 0 30px
+}
+
+.main .newPro .right a li .up p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 20px
+}
+
+.main .newPro .right a li .down div {
+    display: inline-block;
+    float: right
+}
+
+.main .newPro .right a li .down div img {
+    width: 145px;
+    height: 145px
+}
+
+.main .newPro .right a:last-child .up {
+    border: none
+}
+
+.main .pinpai {
+    height: 410px;
+    margin-top: 30px
+}
+
+.main .pinpai .left {
+    width: 328px;
+    height: 410px;
+    background: url(../img/ad-img2.jpg)
+}
+
+.main .pinpai .left .pinpaiWrap {
+    width: 298px;
+    height: 158px;
+    border: 1px solid #fff;
+    margin: 235px auto auto
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-0 .imgbox,
+.main .pinpai .brands-list div {
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd
+}
+
+.main .pinpai .left .pinpaiWrap .swiper-container {
+    margin: 5px;
+    background-color: #fff;
+    height: 148px
+}
+
+.main .pinpai .left .pinpaiWrap .swiper-container img {
+    width: 100%;
+    height: 100%
+}
+
+.main .pinpai .right {
+    width: 872px;
+    background-color: #fff
+}
+
+.main .pinpai .brands-list {
+    width: 585px;
+    height: 408px;
+    border: 1px solid #ddd;
+    border-left: 0;
+    border-right: 0;
+    overflow: hidden
+}
+
+.main .pinpai .brands-list div {
+    position: relative;
+    overflow: hidden;
+    width: 194px;
+    height: 101.5px
+}
+
+.main .pinpai .brands-list div img {
+    margin: 21px 42px;
+    width: 110px;
+    height: 60px
+}
+
+.main .pinpai .brands-list div p {
+    position: relative;
+    transition: transform .5s;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
+    background-color: grey;
+    color: #fff
+}
+
+.main .pinpai .brands-list div p span {
+    color: red
+}
+
+.main .pinpai .brands-list div p i {
+    font-style: normal
+}
+
+.main .pinpai .brands-list div:hover p {
+    transform: translate(0, -25px)
+}
+
+.main .pinpai .free-trial {
+    width: 270px;
+    height: 408px;
+    border: 1px solid #ddd
+}
+
+.main .pinpai .free-trial .free-tit {
+    height: 30px;
+    background-color: #8DD514;
+    line-height: 30px
+}
+
+.main .pinpai .free-trial .free-tit i {
+    margin-left: 16px;
+    float: left;
+    display: inline-block;
+    width: 37px;
+    height: 40px;
+    background: url(../img/free-titico.jpg) no-repeat
+}
+
+.main .pinpai .free-trial .free-tit h6 {
+    float: left;
+    margin-left: 5px;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 400
+}
+
+.main .pinpai .free-trial .free-show {
+    margin: 10px
+}
+
+.main .pinpai .free-trial .free-show a {
+    display: block
+}
+
+.main .pinpai .free-trial .free-show a p {
+    text-align: right;
+    color: #666
+}
+
+.main .pinpai .free-trial .free-show a p span {
+    color: red
+}
+
+.main .pinpai .free-trial .free-show a div {
+    float: left;
+    background-color: orange;
+    margin: 10px 25px
+}
+
+.main .pinpai .free-trial .free-show a label {
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    text-decoration: line-through
+}
+
+.main .pinpai .free-trial .free-show a label span {
+    display: inline-block;
+    position: relative;
+    top: -8px;
+    left: 5px;
+    width: 55px;
+    height: 22px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 22px;
+    background: url(../img/index-ico.png) -109px -23px
+}
+
+.main .pinpai .free-trial .free-show a .ellipsis {
+    display: block
+}
+
+.main .pinpai .free-trial .qianggou {
+    display: block;
+    margin: 15px auto auto;
+    width: 134px;
+    height: 40px;
+    background: url(../img/i-ask.jpg)
+}
+
+.main .epetfoodblock {
+    background-color: #fff
+}
+
+.main .epetfoodblock .epetfood-tit {
+    line-height: 35px
+}
+
+.main .epetfoodblock .epetfood-tit i {
+    float: left;
+    margin-right: 5px
+}
+
+.main .epetfoodblock .adimg {
+    position: relative
+}
+
+.main .epetfoodblock .adimg .stylebg {
+    position: absolute;
+    bottom: 0;
+    background: rgba(255, 255, 255, .8);
+    height: 180px;
+    overflow: hidden
+}
+
+.main .epetfoodblock .adimg .stylebg .hotkind {
+    padding: 15px 0;
+    margin: 0 20px;
+    line-height: 27px;
+    color: #666
+}
+
+.main .epetfoodblock .adimg .stylebg .hotkind i {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px;
+    width: 27px;
+    height: 27px;
+    background: url(../img/index-ico.png) -113px -170px no-repeat
+}
+
+.main .epetfoodblock .adimg .stylebg .hotkind h6 {
+    color: #666;
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 15px
+}
+
+.main .epetfoodblock .adimg .stylebg ul {
+    margin: 0 17px;
+    width: 310px;
+    overflow: hidden
+}
+
+.main .epetfoodblock .adimg .stylebg ul li {
+    float: left;
+    border-radius: 15px;
+    width: 93px;
+    height: 25px;
+    margin-right: 10px;
+    margin-bottom: 13px;
+    line-height: 25px;
+    text-align: center;
+    background-color: #fff;
+    color: #000
+}
+
+.main .epetfoodblock .adimg .stylebg ul li a {
+    display: block;
+    border-radius: 15px
+}
+
+.main .epetfoodblock .adimg .stylebg ul li a:hover {
+    color: #00f
+}
+
+.main .epetfoodblock .food-pro {
+    position: relative;
+    height: 475px;
+    width: 870px
+}
+
+.main .epetfoodblock .food-pro .libconbox {
+    border-top: 1px solid #459d36;
+    width: 870px;
+    height: 475px;
+    background-color: red
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-0 {
+    width: 870px;
+    height: 475px
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-0 .imgbox a {
+    position: relative;
+    display: block
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-0 .imgbox a div,
+.main .epetfoodblock .food-pro .libconbox .con-0 .imgbox a span {
+    position: absolute
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-0 .imgbox a div {
+    top: 30px;
+    left: 30px;
+    font-size: 16px;
+    color: #000
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-0 .imgbox a span {
+    top: 55px;
+    left: 30px;
+    font-size: 14px;
+    color: red
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-1 .pro-list ul {
+    background-color: #fff;
+    overflow: hidden
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-1 .pro-list ul li {
+    float: left;
+    width: 216.5px;
+    height: 237.5px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-1 .pro-list ul li .imgbox {
+    text-align: center
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-1 .pro-list ul li .imgbox img {
+    position: relative;
+    margin-top: 10px;
+    width: 158px;
+    height: 160px;
+    transition: transform .5s;
+    -moz-transition: transform .5s;
+    -webkit-transition: transform .5s;
+    -o-transition: transform .5s
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-1 .pro-list ul li .imgbox img:hover {
+    transform: translate(0, -15px);
+    -ms-transform: translate(0, -15px);
+    -webkit-transform: translate(0, -15px);
+    -o-transform: translate(0, -15px);
+    -moz-transform: translate(0, -15px)
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-1 .pro-list ul li p {
+    padding: 0 10px;
+    color: #999
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-1 .price {
+    display: block;
+    margin-top: 8px;
+    padding: 0 10px;
+    font-size: 16px;
+    color: #dd2727;
+    font-weight: 400px
+}
+
+.main .epetfoodblock .food-pro .libconbox .con-1 .price:before {
+    content: "￥"
+}
+
+.main .epetfoodblock .food-pro .lib-menu {
+    width: 100%;
+    top: -35px;
+    height: 35px
+}
+
+.main .epetfoodblock .food-pro .lib-menu ul {
+    float: right;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    height: 34px
+}
+
+.main .epetfoodblock .food-pro .lib-menu li {
+    float: left;
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+    cursor: pointer
+}
+
+.main .epetfoodblock .food-pro .lib-menu li span {
+    float: left;
+    padding: 0 15px;
+    font-size: 14px;
+    margin: 7px 0;
+    border-left: 1px solid #ddd
+}
+
+.main .epetfoodblock .food-pro .lib-menu li:first-child span {
+    border: none
+}
+
+.main .epetfoodblock .food-pro .lib-menu .active {
+    border-top: 1px solid #459D36;
+    border-left: 1px solid #459d36;
+    border-right: 1px solid #459d36;
+    color: #459D36;
+    margin-left: -1px
+}
+
+.main .epetfoodblock .food-pro .lib-menu .active p {
+    height: 2px;
+    background-color: #459d36
+}
+
+.main .epetfoodblock .food-pro .lib-menu .active span {
+    border: none
+}
+
+.main .epetfoodblock .brand-list ul {
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-top: none
+}
+
+.main .epetfoodblock .brand-list li {
+    float: left;
+    border-left: 1px solid #ddd;
+    padding: 10px 24.45px
+}
+
+.main .epetfoodblock .brand-list li:first-child {
+    border: none
+}
+
+.main .epetfoodblock .brand-list img {
+    width: 100px;
+    height: 48px
+}
+
+.footer {
+    height: 450px
+}

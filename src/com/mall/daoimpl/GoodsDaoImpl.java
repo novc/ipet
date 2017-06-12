@@ -118,6 +118,36 @@ public class GoodsDaoImpl implements GoodsDao {
 		}
 		return all;
 	}
+	public List getNavTypeName(){
+		PreparedStatement pstmt = null;
+		
+		List goodsNavList = new ArrayList();
+		ResultSet rs = null;
+		DbUtil dbUtil = null;
+		String sql = "select tb_supertype.superTypeName,tb_subtype.subTypeName from tb_supertype,tb_subtype where tb_subtype.superTypeId=tb_supertype.superTypeId";
+		try {
+			dbUtil = new DbUtil();
+			pstmt = dbUtil.getCon().prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				Goods goods = new Goods();
+				goods.setSuperTypeName(rs.getString("superTypeName"));
+				goods.setSubTypeName(rs.getString("subTypeName"));
+				goodsNavList.add(goods);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				pstmt.close();
+				dbUtil.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return goodsNavList;
+	}
 	public boolean updateGoodsNum(int num,int GoodsId) {
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;

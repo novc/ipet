@@ -834,6 +834,20 @@
   	<servlet-name>SendMessageServlet</servlet-name>
   	<servlet-class>com.mall.servlet.SendMessageServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>GetIndexGoodsServlet</display-name>
+  	<servlet-name>GetIndexGoodsServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.GetIndexGoodsServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>GetNavTypeName</display-name>
+  	<servlet-name>GetNavTypeName</servlet-name>
+  	<servlet-class>com.mall.servlet.GetNavTypeName</servlet-class>
+  </servlet>
 
 
 
@@ -917,5 +931,13 @@
   <servlet-mapping>
   	<servlet-name>SendMessageServlet</servlet-name>
   	<url-pattern>/sendMessageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetIndexGoodsServlet</servlet-name>
+  	<url-pattern>/GetIndexGoodsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetNavTypeName</servlet-name>
+  	<url-pattern>/getNavTypeName</url-pattern>
   </servlet-mapping>
 </web-app>

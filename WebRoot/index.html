@@ -3,8 +3,354 @@
 <head>
 <meta charset="UTF-8">
 <title>ipet</title>
+	<link rel="icon" href="img/icon.png">
+    <link rel="stylesheet" type="text/css" href="css/basic.css">
+    <link rel="stylesheet" type="text/css" href="css/header.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/swiper-3.4.1.min.css">
+    
+    <script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="js/swiper-3.4.1.jquery.min.js"></script>
+    <script type="text/javascript" src="js/header.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    
 </head>
 <body>
-
+<div class="top"></div>
+<div class="main">
+    <!--  logo 搜索栏
+    ================================================ -->
+    <div class="search-bar">
+        <div class="w-max w">
+            <h1 class="logo fl">
+                <a href="#"></a>
+            </h1>
+            <div class="search_box fl">
+                <div class="search_form fl">
+                    <input type="text" name="search_value" value="福来恩" />
+                    <button>搜索</button>
+                </div>
+                <div class="hotlink fl">
+                    <span class="microsoft c999">热门搜索：</span>
+                </div>
+            </div>
+            <div class="phone_code fl">
+            </div>
+            <div class="shopingcar fl">
+                <span>购物车(</span>
+                <span class="prod_num cf60">0</span>
+                <span>)</span>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <!-- 
+    导航栏========================================== -->
+    <div class="nav">
+        <div class="w-max w">
+            <!-- 选项 -->
+            <div class="maincats">
+                <div class="maincats-title">
+                    <button  class="pro_classify ">商品分类</button>
+                </div>
+                <!-- 导航 -->
+                <ul class="menu">
+                    <li><a href=""><i></i>特别推荐</a></li>
+                    <li class="hot_gift">
+                        <a href=""><img src="img/new.gif">网站热卖</a>
+                    </li>
+                    <li><a href=""><i></i>i宠学堂</a></li>
+                </ul>
+            </div>
+            <div class="catefm">
+                <div>
+                    <div class="catelist">
+                        <div class="dogType">
+                            <ul>
+                                <li class="cate_list1" idx="0">
+                                    <h3>
+                                        <span></span>
+                                        <a href="">狗狗主粮<i></i></a>
+                                    </h3>
+                                </li>
+                                <li class="cate_list3" idx="2">
+                                    <h3>
+                                        <span></span>
+                                        <a href="">狗狗零食<i></i></a>
+                                    </h3>
+                                </li>
+                                <li class="cate_list5" idx="4">
+                                    <h3>
+                                        <span></span>
+                                        <a href="">狗狗日用&医疗<i></i></a>
+                                    </h3>
+                                </li>
+                                <li class="cate_list7" idx="6">
+                                    <h3>
+                                        <span></span>
+                                        <a href="">猫咪主粮<i></i></a>
+                                    </h3>
+                                </li>
+                                <li class="cate_list9" idx="8">
+                                    <h3>
+                                        <span></span>
+                                        <a href="">猫咪零食<i></i></a>
+                                    </h3>
+                                </li>
+                                <li class="cate_list11" idx="10">
+                                    <h3>
+                                        <span></span>
+                                        <a href="">猫咪日用&医疗<i></i></a>
+                                    </h3>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="catels">
+                        <div class="cate_1 fl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 
+    轮播图========================================== -->
+    <div class="carrouselBox clearfix">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide slide0">
+                    <div class="w-max w">
+                        <a href="#"><img src="img/d5c1c76cc5839ebfed31d2984f9162fb.jpg"></a>
+                    </div>
+                </div>
+                <div class="swiper-slide slide1">
+                    <div class="w-max w">
+                        <a href=""><img src="img/6d28f660d665ddf4033694f138036e32.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="swiper-slide slide2">
+                    <div class="w-max w">
+                        <a href=""><img src="img/58c52959968aed79b0c838de3414e538.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="swiper-slide slide3">
+                    <div class="w-max w">
+                        <a href=""><img src="img/64c3bb18ef838aeecafdf3a816cfb122.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="swiper-slide slide4">
+                    <div class="w-max w">
+                        <a href=""><img src="img/710d005beb6c9130911349e2128a7f5f.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="swiper-slide slide5">
+                    <div class="w-max w">
+                        <a href="#"><img src="img/acc6d6403925d78cd1b6c3df094f38e4.jpg"></a>
+                    </div>
+                </div>
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+            
+        </div>
+    </div>
+<!--     <div class="renew">
+        
+        每日疯抢========================================
+        <div class="fengqiang w-max w clearfix">
+            <div class="day-surprise mt30 overflow">
+                <div class="fl count-down">
+                    <div class="surprise-time">
+                        <div class="surprise-tit">
+                            <img src="img/surprise-tit.png">
+                        </div>
+                        <div class="cfff ftc ft14 end-time">距本场结束还有</div>
+                        <div class="time ftc mt15">
+                            <span>0</span>
+                            <span>1</span> :
+                            <span>0</span>
+                            <span>7</span> :
+                            <span>0</span>
+                            <span>3</span>
+                        </div>
+                        <div class="ftc this-time bold cfff mt20">14:00</div>
+                        <div class="ftc ft20 mt5 cfff">进行中...</div>
+                    </div>
+                    <div class="wave rela">
+                    </div>
+                </div>
+                <div class="fr surprise-con border">
+                    <div class="time-protit">
+                        <ul>
+                            <li idx="0" class="active">
+                                <div>
+                                    <p>09:00</p>
+                                    <p>即将开始</p>
+                                </div>
+                            </li>
+                            <li idx="1">
+                                <div>
+                                    <p>11:00</p>
+                                    <p>即将开始</p>
+                                </div>
+                            </li>
+                            <li idx="2">
+                                <div>
+                                    <p>14:00</p>
+                                    <p>即将开始</p>
+                                </div>
+                            </li>
+                            <li idx="3">
+                                <div>
+                                    <p>16:00</p>
+                                    <p>即将开始</p>
+                                </div>
+                            </li>
+                            <li idx="4">
+                                <div>
+                                    <p>20:00</p>
+                                    <p>即将开始</p>
+                                </div>
+                            </li>
+                            <li idx="5">
+                                <div>
+                                    <p>22:00</p>
+                                    <p>即将开始</p>
+                                </div>
+                            </li>
+                            <li idx="6">
+                                <div>
+                                    <p>明日</p>
+                                    <p>预告</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="time-procon">
+                        <b class="time-proBtn time-proleft" href=""></b>
+                        <div class="time-proconli">
+                            <div class="showBox">
+                                <ul>
+                                    //js填充
+                                </ul>
+                            </div>
+                        </div>
+                        <b class="time-proBtn time-proright" href=""></b>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        新品尝鲜=======================================
+        <div class="newPro w-max w clearfix">
+            <div class="left fl">
+                <div class="wrap">
+                    <div class="changxianBox">
+                        <h2>新品尝鲜</h2>
+                        <a href="">上架新品344件&gt;&gt;</a>
+                        <label></label>
+                        <p>路** 第177个尝鲜的人，获取商品折扣<span>9.3</span>折</p>
+                        <div><a href="#">进入尝鲜栏目&gt;&gt;</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="right fl">
+                <ul>
+                    <a href="#">
+                        <li>
+                            <div class="up">
+                                <h6>拉夫威尔RUFFWEAR 艾拉雨衣 暮光灰L</h6>
+                                <p>马甲样式 方便穿脱 防风防雨 覆盖面积大 胸围调节81-91cm</p>
+                                <span>￥699.00</span>
+                                <p>一人一狗一雨衣</p>
+                                <p>漫步春雨更温馨</p>
+                            </div>
+                            <div class="down">
+                                <div><img src="img/changxian1.jpg" alt=""></div>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li>
+                            <div class="up">
+                                <h6>美国进口NERF DOG 网球弹射枪 大号（含一个网球）50*20*9cm</h6>
+                                <p>网球冲击波飞出15米 代替飞盘和狗狗互动 手臂不酸累</p>
+                                <span>￥155.00</span>
+                                <p>趣味飞射玩不停</p>
+                                <p>激情不减运动快乐</p>
+                            </div>
+                            <div class="down">
+                                <div><img src="img/changxian2.jpg" alt=""></div>
+                            </div>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li>
+                            <div class="up">
+                                <h6>美国原装进口多美洁 犬用天然营养凝萃液 亮毛美肤 75ml</h6>
+                                <p>每日一滴 营养一整天 丰富维生素 鱼油植物萃取</p>
+                                <span>￥199.00</span>
+                                <p>皮肤活力再现</p>
+                                <p>每日轻松滴一滴</p>
+                            </div>
+                            <div class="down">
+                                <div><img src="img/changxian3.jpg" alt=""></div>
+                            </div>
+                        </li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+        
+        品牌街=======================================
+        <div class="pinpai w-max w">
+            <div class="left fl">
+                <div class="pinpaiWrap">
+                    <div class="swiper-container pinpai-con">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <a href="#"><img src="img/6c5efd769a515574e4e17ec9398a04bd.jpg" alt=""></a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#"><img src="img/a60785bc27501d9b71238baba06308c0.jpg" alt=""></a>
+                            </div>
+                            <div class="swiper-slide">
+                                <a href="#"><img src="img/96a16475cc5bed1c369257d25ee8b6d6.jpg" alt=""></a>
+                            </div>
+                        </div>
+                        如果需要分页器
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="right fl">
+                <div class="brands-list fl">
+                </div>
+                <div class="free-trial fr">
+                    <div class="free-tit">
+                        <i></i>
+                        <h6>免费试用</h6>
+                    </div>
+                    <div class="free-con">
+                        <div class="free-show">
+                            <a href="">
+                                <p>还有<span>4</span>个免费试用&gt;&gt;</p>
+                                <div>
+                                    <img src="img/cb49f5cc43e5ef56d354fc18ed388a9c.jpg">
+                                </div>
+                                <label>￥30.00 <span>免费</span></label>
+                                <span class="ellipsis">德国进口 特瑞仕TRIXIE 美资炫帕尔玛奶酪狗狗披萨 170g</span>
+                            </a>
+                        </div>
+                        <a hr ef="" class="qianggou"></a>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        
+    </div>-->
+</div>
 </body>
 </html>

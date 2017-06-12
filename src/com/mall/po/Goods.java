@@ -6,9 +6,18 @@ import java.io.Serializable;
  *javabean
  */
 public class Goods implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int goodsId;
 
 	private int superTypeId;
+	
+	private String superTypeName;
+	
+	private String subTypeName;
 
 	private int subTypeId;
 
@@ -58,6 +67,22 @@ public class Goods implements Serializable {
 
 	public void setGoodsTitle(String goodsTitle) {
 		this.goodsTitle = goodsTitle;
+	}
+	
+	public String getSuperTypeName() {
+		return superTypeName;
+	}
+
+	public void setSuperTypeName(String superTypeName) {
+		this.superTypeName = superTypeName;
+	}
+
+	public String getSubTypeName() {
+		return subTypeName;
+	}
+
+	public void setSubTypeName(String subTypeName) {
+		this.subTypeName = subTypeName;
 	}
 
 	public String getBrandName() {
