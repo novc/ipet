@@ -6,13 +6,7 @@ import com.mall.po.Goods;
 import com.mall.po.Page;
 
 public interface GoodsDao {
-	/**
-	 *显示商品
-	 * @param type 显示列别（热卖，新品，降价）
-	 * @param flag 表示是否是（热卖，新品，降价）
-	 * @return List
-	 */
-	public List showGoods(int type,int flag);
+	
 	
 	/**
 	 *根据商品的GoodsId号来展示改商品的详细信息
@@ -33,10 +27,7 @@ public interface GoodsDao {
 	 * 将商品本信息录入数据库
 	 */
 	public boolean addGoods(Goods Goods);
-	/**
-	 * 分页显示商品
-	 */
-	public Page doPage(int type,int currentPage,int pageSize, int flag);
+	
 	/**
 	 *跟据用户输入的关键字搜索相关商品
 	 * @param keywords 用户输入关键字

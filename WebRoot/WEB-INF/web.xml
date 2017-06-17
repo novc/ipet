@@ -848,6 +848,75 @@
   	<servlet-name>GetNavTypeName</servlet-name>
   	<servlet-class>com.mall.servlet.GetNavTypeName</servlet-class>
   </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>GetHotGoodsNameServlet</display-name>
+  	<servlet-name>GetHotGoodsNameServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.GetHotGoodsNameServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>Addcart</display-name>
+  	<servlet-name>Addcart</servlet-name>
+  	<servlet-class>com.mall.servlet.Addcart</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>UpdateCartServlet</display-name>
+  	<servlet-name>UpdateCartServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.UpdateCartServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>DeleteCartsServlet</display-name>
+  	<servlet-name>DeleteCartsServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.DeleteCartsServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>GetGoodsDetailServlet</display-name>
+  	<servlet-name>GetGoodsDetailServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.GetGoodsDetailServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>GetCartServlet</display-name>
+  	<servlet-name>GetCartServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.GetCartServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>DeleteCartServlet</display-name>
+  	<servlet-name>DeleteCartServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.DeleteCartServlet</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<servlet-name>GetGoodsSpecial</servlet-name>
+  	<servlet-class>com.mall.servlet.GetGoodsSpecial</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>GetGoodsList</display-name>
+  	<servlet-name>GetGoodsList</servlet-name>
+  	<servlet-class>com.mall.servlet.GetGoodsList</servlet-class>
+  </servlet>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>SearchGoodsServlet</display-name>
+  	<servlet-name>SearchGoodsServlet</servlet-name>
+  	<servlet-class>com.mall.servlet.SearchGoodsServlet</servlet-class>
+  </servlet>
 
 
 
@@ -939,5 +1008,45 @@
   <servlet-mapping>
   	<servlet-name>GetNavTypeName</servlet-name>
   	<url-pattern>/getNavTypeName</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetHotGoodsNameServlet</servlet-name>
+  	<url-pattern>/getHotGoodsNameServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>Addcart</servlet-name>
+  	<url-pattern>/Addcart</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>UpdateCartServlet</servlet-name>
+  	<url-pattern>/UpdateCartServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteCartsServlet</servlet-name>
+  	<url-pattern>/DeleteCartsServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetGoodsDetailServlet</servlet-name>
+  	<url-pattern>/GetGoodsDetailServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetCartServlet</servlet-name>
+  	<url-pattern>/GetCartServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DeleteCartServlet</servlet-name>
+  	<url-pattern>/DeleteCartServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetGoodsSpecial</servlet-name>
+  	<url-pattern>/getGoodsSpecial</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetGoodsList</servlet-name>
+  	<url-pattern>/GetGoodsList</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SearchGoodsServlet</servlet-name>
+  	<url-pattern>/SearchGoodsServlet</url-pattern>
   </servlet-mapping>
 </web-app>

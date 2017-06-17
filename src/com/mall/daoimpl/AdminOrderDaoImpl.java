@@ -11,8 +11,8 @@ import java.util.Map;
 
 import com.mall.common.DbUtil;
 import com.mall.dao.AdminOrderDao;
+import com.mall.po.Goods;
 import com.mall.po.Order;
-import com.mall.po.OrderItem;
 import com.mall.po.OrderNotSendPager;
 import com.mall.po.OrderPager;
 import com.mall.po.OrderSendPager;
@@ -27,12 +27,11 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 		ResultSet rs = null;
 		try {
 			dao = new DbUtil();
-			String sql = "select * from tb_order order by orderId";
+			String sql = "select * from tb_order order by orderId desc";
 			ps = dao.getCon().prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Order order = new Order();
-//				User user = new User();
 				String flagName = (rs.getInt("flag")==1)?"已发货":"未发货";
 				order.setOrderId(rs.getInt("orderId"));
 				order.setName(rs.getString("name"));
@@ -59,26 +58,26 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 		return orderList;
 	}
 
-	public Order getOneOrder(int id) {
-		Order order = new Order();
-		List orderItemList = new ArrayList();
+	public List getOneOrder(int id) {
+		List orderList = new ArrayList();
 		DbUtil dao = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		try {
 			dao = new DbUtil();
-			String sql = "select * from tb_orderItem where orderId = ? order by orderId";
+			String sql = "select * from tb_order,tb_goods where tb_order.goodsId= tb_goods.goodsId and tb_order.orderId ="+id;
+			
 			ps = dao.getCon().prepareStatement(sql);
-			ps.setInt(1, id);
 			rs = ps.executeQuery();
 			while (rs.next()) {
-				OrderItem orderItem = new OrderItem();
-				orderItem.setOrderItemId(rs.getInt("orderItemId"));
-				orderItem.setGoodsId(rs.getInt("bookId"));
-//				orderItem.setGoodsName(rs.getString("goodsName"));
-//				orderItem.setPrice(rs.getFloat("price"));
-				orderItem.setGoodsNum(rs.getInt("goodsNum"));
-				orderItemList.add(orderItem);
+				Order order = new Order();
+				order.setOrderId(id);
+				order.setBuyNum(rs.getInt("buyNum"));
+				order.setGoodsId(rs.getInt("goodsId"));
+				order.setGoodsTitle(rs.getString("goodsTitle"));
+				order.setgoodsNum(rs.getInt("goodsNum"));
+				order.setNowPrice(rs.getInt("nowPrice"));
+				orderList.add(order);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -91,8 +90,7 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 				e.printStackTrace();
 			}
 		}
-		order.setOrderItem(orderItemList);
-		return order;
+		return orderList;
 	}
 
 	public List getNotSendOrder(int flag) {
@@ -108,7 +106,6 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Order order = new Order();
-//				User user = new User();
 				String flagName = (rs.getInt("flag")==1)?"已发货":"未发货";
 				order.setOrderId(rs.getInt("orderId"));
 				order.setName(rs.getString("name"));
@@ -315,24 +312,18 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 	public boolean deleteOrders(int[] ids) {		
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;
-		PreparedStatement ps2 = null;
 		Connection conn = null;
 		String sql = "delete from tb_order where orderId=?";
-		String sql2 = "delete from tb_orderitem where orderId=?";
 		
 		try {
 			daoUtil = new DbUtil();
 			conn = daoUtil.getCon();
 			conn.setAutoCommit(false);
 			ps = conn.prepareStatement(sql);	
-			ps2 = conn.prepareStatement(sql2);
 			for(int j=0;j<ids.length;j++) {
 				ps.setInt(1, ids[j]);
-				ps2.setInt(1, ids[j]);
 				ps.addBatch();
-				ps2.addBatch();
 			}
-			int[] m = ps2.executeBatch();
 			int[] k = ps.executeBatch();
 			conn.commit();			
 			if(k.length == ids.length) {
@@ -382,70 +373,11 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 		}
 		return false;
 	}
-	
-	public boolean UpdateOrderItem(OrderItem orderItem){
-		DbUtil daoUtil = null;
-		PreparedStatement ps = null;
-		String sql = "update tb_orderitem set price=?,goodsNum=? where orderItemId=?";
-		try {
-			daoUtil = new DbUtil();
-			ps = daoUtil.getCon().prepareStatement(sql);
-//			ps.setFloat(1, orderItem.getPrice());
-			ps.setInt(2, orderItem.getGoodsNum());
-            ps.setInt(3, orderItem.getOrderItemId());
-			int i = ps.executeUpdate();
-			if(i != 0) {
-				return true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				ps.close();
-				daoUtil.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
+
+	@Override
+	public boolean deleteOrderItems(int[] ids) {
+		// TODO Auto-generated method stub
 		return false;
 	}
-
-	public boolean deleteOrderItems(int[] ids) {		
-		DbUtil daoUtil = null;
-		PreparedStatement ps = null;
-		Connection conn = null;
-		String sql = "delete from tb_orderitem where orderId=?";
-		
-		try {
-			daoUtil = new DbUtil();
-			conn = daoUtil.getCon();
-			conn.setAutoCommit(false);
-			ps = conn.prepareStatement(sql);	
-			for(int j=0;j<ids.length;j++) {
-				ps.setInt(1, ids[j]);
-				ps.addBatch();
-			}
-			int[] k = ps.executeBatch();
-			conn.commit();			
-			if(k.length == ids.length) {
-				return true;
-			}			
-		} catch (Exception e) {			
-			try {
-				conn.rollback();
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		} finally {
-			try {
-				ps.close();
-				daoUtil.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		return false;
-	}
-
 	
 }

@@ -4,7 +4,6 @@ import com.mall.common.DbUtil;
 import com.mall.dao.OrderDao;
 import com.mall.po.Goods;
 import com.mall.po.Order;
-import com.mall.po.OrderItem;
 import com.mall.po.User;
 
 import java.sql.*;
@@ -44,16 +43,16 @@ public class OrderDaoImpl implements OrderDao {
 			//将订单项中的数据录入数据库
 			String sql_item = "insert into tb_orderItem values(null,?,?,?,?,?)";
 			pstmt_item = dbUtil.getCon().prepareStatement(sql_item);
-			List orderItem = order.getOrderItem();//得到所有订单项
-			for(int i=0;i<orderItem.size();i++) {
-				OrderItem orderItems = (OrderItem)orderItem.get(i);
+//			List orderItem = order.getOrderItem();//得到所有订单项
+//			for(int i=0;i<orderItem.size();i++) {
+//				OrderItem orderItems = (OrderItem)orderItem.get(i);
 				pstmt_item.setInt(1, orderId);
-				pstmt_item.setInt(2, orderItems.getGoodsId());
+//				pstmt_item.setInt(2, orderItems.getGoodsId());
 //				pstmt_item.setString(3, orderItems.getGoodsName());
 //				pstmt_item.setFloat(4, orderItems.getPrice());
-				pstmt_item.setInt(5, orderItems.getGoodsNum());
-				pstmt_item.addBatch();
-			}
+//				pstmt_item.setInt(5, orderItems.getGoodsNum());
+//				pstmt_item.addBatch();
+//			}
 			pstmt_item.executeBatch();
 			dbUtil.getCon().commit();
 		} catch (SQLException e) {
@@ -114,33 +113,38 @@ public class OrderDaoImpl implements OrderDao {
 		}
 		return list;
 	}
+	@Override
+	public List selectOrderItem(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	// 根据订单号查订单项
-	public List selectOrderItem(int id ) {
-		List list = new ArrayList();
-		OrderItem ordetrItem = null ;
-		DbUtil dao = new DbUtil();
-		PreparedStatement pre = null;
-		ResultSet re = null;
-		String sql = "select * from tb_orderItem where orderId = ? ";
-		try{
-		pre = dao.getCon().prepareStatement(sql);
-		pre.setInt(1, id);
-		  re =pre.executeQuery();
-		  while(re.next()){
-			  ordetrItem = new OrderItem();
-			  ordetrItem.setGoodsId(re.getInt("bookId"));
-//			  ordetrItem.setGoodsTitle(re.getString("goodsTitle"));
-			  ordetrItem.setGoodsNum(re.getInt("goodsNum"));
-			  ordetrItem.setOrderId(re.getInt("orderId"));
-			  ordetrItem.setOrderItemId(re.getInt("orderItemId"));
-//			  ordetrItem.setPrice(re.getFloat("price"));
-			  list.add(ordetrItem);
-		  }
-		}catch (Exception e) {
-		}
-		return list;
-	}
+//	public List selectOrderItem(int id ) {
+//		List list = new ArrayList();
+//		OrderItem ordetrItem = null ;
+//		DbUtil dao = new DbUtil();
+//		PreparedStatement pre = null;
+//		ResultSet re = null;
+//		String sql = "select * from tb_orderItem where orderId = ? ";
+//		try{
+//		pre = dao.getCon().prepareStatement(sql);
+//		pre.setInt(1, id);
+//		  re =pre.executeQuery();
+//		  while(re.next()){
+//			  ordetrItem = new OrderItem();
+//			  ordetrItem.setGoodsId(re.getInt("bookId"));
+////			  ordetrItem.setGoodsTitle(re.getString("goodsTitle"));
+//			  ordetrItem.setGoodsNum(re.getInt("goodsNum"));
+//			  ordetrItem.setOrderId(re.getInt("orderId"));
+//			  ordetrItem.setOrderItemId(re.getInt("orderItemId"));
+////			  ordetrItem.setPrice(re.getFloat("price"));
+//			  list.add(ordetrItem);
+//		  }
+//		}catch (Exception e) {
+//		}
+//		return list;
+//	}
 	
 	
 	

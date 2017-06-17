@@ -23,7 +23,6 @@ public class GetGoodsServlet extends HttpServlet {
 		List goodsList = new ArrayList();
 		Model model = new Model();
 		goodsList= model.getAllGoods();
-		System.out.println(goodsList.get(0));
 		PrintWriter out = response.getWriter();
 		String jsonstr = JSON.toJSONString(goodsList);
 		out.print(JSON.toJSON(jsonstr));

@@ -29,15 +29,12 @@ public class GetOrderServlet extends HttpServlet {
 		
 		if (str_OrderId==null&&str_flag==null){
 			orderList = model.getAllOrder();
-//			System.out.println("无查询条件");
 		}else if(str_OrderId!=null){
 			nOrderId = Integer.parseInt(str_OrderId);
 			orderList.add(model.getOrderByOrderId(nOrderId));
-//			System.out.println(nOrderId);
 		}else if(str_flag!=null){
 			nFlag = Integer.parseInt(str_flag);
 			orderList=model.getOrderByOrderFlag(nFlag);
-//			System.out.println(nFlag);
 		}
 
 		String str_OrderList = JSON.toJSONString(orderList);
@@ -45,7 +42,6 @@ public class GetOrderServlet extends HttpServlet {
 		out.println(JSON.toJSON(str_OrderList));
 		out.flush();
 		out.close();
-	
 	}
 
 	

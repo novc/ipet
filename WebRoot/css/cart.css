@@ -1,0 +1,114 @@
+@charset "UTF-8";
+.cart-bar .goods-price:before,
+.cart-footer .right .sum-area .price:before {
+    content: "￥"
+}
+.top {
+    height: 120px
+}
+.cart-tit {
+    font-size: 18px;
+    line-height: 40px;
+    color: #F26D34;
+    margin: 10px 0;
+    border-bottom: 2px solid #F26D34
+}
+
+.cart-area {
+    border: 1px solid #ddd;
+    border-top: none
+}
+
+.cart-bar {
+    border-top: 1px solid #ddd;
+    padding: 20px;
+    vertical-align: middle;
+    line-height: 100px
+}
+
+.cart-bar .choose {
+    margin-right: 40px;
+    margin-left: 5px
+}
+
+.cart-bar .img {
+    border: 1px solid #ddd;
+    margin-right: 30px
+}
+
+.cart-bar .goods-tit {
+	width:300px;
+    margin-right: 160px
+}
+
+.cart-bar .goods-tit a {
+    color: #333
+}
+
+.cart-bar .goods-tit a:hover {
+    color: #F26D34
+}
+
+.cart-bar .goods-num {
+    margin-right: 100px
+}
+
+.cart-bar .goods-num input {
+    width: 55px;
+    text-align: center
+}
+
+.cart-bar .goods-price {
+	width:100px;
+    margin-right: 100px;
+    color: #e3393c;
+    font-size: 20px
+}
+
+.cart-bar .func-area a,
+.cart-footer {
+    font-size: 14px
+}
+
+.cart-footer {
+    margin-top: 20px;
+    line-height: 50px
+}
+
+.cart-footer .left a {
+    margin-left: 20px;
+    font-size: 14px
+}
+
+.cart-footer .right .sum-area {
+    width: 200px
+}
+
+.cart-footer .right .sum-area .lab {
+    margin-right: 5px
+}
+
+.cart-footer .right .sum-area .sum-price {
+    color: #e3393c;
+    font-size: 20px
+}
+
+.cart-footer .right .sum-area .sum-price:before {
+    content:"￥";
+}
+
+.cart-footer .right .buy-button {
+    width: 190px;
+    height: 56px;
+    border: none;
+    background-color: #F26D34;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 20px;
+    cursor: pointer
+}
+.empty-cart{
+	display:inline-block;
+	font-size:14px;
+	margin-left:30px;
+}

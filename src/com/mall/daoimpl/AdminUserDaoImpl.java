@@ -23,21 +23,22 @@ public class AdminUserDaoImpl implements AdminUserDao{
 		PreparedStatement ps = null;
 		Connection conn = null;
 		String sql = "delete from tb_user where id=?";
+		
 		try {
 			daoUtil = new DbUtil();
 			conn = daoUtil.getCon();
 			conn.setAutoCommit(false);
-			ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(sql);	
 			for(int j=0;j<ids.length;j++) {
 				ps.setInt(1, ids[j]);
 				ps.addBatch();
 			}
 			int[] k = ps.executeBatch();
-			conn.commit();
+			conn.commit();			
 			if(k.length == ids.length) {
 				return true;
-			}
-		} catch (Exception e) {
+			}			
+		} catch (Exception e) {			
 			try {
 				conn.rollback();
 			} catch (Exception ex) {
@@ -53,6 +54,8 @@ public class AdminUserDaoImpl implements AdminUserDao{
 		}
 		return false;
 	}
+	
+	
 
 	public List getAllUsers() {
 		List userList = new ArrayList();

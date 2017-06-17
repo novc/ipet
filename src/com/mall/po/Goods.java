@@ -53,6 +53,46 @@ public class Goods implements Serializable {
 	
 	private int special;
 
+	private String superTypeIcon;
+	
+	private String smallImg;
+	
+	private String bigImg;
+	
+	private String grantImg;
+	
+	public String getSmallImg() {
+		return smallImg;
+	}
+
+	public void setSmallImg(String smallImg) {
+		this.smallImg = smallImg;
+	}
+	
+	public String getBigImg() {
+		return bigImg;
+	}
+
+	public void setBigImg(String bigImg) {
+		this.bigImg = bigImg;
+	}
+	
+	public String getGrantImg() {
+		return grantImg;
+	}
+
+	public void setGrantImg(String grantImg) {
+		this.grantImg = grantImg;
+	}
+	
+	public String getSuperTypeIcon() {
+		return superTypeIcon;
+	}
+
+	public void setSuperTypeIcon(String superTypeIcon) {
+		this.superTypeIcon = superTypeIcon;
+	}
+	
 	public int getGoodsId() {
 		return goodsId;
 	}

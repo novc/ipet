@@ -10,6 +10,8 @@ public class Order {
 	
 	private int userId;
 	
+	private int goodsId;
+	
 	private String recvName;//收货人
 	
 	private User user;
@@ -26,14 +28,56 @@ public class Order {
 	
 	private String flagName;
 	
-	private List orderItem; //一个用户装订单项的List
+	private String goodsTitle; 
 	
-	public List getOrderItem() {
-		return orderItem; 
+	private float nowPrice; 
+	
+	private int buyNum; 
+	
+	private int goodsNum; 
+	
+	
+	
+	public int getGoodsId() {
+		return goodsId; 
 	}
 
-	public void setOrderItem(List orderItem) {
-		this.orderItem = orderItem;
+	public void setGoodsId(int goodsId) {
+		this.goodsId = goodsId;
+	}
+	
+	public float getNowPrice() {
+		return nowPrice; 
+	}
+
+	public void setNowPrice(float nowPrice) {
+		this.nowPrice = nowPrice;
+	}
+	
+	public int getgoodsNum() {
+		return goodsNum; 
+	}
+
+	public void setgoodsNum(int goodsNum) {
+		this.goodsNum = goodsNum;
+	}
+	
+	public int getBuyNum() {
+		return buyNum; 
+	}
+
+	public void setBuyNum(int buyNum) {
+		this.buyNum = buyNum;
+	}
+	
+	
+	
+	public String getGoodsTitle() {
+		return goodsTitle; 
+	}
+
+	public void setGoodsTitle(String goodsTitle) {
+		this.goodsTitle = goodsTitle;
 	}
 
 	public int getFlag() {

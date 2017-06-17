@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>购物车</title>
+	<link rel="icon" href="img/icon.png">
+	<link rel="stylesheet" type="text/css" href="css/basic.css">
+	<link rel="stylesheet" type="text/css" href="css/cart.css">
+	<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="js/cart.js"></script>
+</head>
+<body>
+	<div class="top"></div>
+	<div class="cart w w-max">
+		<div class="cart-tit">购物车</div>
+		
+		<div class="cart-area">
+			
+		</div>
+		<div class="cart-footer">
+			<div class="left fl">
+				<input id = 'allSelect' type="checkbox" checked>全选
+				<a href="javascript:getIds()">[删除选中商品]</a>
+			</div>
+			<div class="right fr">
+				<div class="sum-area fl">
+					<span class="lab">总价:</span>
+					<span class="sum-price">0</span>
+				</div>
+				<button class="buy-button">结算</button>
+			</div>
+			<div class='clearfix'></div>
+		</div>
+	</div>
+	<div class="footer"></div>
+	<div></div>
+</body>
+</html>

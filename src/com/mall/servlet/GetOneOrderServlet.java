@@ -21,16 +21,14 @@ public class GetOneOrderServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String orderId_str = request.getParameter("orderId");
 		if(orderId_str != null) {
-			response.setHeader("pragma", "no-cache");
-			response.setHeader("cache-control", "no-cache");
-			int orderId = 0;
-			orderId = Integer.parseInt(orderId_str);
+			int orderId = Integer.parseInt(orderId_str);
 			Model model = new Model();
-			List orderItemList = new ArrayList();
-			Order order = model.getOneOrder(orderId);
-			orderItemList = order.getOrderItem();
+			List orderList = model.getOneOrder(orderId);
+			
 			PrintWriter out = response.getWriter();
-			out.print(JSON.toJSON(orderItemList));
+			out.print(JSON.toJSON(orderList));
+			out.flush();
+			out.close();
 		}
 	}
 

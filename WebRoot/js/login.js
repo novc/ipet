@@ -1,6 +1,6 @@
 function login (){
 	var reg_user = new RegExp("^[\\u4e00-\\u9fa5_a-zA-Z0-9-]{3,16}$");// 昵称格式：限16个字符，支持中英文、数字、减号或下划线
-	  var reg_psw  = new RegExp("^(?![a-zA-z]+$)(?![0-9]+$)(?![!@#$%^&*]+$)[a-zA-Z0-9!@#$%^&*]{6,20}$"); //字母或数字、特殊符号中的两种组成
+	var reg_psw  = new RegExp("^(?![a-zA-z]+$)(?![0-9]+$)(?![!@#$%^&*]+$)[a-zA-Z0-9!@#$%^&*]{6,20}$"); //字母或数字、特殊符号中的两种组成
 	var name = $("input[name=name]").val();
 	var password = $("input[name=password]").val();
 	

@@ -154,6 +154,82 @@ a:hover{
     color : #000;
     background : url(../img/newbtn.png) 0 -113px;
 }
+/*---------------------logo-----------------*/
+.search-bar {
+    margin-top: 10px
+}
+
+.search-bar h1 a {
+    display: inline-block;
+    width: 120px;
+    height: 60px;
+    margin-left: 50px; 
+    background: url(../img/logo.png) no-repeat
+}
+
+.search-bar .search_box {
+    width: 484px;
+    margin: 17px 0 0 100px
+}
+
+.search-bar .search_box .search_form {
+    width: 480px;
+    border: 2px solid #459d36
+}
+
+.search-bar .search_box .search_form input {
+    font-family: "微软雅黑";
+    float: left;
+    width: 402px;
+    height: 30px;
+    padding-left: 13px;
+    color: #999;
+    border: 0
+}
+
+.search-bar .search_box .search_form button {
+    font-family: "微软雅黑";
+    float: left;
+    width: 65px;
+    height: 32px;
+    cursor: pointer;
+    color: #fff;
+    border: 0;
+    background-color: #459d36
+}
+
+.search-bar .search_box .hotlink {
+    padding-top: 12px
+}
+
+.search-bar .search_box .hotlink a {
+    line-height: 12px;
+    display: inline-block;
+    padding: 0 10px;
+    border-right: 1px solid #ccc
+}
+
+.search-bar .search_box .hotlink a:hover {
+    color: #444
+}
+
+.search-bar .phone_code {
+    width: 220px;
+    height: 25px;
+    margin: 25px 0 0 40px;
+    background: url(../img/bg.png) 0 -520px
+}
+
+.search-bar .shopingcar {
+    display:inline-block;
+    line-height: 39px;
+    width: 130px;
+    height: 39px;
+    margin: 17px 0 0;
+    text-indent: 4em;
+    color: #666;
+    background: url(../img/shopping-cart.gif)
+}
 
 
 /*----------------地区选择---------------------*/

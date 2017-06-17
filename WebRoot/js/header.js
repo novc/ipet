@@ -1,7 +1,59 @@
+function search(){
+	var value =encodeURIComponent($("input[name=search_value]").val());
+	window.location.href="searchout.html?key="+value;
+}
+$("input[name=search_value]").keydown(function(e){
+	if (!e) e = window.event;  
+    if ((e.keyCode || e.which) == 13) {  
+        search();
+    }
+});
 function topFun() {
+
+	
+//	检查是否登录
+	$.ajax({
+		url:"http://localhost:8080/ipet/checkLogin",
+		success:function(msg){
+			var res = JSON.parse(msg);
+			if(Boolean(res)){
+				$(".header_tr").prepend("<li>欢迎您： "+res.name+"</li>");
+				$("li[data-name=nologin]").css({"display":"none"});
+			}else{
+				$(".dropmn").css({"display":"none"});
+			}
+		}
+	});
+
+	$.ajax({
+		url:"http://localhost:8080/ipet/GetCartServlet",
+		success:function(msg){
+			var res = JSON.parse(msg);
+			if(res.length!=0){
+				$(".cart_num").html(res.length);
+				$(".prod_num").html(res.length);
+			}else{
+				$(".cart_num").html(0);
+			}
+		}
+	});
+	$.ajax({
+		url:"http://localhost:8080/ipet/getHotGoodsNameServlet",
+		success:function(msg){
+			var res = JSON.parse(msg);
+            var aLink = res;
+            var aLinkLength = aLink.length;
+            for (var i = 0; i < aLinkLength; i++) {
+                $(".hotlink").append("<a href='#'>" + aLink[i] + "</a>");
+            }
+            $(".hotlink a:first").css({ "padding-left": "0px" });
+            $(".hotlink a:last").css({ "border": "0px" });
+		}
+			
+	});
     /**
      * 地区选择----------------------*/
-
+	
     var nMainPlace = document.getElementsByClassName("main_place")[0];
     var nAreaBox = document.getElementsByClassName("area_box")[0];
     var nProvOpt = document.getElementsByClassName("province_opt")[0];

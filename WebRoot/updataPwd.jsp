@@ -68,12 +68,7 @@
        	
         <div class="clear"></div>
         </div><!--end of left content-->
-        <%@include file="right.jsp" %>
-        <!--end of right content-->
-  
-       <div class="clear"></div>
-       </div><!--end of center content-->
-        <%@include file="footer.jsp" %>  
+       
 </div>
   
   

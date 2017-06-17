@@ -4,7 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.mall.common.DbUtil;
 import com.mall.dao.GoodsDao;
@@ -13,47 +15,34 @@ import com.mall.po.Goods;
 import com.mall.po.Page;
 
 public class GoodsDaoImpl implements GoodsDao {
-	/**
-	 * 显示商品
-	 *  @param type 显示类别（热卖，新商品，降价,特别推荐）
-	 * @param flag 表示是否是（热卖，新商品，降价）
-	 */
-	public List showGoods(int type,int flag){
-		List all = new ArrayList();
+	
+	public List getGoodsBySuperId(){
 		PreparedStatement pstmt = null;
-		DbUtil dbUtil = null;
+		
 		ResultSet rs = null;
-		String sql = null;
-		if(type==0){
-			//显示所有商品
-			sql = "select * from tb_goods";
+		DbUtil dbUtil = null;
+			List goodsList = new ArrayList();
+			
+			String sql = "select * from tb_supertype,tb_subtype,tb_goods where tb_supertype.superTypeId = tb_goods.superTypeId and tb_subtype.subTypeId=tb_goods.subTypeId order by tb_goods.subTypeId";
 			try {
 				dbUtil = new DbUtil();
 				pstmt = dbUtil.getCon().prepareStatement(sql);
 				rs = pstmt.executeQuery();
-				while(rs.next()) {
+				while(rs.next()){
 					Goods goods = new Goods();
+					goods.setSuperTypeName(rs.getString("superTypeName"));
+					goods.setSubTypeName(rs.getString("subTypeName"));
 					goods.setGoodsId(rs.getInt("goodsId"));
 					goods.setSuperTypeId(rs.getInt("superTypeId"));
 					goods.setSubTypeId(rs.getInt("subTypeId"));
 					goods.setGoodsTitle(rs.getString("goodsTitle"));
 					goods.setIntroduce(rs.getString("introduce"));
-					goods.setBrandName(rs.getString("brandName"));
-					goods.setSpec(rs.getString("spec"));
-					goods.setMeasure(rs.getString("measure"));
 					goods.setPrice(rs.getFloat("price"));
 					goods.setNowPrice(rs.getFloat("nowPrice"));
-					goods.setIndexImg(rs.getString("indexImg"));
-					goods.setGoodsNum(rs.getInt("goodsNum"));
-					goods.setSellNum(rs.getInt("sellNum"));
+					goods.setIndexImg(rs.getString("indexImage"));
 					goods.setCollectNum(rs.getInt("collectNum"));
-					goods.setGoodsDetailImg(rs.getString("goodsDetailImg"));
-					goods.setKey(rs.getString("key"));
-					goods.setClick(rs.getInt("click"));
-					goods.setSale(rs.getInt("sale"));
-					goods.setSpecial(rs.getInt("special"));
-//					goodsList.add(goods);
-					all.add(goods);					
+					goods.setSuperTypeIcon(rs.getString("superTypeIcon"));
+					goodsList.add(goods);
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -66,43 +55,39 @@ public class GoodsDaoImpl implements GoodsDao {
 					e.printStackTrace();
 				}
 			}
-		}else {
-		if(type==1) {
-			//热卖商品
-			sql = "select * from tb_goods where sale=?";
+			return goodsList;
+	}
+
+	public List getGoodsSpecial(int type){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		DbUtil dbUtil = null;
+		List goodsList = new ArrayList();
+		String sql = "";
+		int num = 0;
+		if(type == 0){//获取特价商品
+			sql = "select * from tb_goods where sale =1 order by click";
 		}
-		if(type==2){
-			//新到商品
-			sql = "select * from tb_goods where sale=?";
+		if(type == 1){//获取推荐商品
+			sql = "select * from tb_goods where special = 1 order by collectNum";
 		}
-		if(type==3){
-			//打折商品
-			sql = "select * from tb_goods where sale=?";
-		}
-		if(type==4){
-		 // 特别推荐
-			sql = "select * from tb_goods where special=?";
-		}
-		if(type==9){
-			 // 分类查看
-				sql = "select * from tb_goods where superTypeId=?";
-		}
-		
-		
 		try {
 			dbUtil = new DbUtil();
 			pstmt = dbUtil.getCon().prepareStatement(sql);
-			pstmt.setInt(1, flag);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				Goods Goods = new Goods();
-				Goods.setGoodsId(rs.getInt("goodsId"));
-				Goods.setGoodsTitle(rs.getString("goodsTitle"));
-				Goods.setIntroduce(rs.getString("introduce"));
-				Goods.setPrice(rs.getFloat("price"));
-				Goods.setNowPrice(rs.getFloat("nowPrice"));
-				Goods.setIndexImg(rs.getString("indexImage"));
-				all.add(Goods);
+			while(rs.next()&&num<10){
+				num++;
+				Goods goods = new Goods();
+				goods.setGoodsId(rs.getInt("goodsId"));
+				goods.setSuperTypeId(rs.getInt("superTypeId"));
+				goods.setSubTypeId(rs.getInt("subTypeId"));
+				goods.setGoodsTitle(rs.getString("goodsTitle"));
+				goods.setIntroduce(rs.getString("introduce"));
+				goods.setPrice(rs.getFloat("price"));
+				goods.setNowPrice(rs.getFloat("nowPrice"));
+				goods.setIndexImg(rs.getString("indexImage"));
+				goods.setCollectNum(rs.getInt("collectNum"));
+				goodsList.add(goods);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -115,16 +100,16 @@ public class GoodsDaoImpl implements GoodsDao {
 				e.printStackTrace();
 			}
 		}
-		}
-		return all;
+		return goodsList;
 	}
+	
 	public List getNavTypeName(){
 		PreparedStatement pstmt = null;
 		
 		List goodsNavList = new ArrayList();
 		ResultSet rs = null;
 		DbUtil dbUtil = null;
-		String sql = "select tb_supertype.superTypeName,tb_subtype.subTypeName from tb_supertype,tb_subtype where tb_subtype.superTypeId=tb_supertype.superTypeId";
+		String sql = "select * from tb_supertype";
 		try {
 			dbUtil = new DbUtil();
 			pstmt = dbUtil.getCon().prepareStatement(sql);
@@ -132,7 +117,7 @@ public class GoodsDaoImpl implements GoodsDao {
 			while(rs.next()){
 				Goods goods = new Goods();
 				goods.setSuperTypeName(rs.getString("superTypeName"));
-				goods.setSubTypeName(rs.getString("subTypeName"));
+				goods.setSuperTypeId(rs.getInt("superTypeId"));
 				goodsNavList.add(goods);
 			}
 		} catch (SQLException e) {
@@ -148,6 +133,161 @@ public class GoodsDaoImpl implements GoodsDao {
 		}
 		return goodsNavList;
 	}
+	
+	public List searchGoodsByKey(String val){
+		PreparedStatement pstmt = null;
+		Goods goods = null;
+		List goodsList = new ArrayList();
+		ResultSet rs = null;
+		DbUtil dbUtil = null;
+		String sql = "select * from tb_goods where `key` like '%"+val+"%'";
+		try {
+			dbUtil = new DbUtil();
+			pstmt = dbUtil.getCon().prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				goods = new Goods();
+				goods.setGoodsId(rs.getInt("goodsId"));
+				goods.setSuperTypeId(rs.getInt("superTypeId"));
+				goods.setGoodsTitle(rs.getString("goodsTitle"));
+				goods.setIntroduce(rs.getString("introduce"));
+				goods.setPrice(rs.getFloat("price"));
+				goods.setNowPrice(rs.getFloat("nowPrice"));
+				goods.setIndexImg(rs.getString("indexImage"));
+				goods.setCollectNum(rs.getInt("collectNum"));
+				goods.setSellNum(rs.getInt("sellNum"));
+				
+				goodsList.add(goods);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				pstmt.close();
+				dbUtil.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return goodsList;
+	}
+	
+	public List getGoodsList(int goodsId){
+		PreparedStatement pstmt = null;
+		Goods goods = null;
+		List goodsList = new ArrayList();
+		ResultSet rs = null;
+		DbUtil dbUtil = null;
+		String sql = "select * from tb_goods natural join tb_supertype where tb_supertype.superTypeId = ?";
+		try {
+			dbUtil = new DbUtil();
+			pstmt = dbUtil.getCon().prepareStatement(sql);
+			pstmt.setInt(1, goodsId);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				goods = new Goods();
+				goods.setGoodsId(goodsId);
+				goods.setSuperTypeName(rs.getString("superTypeName"));
+				goods.setGoodsId(rs.getInt("goodsId"));
+				goods.setSuperTypeId(rs.getInt("superTypeId"));
+				goods.setGoodsTitle(rs.getString("goodsTitle"));
+				goods.setIntroduce(rs.getString("introduce"));
+				goods.setPrice(rs.getFloat("price"));
+				goods.setNowPrice(rs.getFloat("nowPrice"));
+				goods.setIndexImg(rs.getString("indexImage"));
+				goods.setCollectNum(rs.getInt("collectNum"));
+				goods.setSellNum(rs.getInt("sellNum"));
+				
+				goodsList.add(goods);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				pstmt.close();
+				dbUtil.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return goodsList;
+	}
+	
+	
+	public Goods getGoodsDetail(int goodsId){
+		PreparedStatement pstmt = null;
+		Goods goods = null;
+		ResultSet rs = null;
+		DbUtil dbUtil = null;
+		String sql = "select * from tb_goods natural join tb_goodsImg where tb_goods.goodsId = ?";
+		try {
+			dbUtil = new DbUtil();
+			pstmt = dbUtil.getCon().prepareStatement(sql);
+			pstmt.setInt(1, goodsId);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				goods = new Goods();
+				goods.setGoodsId(goodsId);
+				goods.setBrandName(rs.getString("brandName"));
+				goods.setGoodsTitle(rs.getString("goodsTitle"));
+				goods.setIntroduce(rs.getString("introduce"));
+				goods.setMeasure(rs.getString("measure"));
+				goods.setNowPrice(rs.getFloat("nowPrice"));
+				goods.setGoodsNum(rs.getInt("goodsNum"));
+				goods.setGoodsDetailImg(rs.getString("goodsDetailImg"));
+				goods.setSpec(rs.getString("spec"));
+				goods.setSmallImg(rs.getString("smallImg"));
+				goods.setBigImg(rs.getString("bigImg"));
+				goods.setGrantImg(rs.getString("grantImg"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				pstmt.close();
+				dbUtil.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return goods;
+	}
+	
+	public List getHotGoodsName(){
+		PreparedStatement pstmt = null;
+		List goodsHotList = new ArrayList();
+		ResultSet rs = null;
+		DbUtil dbUtil = null;
+		int num = 0;
+		String sql = "select * from tb_goods order by click desc";
+		try {
+			dbUtil = new DbUtil();
+			pstmt = dbUtil.getCon().prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()&&num<5){
+				goodsHotList.add(rs.getString("brandName"));
+				num ++;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				rs.close();
+				pstmt.close();
+				dbUtil.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return goodsHotList;
+	}
+	
 	public boolean updateGoodsNum(int num,int GoodsId) {
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;
@@ -241,7 +381,7 @@ public class GoodsDaoImpl implements GoodsDao {
 				goods.setMeasure(rs.getString("measure"));
 				goods.setPrice(rs.getFloat("price"));
 				goods.setNowPrice(rs.getFloat("nowPrice"));
-				goods.setIndexImg(rs.getString("indexImg"));
+				goods.setIndexImg(rs.getString("indexImage"));
 				goods.setGoodsNum(rs.getInt("goodsNum"));
 				goods.setSellNum(rs.getInt("sellNum"));
 				goods.setCollectNum(rs.getInt("collectNum"));
@@ -328,86 +468,7 @@ public class GoodsDaoImpl implements GoodsDao {
 		}
 		return flag;
 	}
-	/**
-	 * 分页显示商品
-	 * @param type 按要求显示相应的商品
-	 * @param currentPage 显示出来的当前页码
-	 * @param pageSize 每页显示数目
-	 * @param flag 是否分类显示标识，
-	 *             -1          否
-	 *             other 大分类ID
-	 *             
-	 * @return Page
-	 */
-	public Page doPage(int type,int currentPage,int pageSize,int flag){
-		Page page = new Page();
-		int totalNum = 0;
-		if(flag == -1) {
-			totalNum = showGoods(type,1).size();
-		} else {
-			totalNum = showGoods(9,flag).size();
-		}
-		
-		List pageList = new ArrayList();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		DbUtil dbUtil = null;
-		String sql = null;
-		
-		if(flag == -1) {
-			if(type==0){//显示所有商品
-				sql = "select * from tb_goods limit "+currentPage+","+pageSize;
-			}
-			if(type==1) {
-				//热卖商品
-				sql = "select * from tb_goods where hostGoods=1 limit "+currentPage+","+pageSize;
-			}
-			if(type==2){
-				//新到商品
-				sql = "select * from tb_goods where newGoods=1 limit "+currentPage+","+pageSize;
-			}
-			if(type==3){
-				//打折商品
-				sql = "select * from tb_goods where saleGoods=1 limit "+currentPage+","+pageSize;
-			}
-			if(type==4){
-				//特别推荐
-				sql = "select * from tb_goods where specialGoods=1 limit "+currentPage+","+pageSize;
-			}
-		} else {
-			//分类商品
-			sql = "select * from tb_goods where superTypeId="+flag+" limit "+currentPage+","+pageSize;
-		}
-		
-		try {
-			dbUtil = new DbUtil();
-			pstmt = dbUtil.getCon().prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()){
-				Goods Goods = new Goods();
-			    Goods.setGoodsId(rs.getInt("goodsId"));
-//				Goods.setGoodsName(rs.getString("goodsName"));
-//				Goods.setPicture(rs.getString("picture"));
-				Goods.setPrice(rs.getFloat("price"));
-				Goods.setNowPrice(rs.getFloat("nowPrice"));
-				pageList.add(Goods);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				rs.close();
-				pstmt.close();
-				dbUtil.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
-		page.setPageList(pageList);
-		page.setTotalNum(totalNum);
-		return page;
-	}
+	
 	/**
 	 * 根据用户输入的关键字搜索相关商品
 	 * @param keywords 用户输入的关键字 

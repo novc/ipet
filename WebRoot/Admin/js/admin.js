@@ -155,9 +155,8 @@ function deleteUsers(){
 	if(rows){
 		for(var i=0; i<rows.length; i++){
 			ids.push(rows[i].id);
-			var sIds = ids.join(",");
 		}
-		deleteUser(sIds);
+		deleteUser(ids.toString());
 	}else{
 		alert("请选中要删除的项目");
 	}
@@ -165,19 +164,21 @@ function deleteUsers(){
 
 //删除用户
 function deleteUser(id){
-	window.confirm("确认删除用户？");
-	$.ajax({
-		url:"http://nov:8080/ipet/deleteUser",
-		type:"POST",
-		data:{
-			"ids":id
-		},
-		success:function(msg){
-			window.alert(msg);
-			window.location.reload(true);
-		}
-	});
-	return;
+	if(window.confirm("确认删除用户？")){
+		$.ajax({
+			url:"http://nov:8080/ipet/deleteUser",
+			type:"POST",
+			data:{
+				"ids":id
+			},
+			success:function(msg){
+				window.alert(msg);
+				window.location.reload(true);
+			}
+		});
+		return;
+	}
+	
 }//end of deleteUser
 //用户信息详情
 function DetailUserInit(){
@@ -326,81 +327,18 @@ function initOrderList(){
 						return '<div class="ddv" style="padding:2px 20px"></div>';
 					},
 					onExpandRow: function(index,row){
-						
-					function endEditing(){//判断是否处于编辑状态
-						if (editIndex == undefined) { return true }
-					    if ($('.ddv').datagrid('validateRow', editIndex)) {
-					        $('.ddv').datagrid('endEdit', editIndex);
-					        editIndex = undefined;
-					        return true;
-					    } else {
-					        return false;
-					    }
-					}
-//						进入编辑状态，或者因其他行正在编辑而只是选中
-					function BeginEdit(index,f2,findex){
-						if (editIndex != index){
-							if (endEditing()){
-								$('.ddv').datagrid('selectRow', index)
-										.datagrid('beginEdit', index);
-								editIndex = index;
-							} else {
-								$('.ddv').datagrid('selectRow', editIndex);
-							}
-						}
-						$(".ddv").datagrid('beginEdit', index);
-					}
-//						结束编辑
-					function endEditor(index){
-						$('.ddv').datagrid('endEdit',index);
-						editIndex = undefined;
-					}
-//						取消 编辑
-					function cancleEditor(index){
-						$('.ddv').datagrid('cancelEdit',index);
-						editIndex = undefined;
-					}
-					
 						$(".ddv").datagrid({
 							url:"http://nov:8080/ipet/getOneOrderServlet?orderId="+row.orderId,
 							fitColumns:true,
 							striped:true,//条纹显示
 							onDblClickCell:BeginEdit,//双击单元格
 							columns:[[
-						          {field:'orderItemId',title:'订单项ID',width:70,align:'center'},
+						          {field:'orderId',title:'订单项ID',width:70,align:'center'},
 						          {field:'goodsId',title:'商品ID',width:50,align:'center'},
-						          {field:'goodsName',title:'商品名称',width:100,align:'center'},
-						          {field:'price',title:'单价',width:50,align:'center',editor:'numberbox'},
-						          {field:'goodsNum',title:'商品数量',width:70,align:'center',editor:'numberbox'},
-						          {field:'flag1',width:40,align:'center',formatter: function(f,res,index){
-										return "<a href='javascript:cancleEditor("+index+")'>取消</a>";
-								  }},
-								  {field:'flag2',width:60,align:'center',formatter: function(f1,res,index){
-										return "<a href='javascript:endEditor("+index+")'>提交修改</a>";
-								  }},
-								  {field:'flag4',width:40,align:'center',formatter: function(f2,res){
-									  	return "<a href='javascript:deleteOrderItem("+res.orderItemId+")' >删除</a>";
-								  }}
+						          {field:'goodsTitle',title:'商品名称',width:100,align:'center'},
+						          {field:'nowPrice',title:'单价',width:50,align:'center',editor:'numberbox'},
+						          {field:'buyNum',title:'商品数量',width:70,align:'center',editor:'numberbox'},
 							]],
-							onAfterEdit:function(rowIndex, rowData, changes){
-								if($.isEmptyObject(changes)){
-									alert("您没有做修改");
-								}else{
-									$.ajax({
-										url:"http://nov:8080/ipet/UpdateOrderItemServlet",
-										type:"POST",
-										data:{
-											orderItemId:rowData.orderItemId,
-											price:rowData.price,
-											goodsNum:rowData.goodsNum,
-										},
-										success:function(msg){
-											alert(msg);
-											window.location.reload(true);
-										}
-									});
-								}
-							},
 							onLoadSuccess:function(){  
 			                    setTimeout(function(){  
 			                        $('#dg').datagrid('fixDetailRowHeight',index);//在加载爷爷列表明细（即：父列表）成功时，获取此时整个列表的高度，使其适应变化后的高度，此时的索引  
@@ -421,18 +359,20 @@ function initOrderList(){
 }//end of initOrderList
 //	删除订单
 function deleteOrder(orderId) {
-	window.confirm("确认删除该订单？");
-	$.ajax({
-		url:"http://nov:8080/ipet/deleteOrderServlet",
-		type:"POST",
-		data:{
-			"orderId":orderId
-		},
-		success:function(msg){
-			window.alert(msg);
-			window.location.reload(true);
-		}
-	})
+	if(window.confirm("确认删除该订单？")){
+		$.ajax({
+			url:"http://nov:8080/ipet/deleteOrderServlet",
+			type:"POST",
+			data:{
+				"orderId":orderId
+			},
+			success:function(msg){
+				window.alert(msg);
+				window.location.reload(true);
+			}
+		})
+	}
+	
 };//end of 订单删除
 
 //	批量删除订单
@@ -704,18 +644,20 @@ function initAdminList(){
 }
 	
 function deleteAdmin(id){
-	window.confirm("确认删除管理员？");
-	$.ajax({
-		url:"http://nov:8080/ipet/deleteAdmin",
-		type:"POST",
-		data:{
-			"adminIds":id
-		},
-		success:function(msg){
-			window.alert(msg);
-			window.location.reload(true);
-		}
-	});
+	if(window.confirm("确认删除管理员？")){
+		$.ajax({
+			url:"http://nov:8080/ipet/deleteAdmin",
+			type:"POST",
+			data:{
+				"adminIds":id
+			},
+			success:function(msg){
+				window.alert(msg);
+				window.location.reload(true);
+			}
+		});
+	}
+	
 }
 
 function seeGoodsAdmins(){

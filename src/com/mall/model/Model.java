@@ -43,9 +43,7 @@ import com.mall.po.GoodsPager;
 import com.mall.po.Inform;
 import com.mall.po.InformPager;
 import com.mall.po.Note;
-import com.mall.po.NotePager;
 import com.mall.po.Order;
-import com.mall.po.OrderItem;
 import com.mall.po.OrderNotSendPager;
 import com.mall.po.OrderPager;
 import com.mall.po.OrderSendPager;
@@ -102,10 +100,7 @@ public class Model {
 	public User getUser(String name){
 		return ud.getUser(name);
 	}
-	//显示商品
-	public List showGoods(int type,int flag) {
-		return gd.showGoods(type, flag);
-	}
+	
 	//根据商品的GoodsId来显示商品的详细信息
 	public Goods showGoodsById(int GoodsId){
 		return gd.showGoodsById(GoodsId);
@@ -121,10 +116,7 @@ public class Model {
 		return od.addOrder(order);
 	}
 
-	//分页显示商品
-	public Page doPage(int type,int currentPage,int pageSize, int flag){
-		return gd.doPage(type,currentPage, pageSize,flag);
-	}
+	
 	//根据用户输入的关键字搜索相关商品
 	public List searchGoods(String keywords){
 		return gd.searchGoods(keywords);
@@ -202,10 +194,6 @@ public class Model {
 	
 	public boolean deleteUsers(int[] ids) {
 		return userDao.deleteUsers(ids);
-	}
-	
-	public UserPager getUserPager(int index, int pageSize) {
-		return userDao.getUserPager(index, pageSize);
 	}
 	
 	public User getUserByUserId(int userid){
@@ -334,11 +322,7 @@ public class Model {
 	public boolean deleteNote(int[] ids) {
 		return noteDao.deleteNote(ids);
 	}
-	
-	public NotePager getNotePager(int index, int pageSize) {
-		return noteDao.getNotePager(index, pageSize);
-	}
-	
+
 	public int login(Admin admin) {
 		return adminLoginDao.login(admin);
 	}
@@ -375,7 +359,7 @@ public class Model {
 		return adminOrderDao.getAllOrder();
 	}
 	
-	public Order getOneOrder(int id) {
+	public List getOneOrder(int id) {
 		return adminOrderDao.getOneOrder(id);
 	}
 	
@@ -400,11 +384,7 @@ public class Model {
 	public boolean deleteOrder(int[] ids) {
 		return adminOrderDao.deleteOrders(ids);
 	}
-	
-	public boolean UpdateOrderItem(OrderItem orderItem) {
-		return adminOrderDao.UpdateOrderItem(orderItem);
-	}
-	
+
 	public boolean deleteOrderItems(int[] ids) {
 		return adminOrderDao.deleteOrderItems(ids);
 	}

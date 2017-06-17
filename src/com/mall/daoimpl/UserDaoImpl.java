@@ -69,6 +69,7 @@ public class UserDaoImpl implements UserDao{
 					user.setPhone(rs.getString("phone"));
 					user.setPostcode(rs.getString("postcode"));
 					user.setTrueName(rs.getString("trueName"));
+					user.setId(rs.getInt("id"));
 					return user;
 				}
 			}else {

@@ -10,11 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.alibaba.fastjson.JSON;
 import com.mall.model.Model;
 import com.mall.po.Goods;
 import com.mall.po.Order;
-import com.mall.po.OrderItem;
 
 public class AdminSendOrderServlet extends HttpServlet {
 
@@ -26,25 +24,28 @@ public class AdminSendOrderServlet extends HttpServlet {
 			orderId = Integer.parseInt(orderId_str);
 		}
 		Model model = new Model();
+		
 		//根据订单号获得订单信息
-		Order order=model.getOneOrder(orderId);
-		//获得订单号对应的订单项List
-		List orderItemList = (List) order.getOrderItem();
-		int size = orderItemList.size();
+		List orderList = model.getOneOrder(orderId);
+
+		int size = orderList.size();
 		PrintWriter out=response.getWriter();
+		
 		//逐条读取每条订单项
 		if(size==0){
-			String str1 = new String("订单数据错误，没有对应的订单项");
+			String str1 = new String("数据库数据出错");
 			out.println(str1);
 		}else{
 			for(int i=0;i<size;i++){
-				OrderItem orderItem=(OrderItem) orderItemList.get(i);
-				Goods Goods=model.showGoodsById(orderItem.getGoodsId());
-				if(orderItem.getGoodsNum()< Goods.getGoodsNum()){
-					int newNum = Goods.getGoodsNum()-orderItem.getGoodsNum();
-					model.updateGoodsNum(newNum, orderItem.getGoodsId());
+				
+				Order order=(Order) orderList.get(i);
+				Goods Goods=model.showGoodsById(order.getGoodsId());
+				
+				if(order.getBuyNum()< Goods.getGoodsNum()){
+					int newNum = Goods.getGoodsNum()-order.getBuyNum();
+					model.updateGoodsNum(newNum, order.getGoodsId());
 					model.SendOrder(orderId);
-					out.print("成功");
+					out.print("发货成功");
 				}else {
 					String str = new String("库存不足");
 					out.println(str);

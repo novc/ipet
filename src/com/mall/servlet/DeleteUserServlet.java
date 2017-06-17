@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mall.daoimpl.CartDaoImpl;
 import com.mall.model.Model;
 
 public class DeleteUserServlet extends HttpServlet {
@@ -16,6 +17,7 @@ public class DeleteUserServlet extends HttpServlet {
 		//获得用户 id集合
 		String userIds_str = request.getParameter("ids");
 		String [] ids_str = null;
+		CartDaoImpl cartImpl = new CartDaoImpl();
 		if(userIds_str != null) {
 			ids_str = userIds_str.split(",");
 		}
@@ -24,8 +26,18 @@ public class DeleteUserServlet extends HttpServlet {
 			ids[i] = Integer.parseInt(ids_str[i]);
 		}
 		Model model = new Model();
+		Boolean bo = false;
+		Boolean bo1 = cartImpl.deleteCartsByUserId(ids);
+		System.out.println(bo1);
+		if(bo1){
+			bo = model.deleteUsers(ids);
+		}else{
+			System.out.print(333333);
+		}
+		System.out.println("bo:"+bo);
+		
 		PrintWriter out = response.getWriter();
-		if(model.deleteUsers(ids)) {
+		if(bo){
 			out.print("删除成功");
 		}else{
 			out.print("删除失败");

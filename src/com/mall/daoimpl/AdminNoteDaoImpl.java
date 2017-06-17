@@ -12,7 +12,6 @@ import java.util.Map;
 import com.mall.common.DbUtil;
 import com.mall.dao.AdminNoteDao;
 import com.mall.po.Note;
-import com.mall.po.NotePager;
 
 public class AdminNoteDaoImpl implements AdminNoteDao {
 
@@ -83,46 +82,6 @@ public class AdminNoteDaoImpl implements AdminNoteDao {
 			}
 		}
 		return false;
-	}
-
-	public NotePager getNotePager(int index, int pageSize) {
-		Map noteMap = new HashMap();
-		DbUtil db = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			db = new DbUtil();
-			String sql = "select * from tb_note limit ?,?";
-			ps = db.getCon().prepareStatement(sql);
-			ps.setInt(1, index);
-			ps.setInt(2, pageSize);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				Note note = new Note();
-				note.setId(rs.getInt("id"));
-				note.setAuthor(rs.getString("author"));
-				note.setTitle(rs.getString("title"));
-				note.setContent(rs.getString("content"));
-				note.setLy_time(rs.getString("ly_time"));
-				note.setImgs(rs.getString("imgs"));
-				noteMap.put(note.getId(), note);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				ps.close();
-				db.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		NotePager np = new NotePager();
-		np.setNoteMap(noteMap);
-		np.setPageSize(pageSize);
-		np.setTotalNum(getAllNotes().size());
-		return np;
 	}
 
 }

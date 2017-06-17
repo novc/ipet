@@ -30,10 +30,12 @@ public class LoginServlet extends HttpServlet {
 			
 			if(!nameList.contains(name)) {
 				request.getSession().setAttribute("name", name);
+				request.getSession().setAttribute("user", user);
 				out.print(1);
 				
 			} else {
 				request.getSession().setAttribute("name", name);
+				request.getSession().setAttribute("user", user);
 				out.print(0);
 			}
 			

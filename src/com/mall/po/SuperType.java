@@ -12,6 +12,10 @@ public class SuperType implements Serializable{
 	private int superTypeId;
 
 	private String typeName;
+	
+	private String superTypeIcon;
+	
+	
 
 	public int getSuperTypeId() {
 		return superTypeId;
@@ -27,6 +31,14 @@ public class SuperType implements Serializable{
 
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
+	}
+	
+	public String getSuperTypeIcon() {
+		return superTypeIcon;
+	}
+
+	public void setSuperTypeIcon(String superTypeIcon) {
+		this.superTypeIcon = superTypeIcon;
 	}
 
 }
