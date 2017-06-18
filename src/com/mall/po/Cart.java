@@ -9,6 +9,9 @@ public class Cart {
 
 	private int goodsNum;
 	
+	private int cartgoodsNum;
+	
+	
 	private Goods goods;
 	
 	public Goods getGoods(){
@@ -18,8 +21,14 @@ public class Cart {
 	public void setGoods(Goods goods){
 		this.goods = goods;
 	}
-	
 
+	public int getCartGoodsNum() {
+		return cartgoodsNum;
+	}
+
+	public void setCartGoodsNum(int cartgoodsNum) {
+		this.cartgoodsNum = cartgoodsNum;
+	}
 
 	public int getGoodsId() {
 		return goodsId;
@@ -28,7 +37,6 @@ public class Cart {
 	public void setGoodsId(int goodsId) {
 		this.goodsId = goodsId;
 	}
-
 
 	public int getGoodsNum() {
 		return goodsNum;

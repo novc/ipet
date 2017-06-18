@@ -45,7 +45,7 @@ $(document).ready(function(){
 				var oTitle = "<p><a href=''>"+oData[i].goodsTitle+"</a></p>";
 				var oPrice = "<div class='img-foot'><span class='old-price'>"+oData[i].price+"</span><span class='price'>"+oData[i].nowPrice+"</span>";
 				var oCollect = "<span class='collect'>❤ <i> "+oData[i].collectNum+"</i></span></div>";
-				var oAddCart = "<a class='cart-add' href='http://localhost:8080/ipet/Addcart?GoodsId="+oData[i].goodsId+"'&GoodsNum=1>加入购物车</a></li>";
+				var oAddCart = "<a class='cart-add' href='javascript:addCart("+oData[i].goodsId+")'>加入购物车</a></li>";
 				var oAll = oImgBox+oTitle+oPrice+oCollect+oAddCart;
 				$(".food-pro:last .libconbox ul").append(oAll);
 			}
@@ -112,7 +112,7 @@ $(document).ready(function(){
 			}
 			$(".lib-menu li").mouseenter(function(){
 				var subTypeId = $(this).attr("cate");
-				$(this).parent("ul").chilidren("li").removeClass("active");
+				$(this).parent("ul").children("li").removeClass("active");
                 $(this).addClass("active");
                 var $ul = $(this).parents(".food-pro").children(".libconbox").children(".pro-list").children("ul");
                 $ul.empty();

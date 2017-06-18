@@ -270,8 +270,11 @@ public class GoodsDaoImpl implements GoodsDao {
 			dbUtil = new DbUtil();
 			pstmt = dbUtil.getCon().prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			while(rs.next()&&num<5){
-				goodsHotList.add(rs.getString("brandName"));
+			while(rs.next()&&num<3){
+				Goods goods = new Goods();
+				goods.setGoodsId(rs.getInt("goodsId"));
+				goods.setGoodsTitle(rs.getString("goodsTitle"));
+				goodsHotList.add(goods);
 				num ++;
 			}
 		} catch (SQLException e) {
@@ -316,27 +319,17 @@ public class GoodsDaoImpl implements GoodsDao {
 	public boolean updateGoods(Goods Goods){
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;
-		String sql = "update tb_goods set goodsName=?,goodsNum=?,introduce=?,ISBN=?,author=?,superTypeId=?,subTypeId=?,publisher=?,price=?,nowPrice=?," +
-				"produceDate=?,hostGoods=?,newGoods=?,saleGoods=?,specialGoods=? where goodsId=?";
+		System.out.println(Goods.getKey());
+		String sql = "update tb_goods set goodsTitle='"+Goods.getGoodsTitle()+"'," +
+				"introduce='"+Goods.getIntroduce()+"'," +
+						"brandName='"+Goods.getBrandName()+"'," +
+								"price="+Goods.getPrice()+",nowPrice="+Goods.getNowPrice()+"," +
+				"sale="+Goods.getSale()+",special="+Goods.getSpecial()+",`key`='"+Goods.getKey()+"'," +
+						"goodsNum="+Goods.getGoodsNum()+" where goodsId="+Goods.getGoodsId();
 		try {
 			daoUtil = new DbUtil();
 			ps = daoUtil.getCon().prepareStatement(sql);
-//			ps.setString(1, Goods.getGoodsName());
-//			ps.setInt(2, Goods.getGoodsNum());
-//            ps.setString(3, Goods.getIntroduce());
-//            ps.setString(4, Goods.getISBN());
-//            ps.setString(5, Goods.getAuthor());
-//            ps.setInt(6, Goods.getSuperTypeId());
-//            ps.setInt(7, Goods.getSubTypeId());
-//            ps.setString(8, Goods.getPublisher());
-//            ps.setFloat(9, Goods.getPrice());
-//            ps.setFloat(10, Goods.getNowPrice());
-//            ps.setString(11, Goods.getProduceDate());
-//            ps.setInt(12, Goods.getHostGoods());
-//            ps.setInt(13, Goods.getNewGoods());
-//            ps.setInt(14, Goods.getSaleGoods());
-//            ps.setInt(15, Goods.getSpecialGoods());
-//            ps.setInt(16, Goods.getGoodsId());
+            System.out.println(sql);
 			int i = ps.executeUpdate();
 			if(i != 0) {
 				return true;

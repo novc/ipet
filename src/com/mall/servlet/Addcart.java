@@ -30,7 +30,7 @@ public class Addcart extends HttpServlet {
 			String str_GoodsId = request.getParameter("GoodsId");
 			String str_GoodsNum = request.getParameter("GoodsNum");
 			int n_goodsId = 0;
-			int n_goodsNum = 0;
+			int n_goodsNum = 1;
 			
 			if(str_GoodsId!=null){
 				n_goodsId = Integer.parseInt(str_GoodsId);
@@ -40,9 +40,8 @@ public class Addcart extends HttpServlet {
 			}
 			Cart cart = new Cart();
 			cart.setGoodsId(n_goodsId);
-			cart.setGoodsNum(n_goodsNum);
+			cart.setCartGoodsNum(n_goodsNum);
 			cart.setUserId(user.getId());
-			
 			CartDaoImpl cartImpl = new CartDaoImpl();
 			
 			Boolean bo = cartImpl.addCart(cart);

@@ -13,9 +13,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
 	
 	<script type="text/javascript">
 		var req;
@@ -112,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		var GoodsName_IsExist;
 		function checkGoodsNameIsExist() {
-			var GoodsName = document.getElementById("GoodsName");
+			var GoodsName = document.getElementById("goodsTitle");
 			var url = "checkGoodsNameIsExist?GoodsName="+GoodsName.value;
 			sendGoodsName(url);
 		}
@@ -143,85 +140,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}
 		}
 		function checkGoodsName() {
-			var GoodsName = document.getElementById("GoodsName");
+			var GoodsName = document.getElementById("goodsTitle");
 			var GoodsNameDiv = document.getElementById("GoodsNameDiv");
 			if(GoodsName.value == "") {
-				GoodsNameDiv.innerHTML = "商品名不能为空";
+				GoodsNameDiv.innerHTML = "商品名称不能为空";
 			} else {
+				GoodsNameDiv.innerHTML = "";
 				checkGoodsNameIsExist();
 			}
 		}
 		
-		var ISBN_IsExist;
-		function checkISBNIsExist() {
-			var isbn = document.getElementById("ISBN");
-			var url = "checkISBNIsExist?ISBN="+isbn.value;
-			sendISBN(url);
-		}
-		function sendISBN(url) {
-			if(window.XMLHttpRequest) {
-				req = new XMLHttpRequest();
-			} else if(window.ActiveXObject) {
-				req = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			req.onreadystatechange = ISBNIsExist;
-			req.open("get",url,true);
-			req.send(null);
-		}
-		function ISBNIsExist() {
-			if(req.readyState == 4) {
-				if(req.status == 200) {
-					var returnXml = req.responseXML;
-					var ISBNDiv = document.getElementById("ISBNDiv");
-					var state = returnXml.getElementsByTagName("state")[0].firstChild.data;
-					var content = returnXml.getElementsByTagName("content")[0].firstChild.data;
-					if(state == "true") {
-						ISBN_IsExist = true;
-					} else {
-						ISBN_IsExist = false;
-					}
-					ISBNDiv.innerHTML = content;
-				}
-			}
-		}
-		function checkISBN() {
-			var isbn = document.getElementById("ISBN");
-			var isbnDiv = document.getElementById("ISBNDiv");
-			if(isbn.value == "") {
-				isbnDiv.innerHTML = "商品编号不能为空";
-			} else {
-				checkISBNIsExist();
-			}
-		}
-		
-		var checkPages_;
-		function checkPages() {
-			var pages = document.getElementById("pages");
-			var pagesDiv = document.getElementById("pagesDiv");
-			var pattern = /(?:19|20\d{2})\/(?:0[1-9]|1[0-2])\/(?:0[1-9]|[12][0-9]|3[01])/;
-			if(pages.value == "") {
-				pagesDiv.innerHTML = "生产日期不能为空";
-				checkPages_ = false;
-			} else if(pattern.test(pages.value)) {
-				pagesDiv.innerHTML = "√";
-				checkPages_ = true;
-			} else {
-				pagesDiv.innerHTML = "格式不对";
-				checkPages_ = false;
-			}
-		}
-		var checkPublisher_;
-		function checkPublisher() {
-			var publisher = document.getElementById("publisher");
-			var publisherDiv = document.getElementById("publisherDiv");
-			if(publisher.value == "") {
-				publisherDiv.innerHTML = "产地不能为空";
-				checkPublisher_ = false;
-			} else {
-				publisherDiv.innerHTML = "√";
-				checkPublisher_ = true;
-			}
-		}
 		var checkAuthor_ ;
 		function checkAuthor() {
 			var author = document.getElementById("author");
@@ -286,103 +214,126 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			var s1 = document.getElementById("superTypeId");
 			var s2 = document.getElementById("subTypeId");
 			var typeDiv = document.getElementById("typeDiv");
-			if(s1.value == "0" || s2.value == "0" || s2.value == "") {
-				typeDiv.innerHTML = "请匹配大类和小类";
-			} else if(!GoodsName_IsExist && !ISBN_IsExist && checkPages_ && checkPublisher_ && checkAuthor_ && checkPrice_ && checkNowPrice_ && checkGoodsNum_) {
-				var oForm = document.getElementsByTagName("form")[0];
-				oForm.submit();
-			}
+			var oForm = document.getElementsByTagName("form")[0];
+			oForm.submit();
 		}
 	</script>
-		
-	<link rel="stylesheet" type="text/css" href="Admin/css/body.css">
-	<link rel="stylesheet" type="text/css" href="Admin/css/td_fontSize.css">
+	<link rel="stylesheet" type="text/css" href="Admin/css/basic.css" />
+	<link rel="stylesheet" type="text/css" href="Admin/css/admin.css" />
+	<style>
+		select{
+			line-height:25px;
+			height:25px;
+		}
+		table{
+			margin-left:50px;
+			margin-top:20px;
+			
+		}
+		tr{
+			margin:5px 0px;
+			line-height:25px;
+			font-size:14px;
+		}
+		tr td:first-child{
+			width:120px;
+			text-align:right;
+			padding-right:15px;
+		}
+	</style>
 	
   </head>
-   <body onload="getSuperType()">
-  
-  		<form action="addGoodsServlet" method="get">
+  <body>
+<div class="Content">
+	<div class="title">添加商品</div>
+	<form action="addGoodsServlet" method="POST">
     	<table>
     		<tr>
 				<td>选择类别:</td>
-				<td>大类<select id="superTypeId" name="superTypeId" onchange="getSubType()">
-							<option value="0">--选择大类--</option>
-							<c:forEach var="superType" items="${superTypes }">
-								<option value="${superType.superTypeId }">${superType.typeName }</option>
-							</c:forEach>
-							</select>
+				<td>主类&nbsp;&nbsp; <select id="superTypeId" name="superTypeId" onchange="getSubType()">
+							<option value="0">选择主类</option>
+							<option value="1">狗狗主粮</option>
+							<option value="2">狗狗零食</option>
+							<option value="3">狗狗日用&医疗</option>
+							<option value="4">猫咪主粮</option>
+							<option value="5">猫咪零食</option>
+							<option value="6">猫咪日用&医疗</option>
+						</select>
 				</td>
 				<td>
-				小类<select id="subTypeId" name="subTypeId">
-					<option value="0">--选择小类--</option>
+				副类&nbsp;&nbsp; <select id="subTypeId" name="subTypeId">
+					<option value="0">选择副类</option>
+					
 					</select>
 					</td>
 				<td><div id="typeDiv"></div></td>
 			</tr>
     		<tr>
-				<td>商品名:</td>
-				<td><input type="text" id="GoodsName" name="GoodsName" onblur="checkGoodsName()"/></td>
-				<td><div id="GoodsNameDiv">*</div></td>
+				<td>商品名称:</td>
+				<td><input type="text" id="goodsTitle" name="goodsTitle" onblur="checkGoodsName()"/></td>
+				<td><div id="GoodsNameDiv" class="tip" >*</div></td>
 			</tr>
 			<tr>
-				<td>商品编码:</td>
-				<td><input type="text" id="ISBN" name="ISBN" onblur="checkISBN()"/></td>
-				<td><div id="ISBNDiv">*</div></td>
-			</tr>
-			<tr>
-    			<td class="introduce">相关介绍:</td>
+    			<td class="introduce">商品介绍:</td>
 				<td colspan="2"><textarea rows="3" cols="20" id="introduce" name="introduce"></textarea></td>		
 			</tr>
-			<tr>
-    			<td>生产日期:</td>
-				<td><input type="text" id="pages" name="pages" onblur="checkPages()"/></td>
-				<td><div id="pagesDiv">*</div></td>
-			</tr>
-			<tr>
-    			<td>产地:</td>
-				<td><input type="text" id="publisher" name="publisher" onblur="checkPublisher()"/></td>
-				<td><div id="publisherDiv">*</div></td>
-			</tr>
-			<tr>
+			
+  			<tr>
     			<td>品牌:</td>
-				<td><input type="text" id="author" name="author" onblur="checkAuthor()"/></td>
-				<td><div id="authorDiv">*</div></td>
+				<td><input type="text" id="brand" name="brandName"/></td>
+				<td><div id="brandDiv" class="tip" >*</div></td>
 			</tr>
+			
+			<tr>
+    			<td>规格:</td>
+				<td><input type="text" id="spec" name="spec" /></td>
+				<td><div id="pagesDiv" class="tip" >*</div></td>
+			</tr>
+			<tr>
+    			<td>计量单位:</td>
+				<td><input type="text" id="measure" name="measure"/></td>
+				<td><div id="publisherDiv" class="tip" >*</div></td>
+			</tr>
+			
     		<tr>
 				<td>原价:</td>
 				<td><input type="text" id="price" name="price" onblur="checkPrice()"/></td>
-				<td><div id="priceDiv">*</div></td>
+				<td><div id="priceDiv" class="tip" ></div></td>
 			</tr>
     		<tr>
 				<td>现价:</td>
 				<td><input type="text" id="nowPrice" name="nowPrice" onblur="checkNowPrice()"/></td>
-				<td><div id="nowPriceDiv">*</div></td>
+				<td><div id="nowPriceDiv" class="tip" >*</div></td>
 			</tr>
     		<tr>
 				<td>图片:</td>
-				<td colspan="2"><input type="file" id="picture" name="picture"/></td>	
+				<td colspan="2"><input type="file" id="picture" name="picture"/></td>
+				<td><div id="pictureDiv" class="tip" >*</div></td>
 			</tr>
     		<tr>
 				<td>数量:</td>
 				<td><input type="text" id="GoodsNum" name="GoodsNum" onblur="checkGoodsNum()"/></td>
-				<td><div id="GoodsNumDiv">*</div></td>
+				<td><div id="GoodsNumDiv" class="tip" >*</div></td>
 			</tr>
 			<tr>
 				<td>类型:</td>
 				<td colspan="2">
-					<input type="checkbox" name="hotGoods" value="1"/>热卖
-					<input type="checkbox" name="newGoods" value="1"/>新品
-					<input type="checkbox" name="saleGoods" value="1"/>特价
-					<input type="checkbox" name="specialGoods" value="1"/>特别推荐
+					<input type="checkbox" name="special" value="1"/>推荐
+					<input type="checkbox" name="sale" value="1"/>特价
 				</td>
 			</tr>
+			<tr>
+				<td>关键字:</td>
+				<td><input type="text" id="GoodsKey" name="GoodsKey"/></td>
+				<td><div id="GoodsKeyDiv" class="tip" >*</div></td>
+			</tr>
     		<tr>
+				<td></td>
 				<td><input type="button" onclick="add()" value="添加" /></td>
 				<td><font color="red">${message }</font></td>
-				<td><div></div></td>
 			</tr>
     	</table>
     	</form>
-    
+</div>
   </body>
 </html>

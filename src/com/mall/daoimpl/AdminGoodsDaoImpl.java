@@ -23,7 +23,7 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 		ResultSet rs = null;
 		String sql = null;
 		try {
-			sql = "select * from tb_goods";
+			sql = "select * from tb_goods order by goodsId desc";
 			ps = daoUtil.getCon().prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
@@ -38,7 +38,7 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 				goods.setMeasure(rs.getString("measure"));
 				goods.setPrice(rs.getFloat("price"));
 				goods.setNowPrice(rs.getFloat("nowPrice"));
-				goods.setIndexImg(rs.getString("indexImg"));
+				goods.setIndexImg(rs.getString("indexImage"));
 				goods.setGoodsNum(rs.getInt("goodsNum"));
 				goods.setSellNum(rs.getInt("sellNum"));
 				goods.setCollectNum(rs.getInt("collectNum"));
@@ -69,24 +69,24 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 		String sql = "";
 		try {
 			dao = new DbUtil();
-			sql = "insert into tb_goods values(null,?,?,?,?,?,?,?,?,?,?,null,?,?,?,?,?)";
+			sql = "INSERT INTO `tb_goods` VALUES (NULL, ?,?,?,?,?,?,?,?,?,?,?, NULL, NULL, NULL, ?, 0, ?, ?);";
 			ps = dao.getCon().prepareStatement(sql);
+
 			ps.setInt(1, Goods.getSuperTypeId());
 			ps.setInt(2, Goods.getSubTypeId());
 			ps.setString(3, Goods.getGoodsTitle());
 			ps.setString(4, Goods.getIntroduce());
-			ps.setFloat(5, Goods.getPrice());
-			ps.setFloat(6, Goods.getPrice());
-			ps.setFloat(7, Goods.getNowPrice());
-//			ps.setString(8, Goods.getPicture());
-//			ps.setString(9, Goods.getProduceDate());
-//			ps.setString(10, Goods.getPublisher());
-//			ps.setString(11, Goods.getAuthor());
-//			ps.setInt(12, Goods.getNewGoods());
-//			ps.setInt(13, Goods.getSaleGoods());
-//			ps.setInt(14, Goods.getHostGoods());
-//			ps.setInt(15, Goods.getSpecialGoods());
-//			ps.setInt(16, Goods.getGoodsNum());
+			ps.setString(5, Goods.getBrandName());
+			ps.setString(6, Goods.getSpec());
+			ps.setString(7, Goods.getMeasure());
+			ps.setFloat(8, Goods.getPrice());
+			ps.setFloat(9, Goods.getNowPrice());
+			ps.setString(10, Goods.getIndexImg());
+			ps.setInt(11, Goods.getGoodsNum());
+			ps.setString(12, Goods.getKey());
+			ps.setInt(13, Goods.getSale());
+			ps.setInt(14, Goods.getSpecial());
+
 			int i = ps.executeUpdate();
 			if(i != 0) {
 				return true;
@@ -111,7 +111,7 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 		String sql = null;
 		try {
 			daoUtil = new DbUtil();
-			sql = "select * from tb_goods where goodsName = ?";
+			sql = "select * from tb_goods where goodsTitle = ?";
 			ps = daoUtil.getCon().prepareStatement(sql);
 			ps.setString(1, GoodsName);
 			rs = ps.executeQuery();

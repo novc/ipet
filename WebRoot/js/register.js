@@ -165,7 +165,7 @@ function register(){
 		},
 		success:function(msg){
 			if(parseInt(msg)){
-				window.location.href="login.html";
+				window.location.href="index.html";
 			}
 			else{
 				alert("注册失败，再试一次吧");

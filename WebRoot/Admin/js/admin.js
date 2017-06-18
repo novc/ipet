@@ -694,7 +694,103 @@ function addAdmin(){
 }
 
 
-
-
-
+/*---------------------------------------goods--------------------------------------*/
+function initGoodsList(){
+	$.ajax({
+		url:"http://nov:8080/ipet/returnAdminTypeServlet",
+		type:"POST",
+		success:function(msg){
+			var nType = parseInt(msg);
+			if(nType==4||nType==1){
+				$("#dg").datagrid({
+					url:"http://nov:8080/ipet/GetGoodsServlet",
+					fitColumns:true,
+					striped:true,
+					rownumbers:true,
+					pagination:true,
+					title:"商品管理",
+					toolbar:"#tb",
+					loadFilter:pagerFilter,
+					onDblClickCell:BeginEdit,//双击单元格
+					columns:[[
+					    {field:'goodsId',width:35,title:'商品ID',align:'center'},
+					    {field:'indexImg',width:45,title:'商品图片',align:'center',
+					    	formatter:function(index,row){
+					    		return ("<img width=60px height:60px; src='../../img/"+row.indexImg+"' />");
+					    	}
+					    },
+						{field:'superTypeId',width:25,title:'大类ID',align:'center',},
+						{field:'subTypeId',width:25,title:'小类ID',align:'center'},
+						{field:'goodsTitle',width:100,title:'商品名称',align:'center',editor:'textbox'},
+						{field:'introduce',width:150,title:'商品介绍',align:'center',editor:'textbox'},
+						{field:'brandName',width:35,title:'品牌',align:'center',editor:'textbox'},
+						{field:'price',width:25,title:'价格',align:'center',editor:'textbox'},
+						{field:'nowPrice',width:25,title:'现价',align:'center',editor:'textbox'},
+						{field:'goodsNum',width:20,title:'库存',align:'center',editor:'textbox'},
+						{field:'key',width:80,title:'关键字',align:'center',editor:'textbox'},
+						{field:'sale',width:15,title:'特价',align:'center',
+							formatter:function(index,row){
+								if(row.sale){
+									return "是";
+								}else{
+									return "否";
+								}
+								
+							},editor:'textbox'
+						},
+						{field:'special',width:15,title:'推荐',align:'center',
+							formatter:function(index,row){
+								if(row.special){
+									return "是";
+								}else{
+									return "否";
+								}
+								
+							},editor:'textbox'	
+						},
+						{field:'flag1',width:40,align:'center',formatter: function(f,res,index){
+							return "<a href='javascript:cancleEditor("+index+")'>取消</a>";
+						}},
+						{field:'flag2',width:40,align:'center',formatter: function(f1,res,index){
+							return "<a href='javascript:endEditor("+index+")'>提交修改</a>";
+						}},
+						{field:'flag4',width:40,align:'center',formatter: function(f2,res){
+								return "<a href='javascript:deleteGoods("+res.goodsId+")' >删除</a>";
+						}}
+					]],
+					onAfterEdit:function(rowIndex, rowData, changes){
+						console.log(changes);
+						if($.isEmptyObject(changes)){
+							alert("您没有做修改");
+						}else{
+							$.ajax({
+								url:"http://nov:8080/ipet/updateGoodsServlet",
+								type:"POST",
+								data:{
+									goodsId:rowData.goodsId,
+									goodsTitle:rowData.goodsTitle,
+									introduce:rowData.introduce,
+									brandName:rowData.brandName,
+									price:rowData.price,
+									nowPrice:rowData.nowPrice,
+									goodsNum:rowData.goodsNum,
+									key:rowData.key,
+									sale:rowData.sale,
+									special:rowData.special
+								},
+								success:function(msg){
+									alert(msg);
+									window.location.reload(true);
+								}
+							});
+						}
+						
+					},
+				});
+			}else{
+				window.location.href="adminLoginError.jsp";
+			}
+		}
+	});
+}
 

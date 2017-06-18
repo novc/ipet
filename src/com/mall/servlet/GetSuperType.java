@@ -16,9 +16,6 @@ public class GetSuperType extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/xml;charset=utf-8");
-		response.setHeader("Cache-Control", "no-cache");
 		PrintWriter out = response.getWriter();
 		Model model = new Model();
 		List superTypes = model.getSuperType();

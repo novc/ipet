@@ -23,7 +23,7 @@ public class CartDaoImpl {
 			pstmt = dbUtil.getCon().prepareStatement(sql);
 			pstmt.setInt(1, cart.getUserId());
 			pstmt.setInt(2, cart.getGoodsId());
-			pstmt.setInt(3, cart.getGoodsNum());
+			pstmt.setInt(3, cart.getCartGoodsNum());
 			int i = pstmt.executeUpdate();
 			if(i != 0){
 				//插入商品成功
@@ -42,7 +42,7 @@ public class CartDaoImpl {
 		try {
 			daoUtil = new DbUtil();
 			ps = daoUtil.getCon().prepareStatement(sql);
-			ps.setInt(1, cart.getGoodsNum());
+			ps.setInt(1, cart.getCartGoodsNum());
 			ps.setInt(2, cart.getCartId());
 			int i = ps.executeUpdate();
 			if(i != 0) {
@@ -104,7 +104,7 @@ public class CartDaoImpl {
 		
 		PreparedStatement pre = null;
 		ResultSet re = null;
-		String sql = "select * from tb_cart,tb_goods where tb_cart.goodsId = tb_goods.goodsId and tb_cart.userId = ? ";
+		String sql = "select * from tb_cart,tb_goods where tb_cart.goodsId = tb_goods.goodsId and tb_cart.userId=?";
 		try {
 			pre = dao.getCon().prepareStatement(sql);
 			pre.setInt(1, userId);
@@ -114,7 +114,7 @@ public class CartDaoImpl {
 				cart.setCartId(re.getInt("cartId"));
 				cart.setUserId(re.getInt("userId"));
 				cart.setGoodsId(re.getInt("goodsId"));
-                cart.setGoodsNum(re.getInt("goodsNum"));
+                cart.setCartGoodsNum(re.getInt("cartgoodsNum"));
                 Goods goods = new Goods();
                 goods.setBrandName(re.getString("brandName"));
 				goods.setGoodsTitle(re.getString("goodsTitle"));

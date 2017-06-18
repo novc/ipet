@@ -52,7 +52,7 @@ public class AdminSuperTypeDaoImpl implements AdminSuperTypeDao{
 			while(rs.next()) {
 				SuperType superType = new SuperType();
 				superType.setSuperTypeId(rs.getInt("superTypeId"));
-				superType.setTypeName(rs.getString("typeName"));
+				superType.setTypeName(rs.getString("superTypeName"));
 				superTypes.add(superType);
 			}
 		} catch(Exception e) {

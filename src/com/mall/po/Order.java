@@ -10,6 +10,9 @@ public class Order {
 	
 	private int userId;
 	
+	private int cartId;
+	
+	
 	private int goodsId;
 	
 	private String recvName;//收货人
@@ -36,7 +39,13 @@ public class Order {
 	
 	private int goodsNum; 
 	
-	
+	public int getCartId() {
+		return cartId; 
+	}
+
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
 	
 	public int getGoodsId() {
 		return goodsId; 

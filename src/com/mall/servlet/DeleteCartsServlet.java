@@ -37,7 +37,7 @@ public class DeleteCartsServlet extends HttpServlet {
 		}
 		int[] ids = new int[ids_str.length];
 		for(int i=0;i<ids_str.length;i++) {
-			ids[i] = Integer.parseInt(ids_str[i]);
+			ids[i] = Integer.parseInt(ids_str[i].split("-")[0]);
 		}	
 		CartDaoImpl cartImpl = new CartDaoImpl();
 		Boolean bo = cartImpl.deleteCarts(ids);

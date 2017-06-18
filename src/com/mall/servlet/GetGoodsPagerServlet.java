@@ -46,16 +46,8 @@ public class GetGoodsPagerServlet extends HttpServlet {
 
 		out.flush();
 		out.close();
-
-		
-		
-//		request.setAttribute("GoodsPager", GoodsPager);
-//		request.setAttribute("GoodsList", GoodsPager.getGoodsMap().values());
-//		request.getRequestDispatcher("Admin/pages/manageGoods.jsp").forward(request, response);
-		
 		}else{
 			
-//			request.getRequestDispatcher("Admin/pages/adminLoginError.jsp").forward(request, response);
 		}
 	}
 

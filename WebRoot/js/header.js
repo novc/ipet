@@ -44,7 +44,7 @@ function topFun() {
             var aLink = res;
             var aLinkLength = aLink.length;
             for (var i = 0; i < aLinkLength; i++) {
-                $(".hotlink").append("<a href='#'>" + aLink[i] + "</a>");
+                $(".hotlink").append("<a href='goodsDetail.html?goodsId="+aLink[i].goodsId+"'>" + aLink[i].goodsTitle + "</a>");
             }
             $(".hotlink a:first").css({ "padding-left": "0px" });
             $(".hotlink a:last").css({ "border": "0px" });
@@ -120,7 +120,7 @@ function topFun() {
             // 将位置信息存储到本地
             if (window.localStorage) {
                 localStorage.setItem("province", remote_ip_info.province);
-                localStorage.setItem("city", remote_ip_info.city);
+                localStorage.setItem("city", remote_ip_info.city+"市");
             }
         } else {
             console.log('没有找到匹配的IP地址信息！');
@@ -183,7 +183,6 @@ function topFun() {
                             $(".city_box").append("<span class='cityVal'>" + aCitys[k] + "</span>");
                         }
                         $(".city_box span").click(function() {
-                            console.log("市区选择");
                             $(".city_opt").html(this.innerHTML);
                             if (window.localStorage) {
                                 localStorage.setItem("city", this.innerHTML);
@@ -208,7 +207,6 @@ function topFun() {
         getCityBox(this.innerHTML);
         $(".province_opt").html(this.innerHTML);
         $(".province_value").html(this.innerHTML);
-        console.log("省份选择");
         $(".city_opt").html("请选择");
 
         $(".province_box").css({ "display": "none" });
@@ -218,7 +216,6 @@ function topFun() {
                 }
             });
             $(".city_box span").click(function() {
-                console.log("市区选择");
                 $(".city_opt").html(this.innerHTML);
                 if (window.localStorage) {
                     localStorage.setItem("city", this.innerHTML);
