@@ -23,7 +23,14 @@
 	<welcome-file-list>
     	<welcome-file>index.html</welcome-file>
     </welcome-file-list>
-	
+	<filter>  
+      <filter-name>cors</filter-name>  
+      <filter-class>com.mall.filter.SimpleCORSFilter</filter-class>  
+    </filter>  
+    <filter-mapping>  
+      <filter-name>cors</filter-name>  
+      <url-pattern>/*</url-pattern>  
+    </filter-mapping>
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.mall.servlet.LoginServlet</servlet-class>
@@ -291,9 +298,20 @@
 		<filter-name>adminlogin</filter-name>
 		<filter-class>com.mall.filter.AdminLoginFilter</filter-class>
 	</filter>
+	<filter>
+		<description>
+		</description>
+		<display-name>SimpleCORSFilter</display-name>
+		<filter-name>SimpleCORSFilter</filter-name>
+		<filter-class>com.mall.filter.SimpleCORSFilter</filter-class>
+	</filter>
 	<filter-mapping>
 		<filter-name>adminlogin</filter-name>
 		<url-pattern>/Admin/pages/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>SimpleCORSFilter</filter-name>
+		<url-pattern>/SimpleCORSFilter</url-pattern>
 	</filter-mapping>
 	
   <servlet>
