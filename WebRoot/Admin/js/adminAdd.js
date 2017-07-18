@@ -1,12 +1,12 @@
 $.ajax({
-	url:"http://nov:8080/ipet/returnAdminTypeServlet",
+	url:"http://localhost:8080/ipet/returnAdminTypeServlet",
 	type:"POST",
 	success:function(msg){
-		var nType = parseInt(msg);
+		var nType = JSON.parse(msg).adminType;
 		if(nType==4){
 			return;
 		}else{
-			window.location.href="adminLoginError.jsp";
+			window.location.href="error.html";
 		}
 	}
 });
@@ -47,7 +47,7 @@ function Check(){
 		if(val!=""){
 			if(reg_username.test(val)){
 				$.ajax({
-					url:"http://nov:8080/ipet/checkLoginNameIsExist",
+					url:"http://localhost:8080/ipet/checkLoginNameIsExist",
 					type:"POST",
 					data:{
 						loginName:$("input[name=loginName]").val()
@@ -124,7 +124,7 @@ function Check(){
 		
 		if(this.AdminNameflag && this.LoginNameflag && this.Psw1flag && this.Psw2flag){
 			$.ajax({
-				url:"http://nov:8080/ipet/addAdminServlet",
+				url:"http://localhost:8080/ipet/addAdminServlet",
 				type:"POST",
 				data:{
 					adminName:$("input[name=adminName]").val(),

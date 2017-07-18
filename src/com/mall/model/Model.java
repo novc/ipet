@@ -37,21 +37,13 @@ import com.mall.daoimpl.SubTypeDaoImpl;
 import com.mall.daoimpl.SuperTypeDaoImpl;
 import com.mall.daoimpl.UserDaoImpl;
 import com.mall.po.Admin;
-import com.mall.po.AdminPager;
 import com.mall.po.Goods;
-import com.mall.po.GoodsPager;
 import com.mall.po.Inform;
-import com.mall.po.InformPager;
 import com.mall.po.Note;
 import com.mall.po.Order;
-import com.mall.po.OrderNotSendPager;
-import com.mall.po.OrderPager;
-import com.mall.po.OrderSendPager;
-import com.mall.po.Page;
 import com.mall.po.SubType;
 import com.mall.po.SuperType;
 import com.mall.po.User;
-import com.mall.po.UserPager;
 
 public class Model {
 	private UserDao ud = new UserDaoImpl();
@@ -101,16 +93,6 @@ public class Model {
 		return ud.getUser(name);
 	}
 	
-	//根据商品的GoodsId来显示商品的详细信息
-	public Goods showGoodsById(int GoodsId){
-		return gd.showGoodsById(GoodsId);
-	}
-	
-	//根据商品的GoodsId来显示商品的购买记录
-	public List showBuyRecordsById(int GoodsId){
-		return gd.showBuyRecordsById(GoodsId);
-	}
-	
 	//添加订单，并返回订单号
 	public int addOrder(Order order){
 		return od.addOrder(order);
@@ -121,58 +103,11 @@ public class Model {
 	public List searchGoods(String keywords){
 		return gd.searchGoods(keywords);
 	}
-	//根据用户输入的关键字搜索相关商品
-	public boolean updateGoodsNum(int num,int GoodsId){
-		return gd.updateGoodsNum(num,GoodsId);
-	}
-	public boolean updateGoods(Goods Goods){
-		return gd.updateGoods(Goods);
-	}
 	
-	/**
-	 * 分页显示所有用户留言
-	 * @param currentPage 显示出来的当前页
-	 * @param pageSize 每页显示数目
-     * @return Page
-	 */
-	public Page doPage(String keywords,int currentPage,int pageSize){
-		return gd.doPage(keywords, currentPage, pageSize);
-	}
-	//显示所有用户留言
-    public List showNote(){
-		return ud.showNote();
-	}
-	/**
-	 * 显示所有用户留言
-	 * @param currentPage 显示出来的当前页码
-	 * @param pageSize 每页显示数目
-	 * @return Page
-	 */
-	public Page doNotePage(int currentPage,int pageSize){
-		return ud.doNotePage(currentPage, pageSize);
-	}
+	
 	//用户添加留言
 	public boolean addNote(Note note){
 		return ud.addNote(note);
-	}
-	/**
-	 * 根据用户选择的搜索条件搜索相关商品
-	 * @param superTypeId 所属大类的ID
-	 * @param subTypeId 所属小类的ID
-	 * @param searchMethod （可以是按品牌、商品名、产地、编码的一个） 
-	 * @return List
-	 */
-	public List searchGoodsByConditions(int superTypeId,int subTypeId,String searchMethod){
-		return gd.searchGoodsByConditions(superTypeId, subTypeId, searchMethod);//djm
-	}
-	/**
-	 *根据用户选择的搜索条件搜索相关商品
-	 * @param superTypeId 所属大类的ID
-	 * @param subTypeId 所属小类的ID
-	 * @param searchMethod 可以是按品牌、商品名、产地、编码的一个
-	 */
-	public Page doPageByConditons(int superTypeId,int subTypeId,String searchMethod,int currentPage,int pageSize){
-		return gd.doPageByConditons(superTypeId, subTypeId, searchMethod, currentPage, pageSize);
 	}
 	/**
 	 * 后台*/
@@ -206,10 +141,6 @@ public class Model {
 	
 	public boolean UpdateUserInfo(User user){
 		return userDao.UpdateUserInfo(user);
-	}
-	
-	public AdminPager getAdminPager(int index, int pageSize) {
-		return adminDao.getAdminPager(index, pageSize);
 	}
 	
 	public List getSubTypeBySuperTypeId(int superTypeId) {
@@ -282,17 +213,9 @@ public class Model {
 	public boolean checkISBNIsExist(String ISBN) {
 		return GoodsDao.checkISBNIsExist(ISBN);
 	}
-	
-	public GoodsPager searchGood(String GoodsName) {
-		return GoodsDao.searchGoods(GoodsName);
-	}
 
 	public List getAllGoodsName() {
 		return GoodsDao.getAllGoodsName();
-	}
-	
-	public GoodsPager getGoodsPager(int index,int pageSize) {
-		return GoodsDao.getGoodsPager(index, pageSize);
 	}
 	
 	public boolean deleteGoods(int[] GoodsIds) {
@@ -345,10 +268,6 @@ public class Model {
 	
 	public Inform getOneInform(int id) {
 		return adminInformDao.getOneInform(id);
-	}
-	
-	public InformPager getInformPager(int index, int pageSize) {
-		return adminInformDao.getInformPager(index, pageSize);
 	}
 	
 	public boolean UpdateInform(Inform inform){

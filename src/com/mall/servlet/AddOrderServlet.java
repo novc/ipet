@@ -15,8 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.mall.model.Model;
 import com.mall.po.Order;
 import com.mall.po.User;
-import com.mall.vo.Cart;
-import com.mall.vo.CartItem;
 
 public class AddOrderServlet extends HttpServlet {
 

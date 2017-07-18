@@ -3,9 +3,6 @@ package com.mall.dao;
 import java.util.List;
 
 import com.mall.po.Order;
-import com.mall.po.OrderNotSendPager;
-import com.mall.po.OrderPager;
-import com.mall.po.OrderSendPager;
 
 public interface AdminOrderDao {
 	public List getAllOrder();

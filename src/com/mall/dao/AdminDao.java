@@ -4,7 +4,6 @@ import java.util.List;
 
 
 import com.mall.po.Admin;
-import com.mall.po.Page;
 
 public interface AdminDao {
 	public boolean addAdmin(Admin admin);
@@ -12,8 +11,6 @@ public interface AdminDao {
 	public boolean checkNameExist(String name);
 	
 	public List listAdmin();
-	
-	public Page doPage(int currentPage,int pageSize);
 	
 	public boolean deleteAdmin(int[] ids);
 	

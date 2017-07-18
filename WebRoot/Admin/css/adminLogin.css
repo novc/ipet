@@ -5,9 +5,7 @@
     line-height: 120px
     
 }
-.header h1{
-	margin-top:30px;
-}
+
 .header .shortcut {
     margin: 0 80px;
     float: right;
@@ -62,9 +60,9 @@
 .main .login-wrap .login-area .input i {
     position: relative;
     display: inline-block;
-    top: 14px;
-    width: 16px;
+    width: 15px;
     height: 16px;
+    margin-right:5px;
     background: url(../images/ico.png) no-repeat
 }
 
@@ -75,8 +73,8 @@
 .main .login-wrap .login-area .input input {
     float: right;
     padding:0px 8px;
-    width: 285px;
-    height: 43px;
+    width: 270px;
+    height: 45px;
     color: #666;
     border: none;
     line-height: 45px

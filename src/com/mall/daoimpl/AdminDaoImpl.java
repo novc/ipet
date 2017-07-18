@@ -10,7 +10,6 @@ import java.util.List;
 import com.mall.common.DbUtil;
 import com.mall.dao.AdminDao;
 import com.mall.po.Admin;
-import com.mall.po.Page;
 
 public class AdminDaoImpl implements AdminDao{
 
@@ -82,44 +81,6 @@ public class AdminDaoImpl implements AdminDao{
 		}
 		return adminList;
 	}
-	public Page doPage(int currentPage,int pageSize){
-		Page page = new Page();
-		int totalNum = listAdmin().size();
-		List pageList = new ArrayList();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		DbUtil du = null;
-		String sql = "select * from tb_admin limit "+currentPage+","+pageSize;
-		try {
-			DbUtil dbUtil = new DbUtil();
-			pstmt = dbUtil.getCon().prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()){
-				Admin admin = new Admin();
-				admin.setAdminName(rs.getString("AdminName"));
-				admin.setAdminType(rs.getInt("AdminType"));
-				admin.setLoginName(rs.getString("LoginName"));
-				admin.setLoginPwd(rs.getString("LoginPwd"));
-				admin.setId(rs.getInt("ID"));
-				pageList.add(admin);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				rs.close();
-				pstmt.close();
-				du.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
-		page.setPageList(pageList);
-		page.setTotalNum(totalNum);
-		return page;
-	}
-	
 	public boolean deleteAdmin(int[] ids){
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;

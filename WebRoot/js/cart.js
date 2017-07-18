@@ -72,7 +72,7 @@ $.ajax({
 				var oCartBar = "<div class='cart-bar'><div class='choose fl'><input class='select' value='"+res[i].cartId+"-"+res[i].goodsId+"-"+res[i].goodsNum+"' type='checkbox' checked/></div>";
 				var oImg = "<div class='img fl'> <img width='100px' height='100px' src='img/"+res[i].goods.indexImg+"' alt='"+res[i].goods.indexImg+"'></div>";
 				var oTitle = "<div class='goods-tit fl'><a href='goodsDetail.html?goodsId="+res[i].goodsId+"'><span class='brand-name'>"+res[i].goods.brandName+"</span><span class='gooods-title'>"+res[i].goods.goodsTitle+"</span><span class='spec'>"+res[i].goods.spec+"</span></a></div>";
-				var oGoodsNum = "<div class='nowPrice fl'>"+res[i].goods.nowPrice+"</div><div class='goods-num fl'><input class='buyNum' type='number' min=1 value="+res[i].cartGoodsNum+" /></div>";
+				var oGoodsNum = "<div class='nowPrice fl'>"+res[i].goods.nowPrice+"</div><div class='goods-num fl'><input class='buyNum' onchange='changNum()' type='number' min=1 value="+res[i].cartGoodsNum+" /></div>";
 				var oPrice = "<div class='goods-price fl'>"+price+"</div>";
 				var oFun = "<div class='func-area fl'><a href='javascript:deleteCart("+res[i].cartId+")'>[删除]</a></div><div class='clearfix'></div>";
 				$(".cart-area").append(oCartBar);
@@ -150,6 +150,8 @@ function deleteCart(cartIds) {
 		}
 	});
 }
+
+
 function selectProvince(){
 	var sProv = $("#select_province").val();
 	var aProvData =  [

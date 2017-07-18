@@ -12,7 +12,6 @@ import java.util.Map;
 import com.mall.common.DbUtil;
 import com.mall.dao.AdminInformDao;
 import com.mall.po.Inform;
-import com.mall.po.InformPager;
 import com.mall.po.Order;
 
 public class AdminInformDaoImpl implements AdminInformDao {
@@ -168,43 +167,5 @@ public class AdminInformDaoImpl implements AdminInformDao {
 			}
 		}
 		return inform;
-	}
-
-	public InformPager getInformPager(int index, int pageSize) {
-		Map informMap = new HashMap();
-		DbUtil db = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			db = new DbUtil();
-			String sql = "select * from tb_inform limit ?,?";
-			ps = db.getCon().prepareStatement(sql);
-			ps.setInt(1, index);
-			ps.setInt(2, pageSize);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				Inform inform = new Inform();
-				inform.setInformId(rs.getInt("informId"));
-				inform.setInformTitle(rs.getString("informTitle"));
-				inform.setInformContent(rs.getString("informContent"));
-				inform.setInformTime(rs.getString("informTime"));
-				informMap.put(inform.getInformId(), inform);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				ps.close();
-				db.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		InformPager ip = new InformPager();
-		ip.setImformMap(informMap);
-		ip.setPageSize(pageSize);
-		ip.setTotalNum(getAllInform().size());
-		return ip;
 	}
 }

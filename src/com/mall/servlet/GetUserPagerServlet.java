@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSON;
 import com.mall.model.Model;
 import com.mall.po.User;
-import com.mall.po.UserPager;
 
 public class GetUserPagerServlet extends HttpServlet {
 

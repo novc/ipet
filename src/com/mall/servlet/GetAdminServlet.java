@@ -11,7 +11,6 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSON;
 import com.mall.model.Model;
-import com.mall.po.AdminPager;
 
 public class GetAdminServlet extends HttpServlet{
 

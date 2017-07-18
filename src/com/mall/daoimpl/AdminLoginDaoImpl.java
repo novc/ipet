@@ -27,16 +27,13 @@ public class AdminLoginDaoImpl implements AdminLoginDao {
 					int adminType = rs.getInt("AdminType");
 					return adminType;
 				} else {
-					throw new PasswordError("密码错误");
+					return -1;//密码错误
 				}
 			} else {
-				throw new NameNotFound("登录名错误");
+				return -2;//登录名错误
 			}
-		} catch(NameNotFound nnf) {
-			throw nnf;
-		} catch (PasswordError pe) {
-			throw pe;
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {

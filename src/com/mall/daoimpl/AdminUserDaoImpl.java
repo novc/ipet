@@ -14,7 +14,6 @@ import com.mall.dao.AdminUserDao;
 import com.mall.po.Goods;
 import com.mall.po.Order;
 import com.mall.po.User;
-import com.mall.po.UserPager;
 
 public class AdminUserDaoImpl implements AdminUserDao{
 
@@ -54,8 +53,6 @@ public class AdminUserDaoImpl implements AdminUserDao{
 		}
 		return false;
 	}
-	
-	
 
 	public List getAllUsers() {
 		List userList = new ArrayList();
@@ -222,54 +219,4 @@ public class AdminUserDaoImpl implements AdminUserDao{
 		}
 		return false;
 	}
-	
-	public UserPager getUserPager(int index, int pageSize) {
-		Map userMap = new HashMap();
-		DbUtil db = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			db = new DbUtil();
-			String sql = "select * from tb_user limit ?,?";
-			ps = db.getCon().prepareStatement(sql);
-			ps.setInt(1, index);
-			ps.setInt(2, pageSize);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				User user = new User();
-				user.setId(rs.getInt("id"));
-				user.setName(rs.getString("name"));
-				user.setPassword(rs.getString("password"));
-				user.setEmail(rs.getString("email"));
-				user.setTrueName(rs.getString("trueName"));
-				user.setSex(rs.getString("sex"));
-				user.setBirthday(rs.getString("birthday"));
-				user.setAddress(rs.getString("address"));
-				user.setPostcode(rs.getString("postcode"));
-				user.setPhone(rs.getString("phone"));
-				user.setMphone(rs.getString("mphone"));
-				user.setQuestion(rs.getString("question"));
-				user.setAnswer(rs.getString("answer"));
-				user.setImg(rs.getString("img"));
-				user.setScore(rs.getInt("score"));
-				userMap.put(user.getId(), user);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				ps.close();
-				db.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		UserPager up = new UserPager();
-		up.setUserMap(userMap);
-		up.setPageSize(pageSize);
-		up.setTotalNum(getAllUsers().size());
-		return up;
-	}
-
 }

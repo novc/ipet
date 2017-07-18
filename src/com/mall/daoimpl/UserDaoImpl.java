@@ -9,7 +9,6 @@ import java.util.List;
 import com.mall.common.DbUtil;
 import com.mall.dao.UserDao;
 import com.mall.po.Note;
-import com.mall.po.Page;
 import com.mall.po.User;
 
 public class UserDaoImpl implements UserDao{
@@ -118,41 +117,6 @@ public class UserDaoImpl implements UserDao{
 		}
 		return userList;
 	}
-	//分页��显示所有用户��ʾ�û�
-	public Page doPage(int currentPage,int pageSize){
-		Page page = new Page();
-		int totalNum = listUser().size();
-		List pageList = new ArrayList();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		DbUtil du = null;
-		String sql = "select * from tb_user limit "+currentPage+","+pageSize;
-		try {
-			DbUtil dbUtil = new DbUtil();
-			pstmt = dbUtil.getCon().prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()){
-				User user = new User();
-				user.setId(rs.getInt("id"));
-				user.setName(rs.getString("name"));
-				user.setPassword(rs.getString("password"));
-				pageList.add(user);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				rs.close();
-				pstmt.close();
-				du.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		page.setPageList(pageList);
-		page.setTotalNum(totalNum);
-		return page;
-	}	
 	//根据ID删除用户
 	public boolean delete(int id,String powerType){
 		boolean flag = false;
@@ -221,49 +185,6 @@ public class UserDaoImpl implements UserDao{
 			e.printStackTrace();
 		}
 		return messageList;
-	}
-	/**
-	 * 分页显示所有用户留言
-	 * @param currentPage 显示出来的当前页码
-	 * @param pageSize 每页显示数目
-	 * @return Page
-	 */
-	public Page doNotePage(int currentPage,int pageSize){
-		Page page = new Page();
-		int totalNum = showNote().size();
-		List pageList = new ArrayList();
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		DbUtil dbUtil = null;
-		String sql = "select * from tb_note limit "+currentPage+","+pageSize;
-		try {
-			dbUtil = new DbUtil();
-			pstmt = dbUtil.getCon().prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()){
-				Note note = new Note();
-				note.setAuthor(rs.getString("author"));
-				note.setTitle(rs.getString("title"));
-				note.setContent(rs.getString("content"));
-				note.setLy_time(rs.getString("ly_time"));
-				note.setImgs(rs.getString("imgs"));
-				pageList.add(note);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}finally {
-			try {
-				rs.close();
-				pstmt.close();
-				dbUtil.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-		page.setCurrentPage(currentPage);
-		page.setPageList(pageList);
-		page.setTotalNum(totalNum);
-		return page;
 	}
 	//用户添加留言
 	public boolean addNote(Note note){

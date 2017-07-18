@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mall.daoimpl.GoodsDaoImpl;
 import com.mall.model.Model;
 import com.mall.po.Goods;
 import com.mall.po.Order;
@@ -39,11 +40,12 @@ public class AdminSendOrderServlet extends HttpServlet {
 			for(int i=0;i<size;i++){
 				
 				Order order=(Order) orderList.get(i);
-				Goods Goods=model.showGoodsById(order.getGoodsId());
+				GoodsDaoImpl goodsImpl = new GoodsDaoImpl();
+				Goods Goods=goodsImpl.showGoodsById(order.getGoodsId());
 				
 				if(order.getBuyNum()< Goods.getGoodsNum()){
 					int newNum = Goods.getGoodsNum()-order.getBuyNum();
-					model.updateGoodsNum(newNum, order.getGoodsId());
+					goodsImpl.updateGoodsNum(newNum, order.getGoodsId());
 					model.SendOrder(orderId);
 					out.print("发货成功");
 				}else {

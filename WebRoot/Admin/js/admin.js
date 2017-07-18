@@ -20,6 +20,15 @@ function getUrlPara(name){
 	
 }// end of getUrlPara
 
+function loginOut(){
+	$.ajax({
+		url:"http://localhost:8080/ipet/adminLogout",
+		success:function(){
+			window.location.href="http://localhost:8080/ipet/Admin/adminLogin.html";
+		}
+	})
+}
+
 /* 分页功能的实现 */
 function pagerFilter(data){
 	if (typeof data.length == 'number' && typeof data.splice == 'function'){	// is array
@@ -92,14 +101,14 @@ function cancleEditor(index){
 //用户管理界面初始化
 function initUserList(){
 	$.ajax({
-		url:"http://nov:8080/ipet/returnAdminTypeServlet",
+		url:"http://localhost:8080/ipet/returnAdminTypeServlet",
 		type:"POST",
 		success:function(msg){
-			var nType = parseInt(msg);
+			var nType = JSON.parse(msg).adminType;
 			if(nType==3||nType==4){
 				$("#dg").datagrid({
 					view: detailview,
-					url:"http://nov:8080/ipet/getUserPagerServlet",
+					url:"http://localhost:8080/ipet/getUserPagerServlet",
 					fitColumns:true,
 					striped:true,
 					rownumbers:true,//显示带有行号的列
@@ -141,7 +150,7 @@ function initUserList(){
 					}
 				});	
 			}else{
-				window.location.href="adminLoginError.jsp";
+				window.location.href="error.html";
 			}
 			
 		}
@@ -166,7 +175,7 @@ function deleteUsers(){
 function deleteUser(id){
 	if(window.confirm("确认删除用户？")){
 		$.ajax({
-			url:"http://nov:8080/ipet/deleteUser",
+			url:"http://localhost:8080/ipet/deleteUser",
 			type:"POST",
 			data:{
 				"ids":id
@@ -185,7 +194,7 @@ function DetailUserInit(){
 	var sId = getUrlPara("id");
 	var nId = parseInt(sId);
 	$.ajax({
-		url:"http://nov:8080/ipet/getUserPagerServlet",
+		url:"http://localhost:8080/ipet/getUserPagerServlet",
 		type:"POST",
 		data:{
 			"id":nId
@@ -213,7 +222,7 @@ function DetailUserInit(){
 //修改用户信息
 function updateUser(){
 	$.ajax({
-		url:"http://nov:8080/ipet/adminUpdateUserServlet",
+		url:"http://localhost:8080/ipet/adminUpdateUserServlet",
 		type:"POST",
 		data:{
 			  "userID":$("input[name=userID]").val(),
@@ -260,14 +269,14 @@ function reload (){
 //订单管理界面初始化
 function initOrderList(){
 	$.ajax({
-		url:"http://nov:8080/ipet/returnAdminTypeServlet",
+		url:"http://localhost:8080/ipet/returnAdminTypeServlet",
 		type:"POST",
 		success:function(msg){
-			var nType = parseInt(msg);
+			var nType = JSON.parse(msg).adminType;
 			if(nType==2||nType==4){
 				$("#dg").datagrid({
 					view: detailview,
-					url:"http://nov:8080/ipet/getOrderServlet",
+					url:"http://localhost:8080/ipet/getOrderServlet",
 					fitColumns:true,
 					striped:true,//条纹显示
 					rownumbers:true,//显示带有行号的列
@@ -307,7 +316,7 @@ function initOrderList(){
 							alert("您没有做修改");
 						}else{
 							$.ajax({
-								url:"http://nov:8080/ipet/updateOrderInfoServlet",
+								url:"http://localhost:8080/ipet/updateOrderInfoServlet",
 								type:"POST",
 								data:{
 									orderId:rowData.orderId,
@@ -328,7 +337,7 @@ function initOrderList(){
 					},
 					onExpandRow: function(index,row){
 						$(".ddv").datagrid({
-							url:"http://nov:8080/ipet/getOneOrderServlet?orderId="+row.orderId,
+							url:"http://localhost:8080/ipet/getOneOrderServlet?orderId="+row.orderId,
 							fitColumns:true,
 							striped:true,//条纹显示
 							onDblClickCell:BeginEdit,//双击单元格
@@ -351,7 +360,7 @@ function initOrderList(){
 					
 				});
 			}else{
-				window.location.href="adminLoginError.jsp";
+				window.location.href="error.html";
 			}
 		}
 	});
@@ -361,7 +370,7 @@ function initOrderList(){
 function deleteOrder(orderId) {
 	if(window.confirm("确认删除该订单？")){
 		$.ajax({
-			url:"http://nov:8080/ipet/deleteOrderServlet",
+			url:"http://localhost:8080/ipet/deleteOrderServlet",
 			type:"POST",
 			data:{
 				"orderId":orderId
@@ -392,7 +401,7 @@ function deleteOrders(){
 //发货
 function sendOrder(orderId){
 	$.ajax({
-		url:"http://nov:8080/ipet/adminSendOrderServlet",
+		url:"http://localhost:8080/ipet/adminSendOrderServlet",
 		type:"POST",
 		data:{
 			orderId:orderId
@@ -437,7 +446,7 @@ function searchNotSendOrders(){
 
 function initInform(){
 	$("#dg").datagrid({
-		url:"http://nov:8080/ipet/getInformServlet",
+		url:"http://localhost:8080/ipet/getInformServlet",
 		fitColumns:true,
 		striped:true,
 		rownumbers:true,
@@ -473,7 +482,7 @@ function initInform(){
 				var sDat = date.getDate();
 				var da = sYear+"-"+sMonth+"-"+sDat;
 				$.ajax({
-					url:"http://nov:8080/ipet/updateInformServlet",
+					url:"http://localhost:8080/ipet/updateInformServlet",
 					type:"POST",
 					data:{
 						informId:rowData.informId,
@@ -504,7 +513,7 @@ function doInformSearch(){
 function deleteInform(informId){
 	alert(informId);
 	$.ajax({
-		url:"http://nov:8080/ipet/deleteInformServlet",
+		url:"http://localhost:8080/ipet/deleteInformServlet",
 		type:"POST",
 		data:{
 			informId:informId
@@ -534,7 +543,7 @@ function deleteInforms(){
 //发布公告
 function addInform(informId){
 	$.ajax({
-		url:"http://nov:8080/ipet/addInformServlet",
+		url:"http://localhost:8080/ipet/addInformServlet",
 		type:"POST",
 		data:{
 			"informTitle":$("input[name=informTitle]").val(),
@@ -550,7 +559,7 @@ function addInform(informId){
 /*---------------------------------------note--------------------------------------*/	
 function initNoteList(){
 	$("#dg").datagrid({
-		url:"http://nov:8080/ipet/getNoteServlet",
+		url:"http://localhost:8080/ipet/getNoteServlet",
 		fitColumns:true,
 		striped:true,
 		rownumbers:true,
@@ -576,7 +585,7 @@ function initNoteList(){
 	
 function deleteNote(id){
 	$.ajax({
-		url:"http://nov:8080/ipet/deleteNoteServlet",
+		url:"http://localhost:8080/ipet/deleteNoteServlet",
 		type:"POST",
 		data:{
 			"noteId":id
@@ -591,13 +600,13 @@ function deleteNote(id){
 /*---------------------------------------admin--------------------------------------*/
 function initAdminList(){
 	$.ajax({
-		url:"http://nov:8080/ipet/returnAdminTypeServlet",
+		url:"http://localhost:8080/ipet/returnAdminTypeServlet",
 		type:"POST",
 		success:function(msg){
-			var nType = parseInt(msg);
+			var nType = JSON.parse(msg).adminType;
 			if(nType==4){
 				$("#dg").datagrid({
-					url:"http://nov:8080/ipet/getAdminServlet",
+					url:"http://localhost:8080/ipet/getAdminServlet",
 					fitColumns:true,
 					striped:true,
 					rownumbers:true,
@@ -637,7 +646,7 @@ function initAdminList(){
 					]]
 				});
 			}else{
-				window.location.href="adminLoginError.jsp";
+				window.location.href="error.html";
 			}
 		}
 	});
@@ -646,7 +655,7 @@ function initAdminList(){
 function deleteAdmin(id){
 	if(window.confirm("确认删除管理员？")){
 		$.ajax({
-			url:"http://nov:8080/ipet/deleteAdmin",
+			url:"http://localhost:8080/ipet/deleteAdmin",
 			type:"POST",
 			data:{
 				"adminIds":id
@@ -697,13 +706,13 @@ function addAdmin(){
 /*---------------------------------------goods--------------------------------------*/
 function initGoodsList(){
 	$.ajax({
-		url:"http://nov:8080/ipet/returnAdminTypeServlet",
+		url:"http://localhost:8080/ipet/returnAdminTypeServlet",
 		type:"POST",
 		success:function(msg){
-			var nType = parseInt(msg);
+			var nType = JSON.parse(msg).adminType;
 			if(nType==4||nType==1){
 				$("#dg").datagrid({
-					url:"http://nov:8080/ipet/GetGoodsServlet",
+					url:"http://localhost:8080/ipet/GetGoodsServlet",
 					fitColumns:true,
 					striped:true,
 					rownumbers:true,
@@ -721,14 +730,14 @@ function initGoodsList(){
 					    },
 						{field:'superTypeId',width:25,title:'大类ID',align:'center',},
 						{field:'subTypeId',width:25,title:'小类ID',align:'center'},
-						{field:'goodsTitle',width:100,title:'商品名称',align:'center',editor:'textbox'},
-						{field:'introduce',width:150,title:'商品介绍',align:'center',editor:'textbox'},
+						{field:'goodsTitle',width:90,title:'商品名称',align:'center',editor:'textbox'},
+						{field:'introduce',width:130,title:'商品介绍',align:'center',editor:'textbox'},
 						{field:'brandName',width:35,title:'品牌',align:'center',editor:'textbox'},
 						{field:'price',width:25,title:'价格',align:'center',editor:'textbox'},
 						{field:'nowPrice',width:25,title:'现价',align:'center',editor:'textbox'},
 						{field:'goodsNum',width:20,title:'库存',align:'center',editor:'textbox'},
 						{field:'key',width:80,title:'关键字',align:'center',editor:'textbox'},
-						{field:'sale',width:15,title:'特价',align:'center',
+						{field:'sale',width:20,title:'特价',align:'center',
 							formatter:function(index,row){
 								if(row.sale){
 									return "是";
@@ -738,7 +747,7 @@ function initGoodsList(){
 								
 							},editor:'textbox'
 						},
-						{field:'special',width:15,title:'推荐',align:'center',
+						{field:'special',width:20,title:'推荐',align:'center',
 							formatter:function(index,row){
 								if(row.special){
 									return "是";
@@ -748,13 +757,13 @@ function initGoodsList(){
 								
 							},editor:'textbox'	
 						},
-						{field:'flag1',width:40,align:'center',formatter: function(f,res,index){
+						{field:'flag1',width:20,align:'center',formatter: function(f,res,index){
 							return "<a href='javascript:cancleEditor("+index+")'>取消</a>";
 						}},
 						{field:'flag2',width:40,align:'center',formatter: function(f1,res,index){
 							return "<a href='javascript:endEditor("+index+")'>提交修改</a>";
 						}},
-						{field:'flag4',width:40,align:'center',formatter: function(f2,res){
+						{field:'flag4',width:20,align:'center',formatter: function(f2,res){
 								return "<a href='javascript:deleteGoods("+res.goodsId+")' >删除</a>";
 						}}
 					]],
@@ -764,7 +773,7 @@ function initGoodsList(){
 							alert("您没有做修改");
 						}else{
 							$.ajax({
-								url:"http://nov:8080/ipet/updateGoodsServlet",
+								url:"http://localhost:8080/ipet/updateGoodsServlet",
 								type:"POST",
 								data:{
 									goodsId:rowData.goodsId,
@@ -788,9 +797,18 @@ function initGoodsList(){
 					},
 				});
 			}else{
-				window.location.href="adminLoginError.jsp";
+				window.location.href="error.html";
 			}
 		}
 	});
 }
-
+function getAdmin(){
+	$.ajax({
+		url:"http://localhost:8080/ipet/returnAdminTypeServlet",
+		type:"POST",
+		success:function(msg){
+			var nName = JSON.parse(msg).loginName;
+			$(".admin span").html(nName);
+		}
+	});
+}

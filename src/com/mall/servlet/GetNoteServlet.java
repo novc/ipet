@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
 import com.mall.model.Model;
-import com.mall.po.InformPager;
 
 public class GetNoteServlet extends HttpServlet {
 

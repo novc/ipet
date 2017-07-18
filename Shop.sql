@@ -189,7 +189,7 @@ INSERT INTO `tb_goods` VALUES (NULL, '1', '2', '天然低敏 中大型犬 幼犬
 INSERT INTO `tb_goods` VALUES (NULL, '1', '2', '小型犬幼犬粮', '深海鱼油配方 均衡营养 美毛犬粮 亚太区总厂新鲜直供','优卡EuKanuba','20kg','袋', '1068.00', '890.00','1020003i.jpg', '156', '1235', '15236', '1010007d01.jpg', '狗粮，犬粮，幼犬粮，小型犬粮', '5225', '1', '1');
 INSERT INTO `tb_goods` VALUES (NULL, '1', '2', '天然低敏 中大型犬 幼犬粮 拆零', '亮泽被毛 强化免疫 益智明目 促进骨骼牙齿生长','伯纳天纯','500g','袋', '20.50', '17.00','1020005i.jpg', '248', '577', '5430', '1010007d01.jpg', '狗粮，犬粮，幼犬粮', '1274', '1', '1');
 INSERT INTO `tb_goods` VALUES (NULL, '1', '2', '深海鱼幼犬粮 大颗粒 拆零', '英国原装进口 挪威深海鱼 抗敏感美毛无谷天然粮','海洋之星','500g','袋', '40.00', '32.00','1020006i.jpg', '402', '1235', '4532', '1010007d01.jpg', '狗粮，犬粮，幼犬粮', '6536', '1', '1');
-INSERT INTO `tb_goods` VALUES (NULL, '1', '2', '天然活力繁育配方 幼母犬粮 拆零', '无谷物添加 独特营养配方 高蛋白 特别适用于幼母犬营养补充 增强免疫','发育宝','500g','袋', '18.00', '15.00','1020007i.jpg', '20', '78', '245', '1010007d01.jpg', '狗粮，犬粮，幼犬粮', '2365', '1', '1');
+INSERT INTO `tb_goods` VALUES (NULL, '1', '2', '天然活力繁育配方 幼母犬粮 拆零', '无谷物添加 独特营养配方 高蛋白 特别适用于幼母犬营养补充 增强免疫','发育宝','500g','袋', '18.00', '15.00','1020007i.jpg', '20', '78', '245', '1010007d01.jpg', '狗粮，犬粮，幼犬粮', '10102', '1', '1');
 INSERT INTO `tb_goods` VALUES (NULL, '1', '2', '深海鱼幼犬粮 小颗粒 拆零', '英国原装进口 挪威深海鱼 抗敏感美毛无谷天然粮','海洋之星','500g','袋', '41.00', '33.00','1020008i.jpg', '4757', '797', '1532', '1010007d01.jpg', '狗粮，犬粮，幼犬粮', '656', '1', '1');
 INSERT INTO `tb_goods` VALUES (NULL, '1', '2', '天然低敏 中大型犬 幼犬粮', '亮泽被毛 强化免疫 益智明目 促进骨骼牙齿生长','伯纳天纯','15kg','袋', '598.80', '499.00','1010004i.jpg', '235','59845','45415', '1010004d01.jpg,1010004d02.jpg,1010004d03.jpg,1010004d04.jpg,1010004d05.jpg,1010004d06.jpg', '狗粮，犬粮，幼犬粮，中大型犬粮', '262', '1', '1');
 INSERT INTO `tb_goods` VALUES (NULL, '1', '2', '小型犬幼犬粮', '深海鱼油配方 均衡营养 美毛犬粮 亚太区总厂新鲜直供','优卡EuKanuba','20kg','袋', '1068.00', '890.00','1020003i.jpg', '156', '1235', '15236', '1010007d01.jpg', '狗粮，犬粮，幼犬粮，小型犬粮', '5225', '1', '1');
@@ -214,7 +214,7 @@ INSERT INTO `tb_goods` VALUES (NULL, '2', '4', '犬用除臭饼干袋装', '补�
 INSERT INTO `tb_goods` VALUES (NULL, '2', '4', '健齿咬胶系列 蔬菜营养棒', '一包足足50根 消磨时间最佳选择 特含芹菜籽油（安全清新口气特效法宝）','禾仕嘉','500g','袋', '75.00', '70.02','1010031i.jpg', '79', '897', '786', '1040001d.jpg.jpg', '狗狗零食，零食，罐头，磨牙', '131', '0', '1');
 INSERT INTO `tb_goods` VALUES (NULL, '2', '4', '花生味夹肉洁齿骨', '好消化 健齿洁牙','迷你2.5寸/8支','迷你2.5寸/8支','袋', '94.00', '88.88','1010032i.jpg', '73', '425', '45', '1040001d.jpg.jpg', '狗狗零食，零食，罐头，磨牙', '87', '1', '1');
 INSERT INTO `tb_goods` VALUES (NULL, '2', '4', '犬用蔬菜营养小号磨牙棒', '优质磨牙零食 营养补充 清洁牙齿 清新口气','贝尔思味特','12g','袋', '15.00', '5.00','1010033i.jpg', '138', '387', '453', '1040001d.jpg.jpg', '狗狗零食，零食，罐头，磨牙', '456', '1', '1');
-INSERT INTO `tb_goods` VALUES (NULL, '2', '4', '犬用半式鲨鱼软骨', '天然 无添加 无色素 富含鲨鱼软骨素 关节保健零食 易掰断喂食','泰国原装进口BOKBOK','50g','袋', '78.00', '75.50','1010029i.jpg', '86', '128', '787', '1040001d.jpg.jpg', '狗狗零食，零食，罐头，磨牙', '564', '1', '1');
+INSERT INTO `tb_goods` VALUES (NULL, '2', '4', '犬用半式鲨鱼软骨', '天然 无添加 无色素 富含鲨鱼软骨素 关节保健零食 易掰断喂食','泰国原装进口BOKBOK','50g','袋', '78.00', '75.50','1010029i.jpg', '86', '128', '787', '1040001d.jpg.jpg', '狗狗零食，零食，罐头，磨牙', '10564', '1', '1');
 INSERT INTO `tb_goods` VALUES (NULL, '2', '4', '犬用除臭饼干袋装', '补钙增体力 缓解疲劳 低脂易吸收','拍拖宝贝','100g','袋', '65.00', '61.50','1010030i.jpg', '12', '4542', '1458', '1040001d.jpg.jpg', '狗狗零食，零食，罐头，磨牙', '6456', '0', '1');
 INSERT INTO `tb_goods` VALUES (NULL, '2', '4', '健齿咬胶系列 蔬菜营养棒', '一包足足50根 消磨时间最佳选择 特含芹菜籽油（安全清新口气特效法宝）','禾仕嘉','500g','袋', '75.00', '70.02','1010031i.jpg', '79', '897', '786', '1040001d.jpg.jpg', '狗狗零食，零食，罐头，磨牙', '131', '0', '1');
 
@@ -811,6 +811,98 @@ INSERT INTO `tb_goodsImg` VALUES (NULL, '1010162', '1010001s04.jpg', '1010001b04
 INSERT INTO `tb_goodsImg` VALUES (NULL, '1010163', '1010002s01.jpg', '1010002b01.jpg','1010002g01.jpg');
 INSERT INTO `tb_goodsImg` VALUES (NULL, '1010163', '1010002s02.jpg', '1010002b02.jpg','1010002g02.jpg');
 
+
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010164', '1010002s03.jpg', '1010002b02.jpg','1010002g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010164', '1010003s01.jpg', '1010003b01.jpg','1010003g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010165', '1010003s02.jpg', '1010003b02.jpg','1010003g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010165', '1010003s03.jpg', '1010003b03.jpg','1010003g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010166', '1010003s04.jpg', '1010003b04.jpg','1010003g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010166', '1010004s01.jpg', '1010004b01.jpg','1010004g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010167', '1010001s01.jpg', '1010001b01.jpg','1010001g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010167', '1010001s02.jpg', '1010001b02.jpg','1010001g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010168', '1010001s03.jpg', '1010001b03.jpg','1010001g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010168', '1010001s04.jpg', '1010001b04.jpg','1010001g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010169', '1010002s01.jpg', '1010002b01.jpg','1010002g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010169', '1010002s02.jpg', '1010002b02.jpg','1010002g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010170', '1010003s04.jpg', '1010003b04.jpg','1010003g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010170', '1010004s01.jpg', '1010004b01.jpg','1010004g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010171', '1010001s01.jpg', '1010001b01.jpg','1010001g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010171', '1010001s02.jpg', '1010001b02.jpg','1010001g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010172', '1010001s03.jpg', '1010001b03.jpg','1010001g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010172', '1010001s04.jpg', '1010001b04.jpg','1010001g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010173', '1010002s01.jpg', '1010002b01.jpg','1010002g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010173', '1010002s02.jpg', '1010002b02.jpg','1010002g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010174', '1010002s03.jpg', '1010002b02.jpg','1010002g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010174', '1010003s01.jpg', '1010003b01.jpg','1010003g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010175', '1010003s02.jpg', '1010003b02.jpg','1010003g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010175', '1010003s03.jpg', '1010003b03.jpg','1010003g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010176', '1010003s04.jpg', '1010003b04.jpg','1010003g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010176', '1010004s01.jpg', '1010004b01.jpg','1010004g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010177', '1010001s01.jpg', '1010001b01.jpg','1010001g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010177', '1010001s02.jpg', '1010001b02.jpg','1010001g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010178', '1010001s03.jpg', '1010001b03.jpg','1010001g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010178', '1010001s04.jpg', '1010001b04.jpg','1010001g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010179', '1010002s01.jpg', '1010002b01.jpg','1010002g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010179', '1010002s02.jpg', '1010002b02.jpg','1010002g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010180', '1010003s04.jpg', '1010003b04.jpg','1010003g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010180', '1010004s01.jpg', '1010004b01.jpg','1010004g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010181', '1010001s01.jpg', '1010001b01.jpg','1010001g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010181', '1010001s02.jpg', '1010001b02.jpg','1010001g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010182', '1010001s03.jpg', '1010001b03.jpg','1010001g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010182', '1010001s04.jpg', '1010001b04.jpg','1010001g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010183', '1010002s01.jpg', '1010002b01.jpg','1010002g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010183', '1010002s02.jpg', '1010002b02.jpg','1010002g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010184', '1010002s03.jpg', '1010002b02.jpg','1010002g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010184', '1010003s01.jpg', '1010003b01.jpg','1010003g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010185', '1010003s02.jpg', '1010003b02.jpg','1010003g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010185', '1010003s03.jpg', '1010003b03.jpg','1010003g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010186', '1010003s04.jpg', '1010003b04.jpg','1010003g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010186', '1010004s01.jpg', '1010004b01.jpg','1010004g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010187', '1010001s01.jpg', '1010001b01.jpg','1010001g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010187', '1010001s02.jpg', '1010001b02.jpg','1010001g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010188', '1010001s03.jpg', '1010001b03.jpg','1010001g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010188', '1010001s04.jpg', '1010001b04.jpg','1010001g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010189', '1010002s01.jpg', '1010002b01.jpg','1010002g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010189', '1010002s02.jpg', '1010002b02.jpg','1010002g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010190', '1010003s04.jpg', '1010003b04.jpg','1010003g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010190', '1010004s01.jpg', '1010004b01.jpg','1010004g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010191', '1010001s01.jpg', '1010001b01.jpg','1010001g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010191', '1010001s02.jpg', '1010001b02.jpg','1010001g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010192', '1010001s03.jpg', '1010001b03.jpg','1010001g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010192', '1010001s04.jpg', '1010001b04.jpg','1010001g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010193', '1010002s01.jpg', '1010002b01.jpg','1010002g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010193', '1010002s02.jpg', '1010002b02.jpg','1010002g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010194', '1010002s03.jpg', '1010002b02.jpg','1010002g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010194', '1010003s01.jpg', '1010003b01.jpg','1010003g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010195', '1010003s02.jpg', '1010003b02.jpg','1010003g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010195', '1010003s03.jpg', '1010003b03.jpg','1010003g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010196', '1010003s04.jpg', '1010003b04.jpg','1010003g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010196', '1010004s01.jpg', '1010004b01.jpg','1010004g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010197', '1010001s01.jpg', '1010001b01.jpg','1010001g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010197', '1010001s02.jpg', '1010001b02.jpg','1010001g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010198', '1010001s03.jpg', '1010001b03.jpg','1010001g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010198', '1010001s04.jpg', '1010001b04.jpg','1010001g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010199', '1010002s01.jpg', '1010002b01.jpg','1010002g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010199', '1010002s02.jpg', '1010002b02.jpg','1010002g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010200', '1010003s04.jpg', '1010003b04.jpg','1010003g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010200', '1010004s01.jpg', '1010004b01.jpg','1010004g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010201', '1010001s01.jpg', '1010001b01.jpg','1010001g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010201', '1010001s02.jpg', '1010001b02.jpg','1010001g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010202', '1010001s03.jpg', '1010001b03.jpg','1010001g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010202', '1010001s04.jpg', '1010001b04.jpg','1010001g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010203', '1010002s01.jpg', '1010002b01.jpg','1010002g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010203', '1010002s02.jpg', '1010002b02.jpg','1010002g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010204', '1010002s03.jpg', '1010002b02.jpg','1010002g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010204', '1010003s01.jpg', '1010003b01.jpg','1010003g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010205', '1010003s02.jpg', '1010003b02.jpg','1010003g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010205', '1010003s03.jpg', '1010003b03.jpg','1010003g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010206', '1010003s04.jpg', '1010003b04.jpg','1010003g04.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010206', '1010004s01.jpg', '1010004b01.jpg','1010004g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010207', '1010001s01.jpg', '1010001b01.jpg','1010001g01.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010207', '1010001s02.jpg', '1010001b02.jpg','1010001g02.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010208', '1010001s03.jpg', '1010001b03.jpg','1010001g03.jpg');
+INSERT INTO `tb_goodsImg` VALUES (NULL, '1010208', '1010001s04.jpg', '1010001b04.jpg','1010001g04.jpg');
+
 -- ----------------------------
 -- Table structure for tb_user
 -- ----------------------------
@@ -894,7 +986,6 @@ INSERT INTO `tb_cart` VALUES (NULL, '14', '1010001', '1');
 INSERT INTO `tb_cart` VALUES (NULL, '15', '1010001', '1');
 INSERT INTO `tb_cart` VALUES (NULL, '16', '1010001', '1');
 
-select * from tb_order,tb_goods where tb_order.goodsId= tb_goods.goodsId and tb_order.orderId =100002
 -- ----------------------------
 -- Table structure for tb_order
 -- ----------------------------
@@ -902,7 +993,7 @@ DROP TABLE IF EXISTS `tb_order`;
 CREATE TABLE `tb_order` (
   `orderId` int(11) NOT NULL AUTO_INCREMENT,
   `goodsId` int(20) DEFAULT NULL,
-	`buyNum` int(11) DEFAULT NULL,
+  `buyNum` int(11) DEFAULT NULL,
   `name` varchar(20) DEFAULT NULL,
   `recvName` varchar(20) DEFAULT NULL,
   `address` varchar(200) DEFAULT NULL,

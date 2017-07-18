@@ -5,18 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.mall.common.DbUtil;
 import com.mall.dao.AdminOrderDao;
-import com.mall.po.Goods;
 import com.mall.po.Order;
-import com.mall.po.OrderNotSendPager;
-import com.mall.po.OrderPager;
-import com.mall.po.OrderSendPager;
-import com.mall.po.User;
 
 public class AdminOrderDaoImpl implements AdminOrderDao {
 
@@ -221,7 +214,6 @@ public class AdminOrderDaoImpl implements AdminOrderDao {
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				Order order = new Order();
-//				User user = new User();
 				String flagName = (rs.getInt("flag")==1)?"已发货":"未发货";
 				order.setOrderId(rs.getInt("orderId"));
 				order.setName(rs.getString("name"));

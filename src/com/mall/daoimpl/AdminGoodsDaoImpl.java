@@ -12,7 +12,6 @@ import java.util.Map;
 import com.mall.common.DbUtil;
 import com.mall.dao.AdminGoodsDao;
 import com.mall.po.Goods;
-import com.mall.po.GoodsPager;
 
 public class AdminGoodsDaoImpl implements AdminGoodsDao{
 
@@ -158,60 +157,6 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 			}
 		}
 		return false;
-	}
-
-	public GoodsPager searchGoods(String GoodsName) {
-		Map GoodsMap = new HashMap();
-		List goodslist = new ArrayList();
-		DbUtil daoUtil = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		String sql = null;
-		try {
-			daoUtil = new DbUtil();
-			sql = "select * from tb_goods where goodsName like ?";
-			ps = daoUtil.getCon().prepareStatement(sql);
-			ps.setString(1, GoodsName+"%");
-			rs = ps.executeQuery();
-			while (rs.next()) {
-				Goods goods = new Goods();
-				goods.setGoodsId(rs.getInt("goodsId"));
-				goods.setSuperTypeId(rs.getInt("superTypeId"));
-				goods.setSubTypeId(rs.getInt("subTypeId"));
-				goods.setGoodsTitle(rs.getString("goodsTitle"));
-				goods.setIntroduce(rs.getString("introduce"));
-				goods.setBrandName(rs.getString("brandName"));
-				goods.setSpec(rs.getString("spec"));
-				goods.setMeasure(rs.getString("measure"));
-				goods.setPrice(rs.getFloat("price"));
-				goods.setNowPrice(rs.getFloat("nowPrice"));
-				goods.setIndexImg(rs.getString("indexImg"));
-				goods.setGoodsNum(rs.getInt("goodsNum"));
-				goods.setSellNum(rs.getInt("sellNum"));
-				goods.setCollectNum(rs.getInt("collectNum"));
-				goods.setGoodsDetailImg(rs.getString("goodsDetailImg"));
-				goods.setKey(rs.getString("key"));
-				goods.setClick(rs.getInt("click"));
-				goods.setSale(rs.getInt("sale"));
-				goods.setSpecial(rs.getInt("special"));
-				goodslist.add(goods);
-				GoodsMap.put(goods.getGoodsId(),goods);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				ps.close();
-				daoUtil.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		GoodsPager bp = new GoodsPager();
-		bp.setGoodsMap(GoodsMap);
-		bp.setTotalNum(GoodsMap.size());
-		return bp;
 	}
 	
 	public boolean setGoodsSpecial(int goodId){
@@ -361,60 +306,6 @@ public class AdminGoodsDaoImpl implements AdminGoodsDao{
 		}
 		return GoodsNameList;
 	}
-	
-	public GoodsPager getGoodsPager(int index,int pageSize) {
-		Map GoodsMap = new HashMap();
-		DbUtil db = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			db = new DbUtil();
-			String sql = "select * from tb_goods limit ?,?";
-			ps = db.getCon().prepareStatement(sql);
-			ps.setInt(1, index);
-			ps.setInt(2, pageSize);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				Goods goods = new Goods();
-				goods.setGoodsId(rs.getInt("goodsId"));
-				goods.setSuperTypeId(rs.getInt("superTypeId"));
-				goods.setSubTypeId(rs.getInt("subTypeId"));
-				goods.setGoodsTitle(rs.getString("goodsTitle"));
-				goods.setIntroduce(rs.getString("introduce"));
-				goods.setBrandName(rs.getString("brandName"));
-				goods.setSpec(rs.getString("spec"));
-				goods.setMeasure(rs.getString("measure"));
-				goods.setPrice(rs.getFloat("price"));
-				goods.setNowPrice(rs.getFloat("nowPrice"));
-				goods.setIndexImg(rs.getString("indexImg"));
-				goods.setGoodsNum(rs.getInt("goodsNum"));
-				goods.setSellNum(rs.getInt("sellNum"));
-				goods.setCollectNum(rs.getInt("collectNum"));
-				goods.setGoodsDetailImg(rs.getString("goodsDetailImg"));
-				goods.setKey(rs.getString("key"));
-				goods.setClick(rs.getInt("click"));
-				goods.setSale(rs.getInt("sale"));
-				goods.setSpecial(rs.getInt("special"));
-				GoodsMap.put(goods.getGoodsId(), goods);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				ps.close();
-				db.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		GoodsPager bp = new GoodsPager();
-		bp.setGoodsMap(GoodsMap);
-		bp.setPageSize(pageSize);
-		bp.setTotalNum(getAllGoods().size());
-		return bp;
-	}
-	
 	public boolean deleteGoods(int[] GoodsIds) {
 		DbUtil daoUtil = null;
 		PreparedStatement ps = null;

@@ -12,8 +12,7 @@ public class UserLoginOut extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getSession().invalidate();
-		request.getSession().setAttribute("LoginOutMessage", "注销成功");
-		request.getRequestDispatcher("getGoodsByTypeServlet").forward(request, response);
+		request.getRequestDispatcher("index.html").forward(request, response);
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

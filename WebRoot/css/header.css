@@ -180,7 +180,7 @@ a:hover{
 .search-bar .search_box .search_form input {
     font-family: "微软雅黑";
     float: left;
-    width: 402px;
+    width: 401px;
     height: 30px;
     padding-left: 13px;
     color: #999;
@@ -189,7 +189,7 @@ a:hover{
 
 .search-bar .search_box .search_form button {
     font-family: "微软雅黑";
-    float: left;
+    float: right;
     width: 65px;
     height: 32px;
     cursor: pointer;
@@ -213,19 +213,13 @@ a:hover{
     color: #444
 }
 
-.search-bar .phone_code {
-    width: 220px;
-    height: 25px;
-    margin: 25px 0 0 40px;
-    background: url(../img/bg.png) 0 -520px
-}
-
 .search-bar .shopingcar {
+	margin-left:220px;
+	margin-top:17px;
     display:inline-block;
     line-height: 39px;
     width: 130px;
     height: 39px;
-    margin: 17px 0 0;
     text-indent: 4em;
     color: #666;
     background: url(../img/shopping-cart.gif)

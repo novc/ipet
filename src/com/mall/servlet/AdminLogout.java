@@ -12,7 +12,10 @@ public class AdminLogout extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getSession().invalidate();
-		request.getRequestDispatcher("Admin/login/adminLogin.jsp").forward(request, response);
+		PrintWriter out = response.getWriter();
+		out.print(1);
+		out.flush();
+		out.close();
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response)

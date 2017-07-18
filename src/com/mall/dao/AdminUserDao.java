@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.mall.po.User;
-import com.mall.po.UserPager;
 
 public interface AdminUserDao {
 

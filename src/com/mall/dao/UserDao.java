@@ -3,7 +3,6 @@ package com.mall.dao;
 import java.util.List;
 
 import com.mall.po.Note;
-import com.mall.po.Page;
 import com.mall.po.User;
 
 public interface UserDao {
@@ -15,8 +14,6 @@ public interface UserDao {
 	public boolean checkNameExist(String name);
 	//显示所有用户
 	public List listUser();
-	//分页显示用户
-	public Page doPage(int currentPage,int pageSize);
 	//根据Id删除用户
 	public boolean delete(int id,String powerType);
 	//根据ID修改用户权限
@@ -27,8 +24,6 @@ public interface UserDao {
 	public User getUser(String name);
 	//显示所有用户的留言
 	public List showNote();
-	//分页显示用户留言
-	public Page doNotePage(int currentPage,int pageSize);
 	//用户添加留言
 	public boolean addNote(Note note);
 	

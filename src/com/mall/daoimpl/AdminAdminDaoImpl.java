@@ -12,7 +12,6 @@ import java.util.Map;
 import com.mall.common.DbUtil;
 import com.mall.dao.AdminAdminDao;
 import com.mall.po.Admin;
-import com.mall.po.AdminPager;
 
 public class AdminAdminDaoImpl implements AdminAdminDao{
 
@@ -108,46 +107,6 @@ public class AdminAdminDaoImpl implements AdminAdminDao{
 			}
 		}
 		return adminList;
-	}
-
-	public AdminPager getAdminPager(int index, int pageSize) {
-		Map adminMap = new HashMap();
-		DbUtil db = null;
-		PreparedStatement ps = null;
-		ResultSet rs = null;
-		try {
-			db = new DbUtil();
-			String sql = "select * from tb_admin limit ?,?";
-			ps = db.getCon().prepareStatement(sql);
-			ps.setInt(1, index);
-			ps.setInt(2, pageSize);
-			rs = ps.executeQuery();
-			while(rs.next()) {
-				Admin admin = new Admin();
-				admin.setId(rs.getInt("ID"));
-				admin.setAdminType(rs.getInt("AdminType"));
-				admin.setLoginName(rs.getString("LoginName"));
-				admin.setLoginPwd(rs.getString("LoginPwd"));
-				admin.setAdminName(rs.getString("AdminName"));
-				adminMap.put(admin.getId(), admin);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				ps.close();
-				db.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		AdminPager up = new AdminPager();
-		up.setAdminMap(adminMap);
-		up.setPageSize(pageSize);
-		up.setTotalNum(getAllAdmins().size());
-		return up;
-		
 	}
 	
 	public List getAdminByAdminName(String adminName){

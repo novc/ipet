@@ -7,7 +7,11 @@ import com.taobao.api.request.AlibabaAliqinFcSmsNumSendRequest;
 import com.taobao.api.response.AlibabaAliqinFcSmsNumSendResponse;
 
 public class TelValidate {
-
+	
+	public static void main(String[] args){
+		
+	}
+	
 	public static void sendRegisterCode(String phoneNUm,int randomNum){
 		try{
 			String url = "http://gw.api.taobao.com/router/rest";

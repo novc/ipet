@@ -17,22 +17,23 @@ public class AdminUpdatePassword extends HttpServlet {
 		String password = request.getParameter("password");
 		String rpassword = request.getParameter("rpassword");
 		String name = request.getParameter("name");
+		PrintWriter out = response.getWriter();
+		
 		if(password != null && rpassword != null && name != null) {
 			if(!password.equals(rpassword)) {
 				request.setAttribute("message", "not the same password");
-				request.getRequestDispatcher("Admin/pages/updatePassword.jsp").forward(request, response);
+				out.print(2);//两次密码不一致
 			} else {
 				Admin admin = new Admin();
 				admin.setLoginName(name);
 				admin.setLoginPwd(password);
 				Model model = new Model();
 				if(model.updatePassword(admin)) {
-					request.setAttribute("message", "修改成功！");
-					request.getRequestDispatcher("Admin/pages/updatePassword.jsp").forward(request, response);
+					out.print(1);//修改成功
 				}
 			}
 		} else {
-			request.getRequestDispatcher("Admin/pages/updatePassword.jsp").forward(request, response);
+			out.print(0);//参数传递出错
 		}
 	}
 

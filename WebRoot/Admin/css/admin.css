@@ -97,10 +97,10 @@
 /*--------------------------------后台表格页公用样式,如修改页面-------------------------------*/
 
 .title{
-	height:28px;
+	height:27px;
 	border-bottom:1px solid #95B8E7;
 	background:#E8F1FF;
-	line-height:28px;
+	line-height:27px;
 	padding:0px 5px;
 }
 .update-table{
@@ -139,4 +139,9 @@ select{
 	width:481px;
 	margin:auto;
 	margin-top:100px;
+}
+
+/*-----------修改页面界面信息提示样式------------*/
+.message{
+	color:red;
 }
